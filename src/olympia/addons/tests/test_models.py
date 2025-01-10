@@ -43,12 +43,11 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED, SPONSORED
+from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED, SPOTLIGHT
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import NeedsHumanReview
@@ -62,6 +61,7 @@ from olympia.versions.models import (
     ApplicationsVersions,
     Version,
     VersionPreview,
+    VersionProvenance,
     VersionReviewerFlags,
 )
 from olympia.zadmin.models import set_config
@@ -817,6 +817,25 @@ class TestAddonModels(TestCase):
 
         assert delete_all_addon_media_with_backup_mock.delay.call_count == 1
         assert delete_all_addon_media_with_backup_mock.delay.call_args[0] == (addon.pk,)
+
+    def test_force_disable_clear_due_date_unlisted_auto_approval_indefinite_delay(self):
+        addon = addon_factory(status=amo.STATUS_NULL)
+        version = version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        AddonReviewerFlags.objects.create(
+            addon=addon, auto_approval_delayed_until_unlisted=datetime.max
+        )
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        version.reset_due_date()
+        assert version.due_date is not None
+        addon.force_disable()
+        version.reload()
+        assert version.due_date is None
 
     def test_force_disable_skip_activity_log(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
@@ -1675,29 +1694,6 @@ class TestAddonModels(TestCase):
         flags.update(needs_admin_theme_review=True)
         assert addon.needs_admin_theme_review is True
 
-    def test_addon_reviewer_flags_signal(self):
-        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-        unlisted = version_factory(
-            addon=addon,
-            channel=amo.CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        assert not addon.current_version.due_date
-        assert not unlisted.due_date
-
-        flags = AddonReviewerFlags.objects.create(
-            addon=addon, auto_approval_disabled=True
-        )
-        assert addon.current_version.reload().due_date
-        assert not unlisted.reload().due_date
-
-        flags.update(auto_approval_disabled=False, auto_approval_disabled_unlisted=True)
-        assert not addon.current_version.reload().due_date
-        assert unlisted.reload().due_date
-
-        flags.update(auto_approval_disabled_unlisted=False)
-        assert not unlisted.reload().due_date
-
     def test_attach_previews(self):
         addons = [
             addon_factory(),
@@ -1748,17 +1744,17 @@ class TestAddonModels(TestCase):
 
         # if the group has changes the approval for the current version isn't
         # valid
-        promoted.update(group_id=SPONSORED.id)
+        promoted.update(group_id=SPOTLIGHT.id)
         assert not addon.promoted_group()
         assert addon.promoted_group(currently_approved=False)
-        assert addon.promoted_group(currently_approved=False) == SPONSORED
+        assert addon.promoted_group(currently_approved=False) == SPOTLIGHT
 
         promoted.approve_for_version(version=addon.current_version)
-        assert addon.promoted_group() == SPONSORED
+        assert addon.promoted_group() == SPOTLIGHT
 
         # Application specific group membership should work too
         # if no app is specifed in the PromotedAddon everything should match
-        assert addon.promoted_group() == SPONSORED
+        assert addon.promoted_group() == SPOTLIGHT
         # update to mobile app
         promoted.update(application_id=amo.ANDROID.id)
         assert addon.promoted_group()
@@ -1769,7 +1765,7 @@ class TestAddonModels(TestCase):
         del addon.current_version.approved_for_groups
         assert not addon.promoted_group()
         promoted.update(application_id=amo.FIREFOX.id)
-        assert addon.promoted_group() == SPONSORED
+        assert addon.promoted_group() == SPOTLIGHT
 
         # check it doesn't error if there's no current_version
         addon.current_version.file.update(status=amo.STATUS_DISABLED)
@@ -1795,7 +1791,7 @@ class TestAddonModels(TestCase):
 
         # If the group changes the approval for the current version isn't
         # valid.
-        promoted.update(group_id=SPONSORED.id)
+        promoted.update(group_id=SPOTLIGHT.id)
         del addon.promoted
         assert addon.promoted is None
 
@@ -2106,37 +2102,62 @@ class TestAddonDueDate(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        AddonReviewerFlags.objects.create(
-            addon=Addon.objects.get(id=3615), auto_approval_disabled=True
-        )
         user_factory(pk=settings.TASK_USER_ID)
 
     def test_set_due_date(self):
         addon = Addon.objects.get(id=3615)
         addon.update(status=amo.STATUS_NULL)
-        addon.versions.latest().file.update(status=amo.STATUS_AWAITING_REVIEW)
-        addon.versions.latest().update(due_date=None)
+        version = addon.versions.latest()
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        version.update(due_date=None)
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
         addon.update(status=amo.STATUS_NOMINATED)
-        assert addon.versions.latest().due_date
+        assert version.reload().due_date
 
     def test_new_version_inherits_due_date(self):
         addon = Addon.objects.get(id=3615)
         old_version = addon.versions.latest()
         addon.update(status=amo.STATUS_NOMINATED)
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        NeedsHumanReview.objects.create(
+            version=old_version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
         old_version.reload()
+        assert old_version.due_date
+        old_version.update(due_date=self.days_ago(15))
         old_version_due_date = old_version.due_date
-        assert old_version_due_date
-        version = version_factory(
+        new_version = version_factory(
             addon=addon, version='10.0', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
-        assert version.due_date == old_version_due_date
+        NeedsHumanReview.objects.create(
+            version=new_version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        assert new_version.reload().due_date == old_version_due_date
 
     def test_lone_version_does_not_inherit_due_date(self):
         addon = Addon.objects.get(id=3615)
+        old_version = addon.versions.latest()
+        addon.update(status=amo.STATUS_NOMINATED)
+        old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        NeedsHumanReview.objects.create(
+            version=old_version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        old_version.reload()
+        assert old_version.due_date
+        old_version.update(due_date=self.days_ago(15))
+        old_version_due_date = old_version.due_date
         Version.objects.all().delete()
-        version = Version.objects.create(addon=addon, version='1.0')
-        assert version.due_date is None
+        new_version = version_factory(
+            addon=addon, version='42.0', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+        NeedsHumanReview.objects.create(
+            version=new_version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        new_version.reload()
+        assert new_version.due_date
+        assert new_version.due_date != old_version_due_date
 
     def test_reviewed_addon_does_not_inherit_due_date(self):
         addon = Addon.objects.get(id=3615)
@@ -2156,10 +2177,14 @@ class TestAddonDueDate(TestCase):
     def test_due_date_already_set(self):
         addon = Addon.objects.get(id=3615)
         earlier = datetime.today() - timedelta(days=2)
-        addon.versions.latest().file.update(status=amo.STATUS_AWAITING_REVIEW)
-        addon.versions.latest().update(due_date=earlier)
+        version = addon.versions.latest()
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        version.update(due_date=earlier)
         addon.update(status=amo.STATUS_NOMINATED)
-        assert addon.versions.latest().due_date.date() == earlier.date()
+        assert version.reload().due_date.date() == earlier.date()
 
     def setup_due_date(
         self, addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
@@ -2167,9 +2192,15 @@ class TestAddonDueDate(TestCase):
         addon = addon_factory(
             status=addon_status,
             file_kw={'status': file_status},
+            version_kw={'version': '0.1'},
             reviewer_flags={'auto_approval_disabled': True},
         )
         version = addon.current_version
+        # This would be created by `auto_approve` because of the
+        # auto_approval_disabled reviewer flag on the addon.
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
         # Cheating date to make sure we don't have a date on the same second
         # the code we test is running.
         past = self.days_ago(1)
@@ -2181,25 +2212,39 @@ class TestAddonDueDate(TestCase):
 
     def test_due_date_not_reset_if_adding_new_versions(self):
         """
-        When under review, adding new versions and files should not reset due date.
+        When the add-on is under initial review (STATUS_NOMINATED), adding new
+        versions and files should not reset due date.
         """
-        addon, due_date = self.setup_due_date()
+        addon, existing_due_date = self.setup_due_date()
 
         # Adding a new unreviewed version.
-        version_factory(
+        new_version = version_factory(
+            addon=addon,
+            version='0.2',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        # We force the creation of the NHR that would have happened during
+        # `auto_approve` like `setup_due_date()` did for the first one.
+        NeedsHumanReview.objects.create(
+            version=new_version, reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        # Because the add-on is still nominated, the new version should inherit
+        # from the existing due date.
+        assert new_version.reload().due_date == existing_due_date
+
+        # Adding a new unreviewed version again.
+        new_new_version = version_factory(
             addon=addon,
             version='0.3',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        assert addon.versions.latest().due_date == due_date
-
-        # Adding a new unreviewed version.
-        version_factory(
-            addon=addon,
-            version='0.4',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        # Once again we force the creation of the NHR that would have happened
+        # during `auto_approve` like `setup_due_date()` did for the first one.
+        NeedsHumanReview.objects.create(
+            version=new_new_version,
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
         )
-        assert addon.versions.latest().due_date == due_date
+        assert new_new_version.reload().due_date == existing_due_date
 
     def test_new_version_of_approved_addon_should_reset_due_date(self):
         addon, due_date = self.setup_due_date(
@@ -2213,7 +2258,7 @@ class TestAddonDueDate(TestCase):
         )
         assert addon.versions.latest().due_date != due_date
 
-    def test_set_needs_human_review_on_latest_versions(self):
+    def _test_set_needs_human_review_on_latest_versions(self, *, skip_activity_log):
         addon = Addon.objects.get(id=3615)
         listed_version = version_factory(
             addon=addon, created=self.days_ago(1), file_kw={'is_signed': True}
@@ -2232,60 +2277,81 @@ class TestAddonDueDate(TestCase):
         )
         due_date = datetime.now() + timedelta(hours=42)
         assert addon.set_needs_human_review_on_latest_versions(
-            due_date=due_date, reason=NeedsHumanReview.REASON_PROMOTED_GROUP
-        )
+            due_date=due_date,
+            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
+            skip_activity_log=skip_activity_log,
+        ) == [listed_version, unlisted_version]
         for version in [listed_version, unlisted_version]:
             assert version.needshumanreview_set.filter(is_active=True).count() == 1
             assert (
                 version.needshumanreview_set.get().reason
-                == NeedsHumanReview.REASON_PROMOTED_GROUP
+                == NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP
             )
         for version in [unsigned_listed_version, unsigned_unlisted_version]:
             # Those are more recent but unsigned, so we don't consider them
             # when figuring out which version to flag for human review.
             assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
+    def test_set_needs_human_review_on_latest_versions_with_log(self):
+        self._test_set_needs_human_review_on_latest_versions(skip_activity_log=False)
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
+        ).exists()
+
+    def test_set_needs_human_review_on_latest_versions_without_log(self):
+        self._test_set_needs_human_review_on_latest_versions(skip_activity_log=True)
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
+        ).exists()
+
     def test_set_needs_human_review_on_latest_versions_ignore_already_reviewed(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(human_review_date=self.days_ago(1))
-        assert not addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP
+        assert (
+            addon.set_needs_human_review_on_latest_versions(
+                reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP
+            )
+            == []
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
         assert addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, ignore_reviewed=False
-        )
+            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
+            ignore_reviewed=False,
+        ) == [version]
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_PROMOTED_GROUP
+            == NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP
         )
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
+        ).get().arguments == [version]
 
     def test_set_needs_human_review_on_latest_versions_unique_reason(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         NeedsHumanReview.objects.create(
-            version=version, reason=NeedsHumanReview.REASON_SCANNER_ACTION
+            version=version, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
         )
 
         assert not addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, unique_reason=False
+            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP, unique_reason=False
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_SCANNER_ACTION
+            == NeedsHumanReview.REASONS.SCANNER_ACTION
         )
 
         assert addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, unique_reason=True
+            reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP, unique_reason=True
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 2
         assert list(version.needshumanreview_set.values_list('reason', flat=True)) == [
-            NeedsHumanReview.REASON_SCANNER_ACTION,
-            NeedsHumanReview.REASON_PROMOTED_GROUP,
+            NeedsHumanReview.REASONS.SCANNER_ACTION,
+            NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
         ]
 
     def test_set_needs_human_review_on_latest_versions_even_deleted(self):
@@ -2293,12 +2359,49 @@ class TestAddonDueDate(TestCase):
         version = addon.current_version
         version.delete()
         assert addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReview.REASON_UNKNOWN
+            reason=NeedsHumanReview.REASONS.UNKNOWN
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
-            version.needshumanreview_set.get().reason == NeedsHumanReview.REASON_UNKNOWN
+            version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASONS.UNKNOWN
         )
+
+    def test_update_all_due_dates(self):
+        addon = Addon.objects.get(id=3615)
+        versions_that_should_have_due_date = [
+            version_factory(addon=addon, file_kw={'is_signed': True}),
+            version_factory(addon=addon, file_kw={'is_signed': True}),
+        ]
+        versions_that_should_not_have_due_date = [
+            version_factory(addon=addon, file_kw={'is_signed': True}),
+            version_factory(addon=addon, file_kw={'is_signed': True}),
+        ]
+        # For the versions that should ultimately have a due date, start with
+        # an inactive NHR, they shouldn't have their due date yet.
+        for version in versions_that_should_have_due_date:
+            version.needshumanreview_set.create(is_active=False)
+        # For the versions that should not, do it the other way around (so at
+        # that moment they do have a due date, but they'll soon lose it).
+        for version in versions_that_should_not_have_due_date:
+            version.needshumanreview_set.create(is_active=True)
+
+        # Update the NHR through a queryset update: that won't trigger
+        # post_save so the due date would not be set/unset until we force it.
+        NeedsHumanReview.objects.filter(
+            version__in=versions_that_should_have_due_date
+        ).update(is_active=True)
+        NeedsHumanReview.objects.filter(
+            version__in=versions_that_should_not_have_due_date
+        ).update(is_active=False)
+
+        addon.update_all_due_dates()
+        for version in versions_that_should_have_due_date:
+            version.reload()
+            assert version.due_date
+        for version in versions_that_should_not_have_due_date:
+            version.reload()
+            assert not version.due_date
 
 
 class TestAddonDelete(TestCase):
@@ -2569,12 +2672,15 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:
-            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
-            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def setUp(self):
         super().setUp()
@@ -2588,7 +2694,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
                 application=application.id,
                 min=AppVersion.objects.get(
                     application=application.id,
-                    version=amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+                    version=amo.DEFAULT_WEBEXT_MIN_VERSION,
                 ),
                 max=AppVersion.objects.get(application=application.id, version='*'),
             )
@@ -2925,6 +3031,21 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         )
         assert log.user == self.user
 
+    def test_client_info(self):
+        self.upload = self.get_upload('webextension.xpi', user=self.user)
+        parsed_data = parse_addon(self.upload, user=self.user)
+        addon = Addon.from_upload(
+            self.get_upload('notify-link-clicks-i18n.xpi'),
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+            client_info='Blâh/6',
+        )
+        assert addon
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == addon.current_version
+        assert provenance.source == self.upload.source
+        assert provenance.client_info == 'Blâh/6'
+
 
 class TestFrozenAddons(TestCase):
     def test_immediate_freeze(self):
@@ -3135,22 +3256,6 @@ class TestAddonAndDeniedGuid(TestCase):
             addon.allow_resubmission()
 
 
-class TestGitExtractionEntry(TestCase):
-    def test_git_extraction_is_in_progress_returns_false_when_no_attr(self):
-        addon = addon_factory()
-        assert not addon.git_extraction_is_in_progress
-
-    def test_git_extraction_is_in_progress(self):
-        addon = addon_factory()
-        GitExtractionEntry.objects.create(addon=addon, in_progress=True)
-        assert addon.git_extraction_is_in_progress
-
-    def test_git_extraction_is_not_in_progress(self):
-        addon = addon_factory()
-        GitExtractionEntry.objects.create(addon=addon)
-        assert not addon.git_extraction_is_in_progress
-
-
 class TestExtensionsQueues(TestCase):
     def setUp(self):
         user_factory(pk=settings.TASK_USER_ID)
@@ -3238,6 +3343,9 @@ class TestExtensionsQueues(TestCase):
                 reviewer_flags={
                     'auto_approval_disabled': True,
                 },
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
             ),
             addon_factory(
                 name='Pure unlisted with auto-approval disabled',
@@ -3246,6 +3354,9 @@ class TestExtensionsQueues(TestCase):
                 version_kw={'channel': amo.CHANNEL_UNLISTED},
                 reviewer_flags={
                     'auto_approval_disabled_unlisted': True,
+                },
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
                 },
             ),
             version_factory(
@@ -3256,6 +3367,9 @@ class TestExtensionsQueues(TestCase):
                     },
                 ),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 channel=amo.CHANNEL_UNLISTED,
             ).addon,
             version_factory(
@@ -3270,10 +3384,16 @@ class TestExtensionsQueues(TestCase):
                         )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    needshumanreview_kw={
+                        'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                    },
                     channel=amo.CHANNEL_UNLISTED,
                     due_date=datetime.now() + timedelta(hours=24),
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 due_date=datetime.now() + timedelta(hours=48),
             ).addon,
             version_factory(
@@ -3282,6 +3402,9 @@ class TestExtensionsQueues(TestCase):
                     reviewer_flags={'auto_approval_disabled': True},
                 ),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
             ).addon,
             version_factory(
                 addon=version_factory(
@@ -3297,10 +3420,16 @@ class TestExtensionsQueues(TestCase):
                         )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    needshumanreview_kw={
+                        'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                    },
                     channel=amo.CHANNEL_UNLISTED,
                     due_date=datetime.now() + timedelta(hours=24),
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 due_date=datetime.now() + timedelta(hours=48),
             ).addon,
             version_factory(
@@ -3317,19 +3446,25 @@ class TestExtensionsQueues(TestCase):
                         )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    needshumanreview_kw={
+                        'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                    },
                     due_date=datetime.now() + timedelta(hours=24),
                     channel=amo.CHANNEL_UNLISTED,
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 due_date=datetime.now() + timedelta(hours=48),
             ).addon,
         ]
         deleted_addon_human_review = addon_factory(
             name='Deleted add-on - human review',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
-        )
-        NeedsHumanReview.objects.create(
-            version=deleted_addon_human_review.versions.latest('pk')
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         deleted_addon_human_review.delete()
         expected_addons.append(deleted_addon_human_review)
@@ -3338,9 +3473,9 @@ class TestExtensionsQueues(TestCase):
             version_kw={'channel': amo.CHANNEL_UNLISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
             reviewer_flags={'auto_approval_disabled_unlisted': True},
-        )
-        NeedsHumanReview.objects.create(
-            version=deleted_unlisted_version_human_review.versions.latest('pk')
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         deleted_unlisted_version_human_review.versions.all()[0].delete()
         expected_addons.append(deleted_unlisted_version_human_review)
@@ -3349,12 +3484,21 @@ class TestExtensionsQueues(TestCase):
             version_kw={'channel': amo.CHANNEL_LISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
             reviewer_flags={'auto_approval_disabled': True},
-        )
-        NeedsHumanReview.objects.create(
-            version=deleted_listed_version_human_review.versions.latest('pk')
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         deleted_listed_version_human_review.versions.all()[0].delete()
         expected_addons.append(deleted_listed_version_human_review)
+        disabled_with_human_review = addon_factory(
+            name='Disabled by Mozilla',
+            status=amo.STATUS_DISABLED,
+            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
+        )
+        expected_addons.append(disabled_with_human_review)
 
         # Add add-ons that should not appear. For some it's because of
         # something we're explicitly filtering out, for others it's because of
@@ -3380,12 +3524,19 @@ class TestExtensionsQueues(TestCase):
             type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         addon_factory(
             name='Disabled by Mozilla',
             status=amo.STATUS_DISABLED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
+                'is_active': False,  # mimics force_disable()
+            },
         )
         version_review_flags_factory(
             version=addon_factory(
@@ -3398,19 +3549,29 @@ class TestExtensionsQueues(TestCase):
             name='Deleted add-on',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         ).delete()
         addon_factory(
             name='Deleted unlisted version',
             version_kw={'channel': amo.CHANNEL_UNLISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled_unlisted': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         ).versions.all()[0].delete()
         addon_factory(
             name='Deleted listed version',
             version_kw={'channel': amo.CHANNEL_LISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         ).versions.all()[0].delete()
+
         addons = Addon.unfiltered.get_queryset_for_pending_queues()
         assert list(addons.order_by('pk')) == expected_addons
 
@@ -3476,9 +3637,15 @@ class TestExtensionsQueues(TestCase):
                     },
                 ),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
                 channel=amo.CHANNEL_UNLISTED,
             ).addon,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
         )
         addon_factory(
             name='Pure unlisted with auto-approval delayed',
@@ -3487,12 +3654,87 @@ class TestExtensionsQueues(TestCase):
                 + timedelta(hours=24),
             },
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            needshumanreview_kw={
+                'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+            },
             version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         addons = Addon.unfiltered.get_queryset_for_pending_queues(
             show_temporarily_delayed=False
         )
         assert set(addons) == set(expected_addons)
+
+    def _test_pending_queue_needs_human_review_from(self, reason, annotated_field):
+        nhr_abuse = addon_factory(file_kw={'is_signed': True})
+        NeedsHumanReview.objects.create(
+            version=nhr_abuse.versions.latest('pk'),
+            reason=reason,
+        )
+        nhr_other = addon_factory(file_kw={'is_signed': True})
+        NeedsHumanReview.objects.create(version=nhr_other.versions.latest('pk'))
+        nhr_abuse_inactive = addon_factory(file_kw={'is_signed': True})
+        NeedsHumanReview.objects.create(
+            version=nhr_abuse_inactive.versions.latest('pk'),
+            reason=reason,
+            is_active=False,
+        )
+        NeedsHumanReview.objects.create(
+            version=nhr_abuse_inactive.versions.latest('pk')
+        )
+        nhr_without_due_date = addon_factory(file_kw={'is_signed': True})
+        NeedsHumanReview.objects.create(
+            version=nhr_without_due_date.versions.latest('pk'),
+            reason=reason,
+        )
+        nhr_without_due_date.versions.latest('pk').update(due_date=None)
+        NeedsHumanReview.objects.create(
+            version=version_factory(
+                addon=nhr_without_due_date, file_kw={'is_signed': True}
+            )
+        )
+
+        addons = {
+            addon.id: addon
+            for addon in Addon.unfiltered.get_queryset_for_pending_queues()
+        }
+
+        assert set(addons.values()) == {
+            nhr_abuse,
+            nhr_other,
+            nhr_without_due_date,
+            nhr_abuse_inactive,
+        }
+        assert getattr(addons[nhr_abuse.id], annotated_field)
+        if annotated_field != 'needs_human_review_other':
+            assert not getattr(addons[nhr_other.id], annotated_field)
+            assert not getattr(addons[nhr_without_due_date.id], annotated_field)
+            assert not getattr(addons[nhr_abuse_inactive.id], annotated_field)
+        else:
+            assert getattr(addons[nhr_other.id], annotated_field)
+            assert getattr(addons[nhr_without_due_date.id], annotated_field)
+            assert getattr(addons[nhr_abuse_inactive.id], annotated_field)
+
+    def test_pending_queue_needs_human_review_from_abuse(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            'needs_human_review_from_abuse',
+        )
+
+    def test_pending_queue_needs_human_review_from_appeal(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
+            'needs_human_review_from_appeal',
+        )
+
+    def test_pending_queue_needs_human_review_from_cinder(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.CINDER_ESCALATION, 'needs_human_review_from_cinder'
+        )
+
+    def test_pending_queue_needs_human_review_other(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_other'
+        )
 
     def test_get_pending_rejection_queue(self):
         expected_addons = [
@@ -3523,6 +3765,9 @@ class TestExtensionsQueues(TestCase):
 
 
 class TestThemesPendingManualApprovalQueue(TestCase):
+    def setUp(self):
+        user_factory(pk=settings.TASK_USER_ID)
+
     def test_basic(self):
         expected = [
             addon_factory(
@@ -3547,6 +3792,27 @@ class TestThemesPendingManualApprovalQueue(TestCase):
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             )
         ]
+        disabled_with_human_review = addon_factory(
+            name='Disabled by Mozilla',
+            status=amo.STATUS_DISABLED,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
+        )
+        NeedsHumanReview.objects.create(
+            version=disabled_with_human_review.versions.latest('pk')
+        )
+        expected.append(disabled_with_human_review)
+        rejected_version_with_human_review = addon_factory(
+            name='rejected version',
+            status=amo.STATUS_NULL,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True},
+        )
+        NeedsHumanReview.objects.create(
+            version=rejected_version_with_human_review.versions.latest('pk')
+        )
+        expected.append(rejected_version_with_human_review)
+
         addon_factory(
             type=amo.ADDON_STATICTHEME,
             status=amo.STATUS_NOMINATED,
@@ -3559,7 +3825,7 @@ class TestThemesPendingManualApprovalQueue(TestCase):
         )
         qs = (
             Addon.objects.get_queryset_for_pending_queues(theme_review=True)
-            .filter(status__in=(amo.STATUS_APPROVED,))
+            .exclude(status=amo.STATUS_NOMINATED)
             .order_by('pk')
         )
         assert list(qs) == expected
