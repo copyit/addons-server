@@ -922,6 +922,18 @@ class TestDeniedName(TestCase):
         assert not DeniedName.blocked('IE6')
         assert not DeniedName.blocked('testo')
 
+    def test_blocked_emoji(self):
+        assert not DeniedName.blocked('Test 🎧')
+        assert not DeniedName.blocked('Test 🌠')
+
+        denied = DeniedName.objects.create(name='🌠')
+        assert not DeniedName.blocked('Test 🎧')
+        assert DeniedName.blocked('Test 🌠')
+
+        denied.update(name='🎧')
+        assert DeniedName.blocked('Test 🎧')
+        assert not DeniedName.blocked('Test 🌠')
+
 
 class TestIPNetworkUserRestriction(TestCase):
     def test_str(self):
@@ -1568,5 +1580,5 @@ class TestSuppressedEmailVerification(TestCase):
         )
         assert not email_verification.is_timedout
 
-        with freeze_time(email_verification.created + timedelta(seconds=31)):
+        with freeze_time(email_verification.created + timedelta(minutes=10, seconds=1)):
             assert email_verification.is_timedout

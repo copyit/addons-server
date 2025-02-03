@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-01-13 14:33+0000\n"
+"POT-Creation-Date: 2025-01-31 17:28+0000\n"
+"PO-Revision-Date: 2024-10-18 04:13+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -15,53 +15,47 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla ਐਡ-ਆਨ: {} [{}]"
+
 msgid "Email address"
-msgstr ""
+msgstr "ਈਮੇਲ ਸਿਰਨਾਵਾਂ"
 
 msgid "Invalid email provided."
-msgstr ""
+msgstr "ਗਲਤ ਈਮੇਲ ਦਿੱਤੀ ਗਈ।"
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "ਅਪੀਲ ਦਾ ਕਾਰਨ"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
+msgid "User profile"
+msgstr "ਵਰਤੋਂਕਾਰ ਪਰੋਫਾਇਲ"
+
+msgid "\"{}\" for {}"
+msgstr "{} ਲਈ \"{}\""
+
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸੁਨਿਸ਼ਚਿਤ ਕਰੋ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ {max_length} ਅੱਖਰਾਂ ਤੋਂ ਵੱਧ ਨਹੀਂ ਹਨ।"
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ {max_length} ਅੱਖਰਾਂ ਤੋਂ ਵੱਧ ਨਹੀਂ ਹਨ।"
 
 msgid "Invalid value"
 msgstr "ਗਲਤ ਮੁੱਲ"
 
-msgid "\"{}\" for {}"
-msgstr ""
-
-msgid "User profile"
-msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "ਦਰਜਾਬੰਦੀ"
-
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
-
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "ਰੀਵਿਊ ਦੇ ਫ਼ੈਸਲੇ ਬਾਰੇ ਅਪੀਲ ਕਰੋ"
 
 msgid "Decision {0}"
-msgstr ""
+msgstr "ਫ਼ੈਸਲਾ {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਧੰਨਵਾਦ ਹੈ! ਤੁਹਾਡੀ ਅਪੀਲ ਦਰਜ ਕੀਤੀ ਗਈ ਹੈ।"
 
 msgid "OK"
 msgstr "ਠੀਕ ਹੈ"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਰਿਪੋਰਟ ਬਾਰੇ ਤੁਹਾਡਾ ਧੰਨਵਾਦ ਹੈ।"
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
@@ -70,22 +64,25 @@ msgstr ""
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr ""
 
-msgid "This decision can't be appealed."
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
 msgstr ""
+
+msgid "This decision can't be appealed."
+msgstr "ਇਸ ਫ਼ੈਸਲੇ ਬਾਰੇ ਅਪੀਲ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ।"
 
 msgid "Hello,"
-msgstr ""
+msgstr "ਹੈਲੋ,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Mozilla ਐਡ-ਆਨ ਟੀਮ"
 
 #, python-format
 msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
-"have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
+"%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
@@ -95,8 +92,15 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -119,6 +123,14 @@ msgid ""
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -182,11 +194,11 @@ msgstr[1] "ਵਰਜ਼ਨ {0}"
 msgid "Review note"
 msgstr "ਪੜਤਾਲ ਲਿਖਤ"
 
-msgid "Only latest versions of addons can have notes added."
-msgstr "ਐਡ-ਆਨ ਦੇ ਸਿਰਫ ਨਵੀਨਤਮ ਵਰਜਨ ਹੀ ਨੋਟਿਸ ਜੋੜ ਸਕਦੇ ਹਨ।"
-
 msgid "Request content length is too large."
 msgstr "ਮੰਗ ਕੀਤੀ ਸਮਗੱਰੀ ਦੀ ਲੰਬਾਈ ਬਹੁਤ ਵੱਧ ਹੈ।"
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr ""
@@ -236,9 +248,6 @@ msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
-
-msgid "Previews cannot be created for themes."
 msgstr ""
 
 msgid "Built in licenses can not be updated."
@@ -325,6 +334,9 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+msgid "This endpoint is not valid for Themes."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
 
@@ -335,7 +347,7 @@ msgid "Tools"
 msgstr "ਟੂਲ"
 
 msgid "My Profile"
-msgstr "ਮੇਰਾ ਬਿਉਰਾ"
+msgstr "ਮੇਰੀ ਪ੍ਰੋਫਾਈਲ"
 
 msgid "Account Settings"
 msgstr "ਖਾਤਾ ਸੈਟਿੰਗਾਂ"
@@ -353,7 +365,7 @@ msgid "Submit a New Add-on"
 msgstr "ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
 msgid "Submit a New Theme"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਦਾਖਲ ਕਰੋ"
+msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 
 msgid "Developer Hub"
 msgstr "ਡਿਵੈਲਪਰ ਸੱਥ"
@@ -385,6 +397,9 @@ msgstr "CIDR"
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈੱਬਸਾਈਟ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ ਕਰ ਰਹੇ ਹਾਂ। ਅਸੀਂ ਥੋੜੇ ਸਮੇਂ ਵਿੱਚ ਪੂਰੀ ਸਮਰਥਾ ਨਾਲ ਵਾਪਸ ਆਵਾਂਗੇ।"
 
+msgid "URLs are not allowed."
+msgstr ""
+
 msgid "Must contain at least one printable character."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇਕ ਛਪਣਯੋਗ ਅੱਖਰ ਸ਼ਾਮਿਲ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
@@ -408,8 +423,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਇਸ HTTPS ਸਾਈਟ ਨੂੰ ਤੁਹਾਡੇ ਵੈਬ ਬਰਾਊਜ਼ਰ ਵਲੋਂ ਭੇਜੇ ਜਾਣ ਵਾਲੇ 'ਰੈਫਰਰ ਹੈਡਰ' ਦੀ ਲੋੜ ਹੈ, ਪਰ ਕੋਈ ਵੀ ਨਹੀਂ ਭੇਜਿਆ ਗਿਆ ਸੀ। ਇਹ ਸਿਰਲੇਖ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਕਿ ਤੁਹਾਡੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ "
-"ਦੁਆਰਾ ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
+"ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਇਸ HTTPS ਸਾਈਟ ਨੂੰ ਤੁਹਾਡੇ ਵੈਬ ਬਰਾਊਜ਼ਰ ਵਲੋਂ ਭੇਜੇ ਜਾਣ ਵਾਲੇ 'ਰੈਫਰਰ ਹੈਡਰ' ਦੀ ਲੋੜ ਹੈ, ਪਰ ਕੋਈ ਵੀ ਨਹੀਂ ਭੇਜਿਆ ਗਿਆ ਸੀ। ਇਹ ਸਿਰਲੇਖ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ"
+" ਲਈ ਕਿ ਤੁਹਾਡੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ ਦੁਆਰਾ ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "ਜੇ ਤੁਸੀਂ 'ਸੁਧਾਰਕ' ਸਿਰਲੇਖ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਦੀ ਸੰਰਚਨਾ ਕੀਤੀ ਹੈ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ ਇਸ ਸਾਈਟ ਲਈ, ਜਾਂ HTTPS ਕਨੈਕਸ਼ਨ ਲਈ, ਜਾਂ 'ਉਸੇ ਮੂਲ' ਬੇਨਤੀਆਂ ਲਈ ਮੁੜ-ਸਮਰੱਥ ਕਰੋ।"
@@ -417,7 +432,9 @@ msgstr "ਜੇ ਤੁਸੀਂ 'ਸੁਧਾਰਕ' ਸਿਰਲੇਖ ਨੂੰ
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr "ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਫਾਰਮ ਜਮ੍ਹਾਂ ਕਰਦੇ ਸਮੇਂ ਇਸ ਸਾਈਟ ਨੂੰ ਸੀਐਸਆਰਐਫ ਕੂਕੀ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ। ਇਹ ਕੂਕੀ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਸੁਨਿਸਚਿਤ ਕਰਨ ਲਈ ਕਿ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ ਦੁਆਰਾ ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
+msgstr ""
+"ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਫਾਰਮ ਜਮ੍ਹਾਂ ਕਰਦੇ ਸਮੇਂ ਇਸ ਸਾਈਟ ਨੂੰ ਸੀਐਸਆਰਐਫ ਕੂਕੀ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ। ਇਹ ਕੂਕੀ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਸੁਨਿਸਚਿਤ ਕਰਨ ਲਈ ਕਿ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ ਦੁਆਰਾ "
+"ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 msgid "Not Found"
 msgstr "ਨਹੀਂ ਮਿਲਿਆ"
@@ -425,16 +442,17 @@ msgstr "ਨਹੀਂ ਮਿਲਿਆ"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>ਸਾਨੂੰ ਅਫ਼ਸੋਸ ਹੈ, ਪਰ ਤੁਸੀਂ ਜਿਸਦੀ ਭਾਲ ਕਰ ਰਹੇ ਹੋ ਅਸੀਂ ਉਹ ਲੱਭ ਨਹੀਂ ਸਕੇ।</h1> <p> ਜਿਸ ਵਰਕੇ ਜਾਂ ਫ਼ਾਈਲ ਦੀ ਬੇਨਤੀ ਤੁਸੀਂ ਕੀਤੀ ਸੀ, ਉਹ ਸਾਡੀ ਸਾਈਟ ਤੇ ਨਹੀਂ ਲੱਭੀ। ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਿਸੇ ਵੇਲਾ ਵਿਹਾ ਚੁੱਕੀ ਕਿਸੇ ਤੰਦ ਤੇ ਕਲਿੱਕ ਕੀਤਾ ਹੋਵੇ, ਜਾਂ ਫਿਰ ਤੁਸੀਂ "
-"ਗਲਤ ਪਤਾ ਲਿਖ ਦਿੱਤਾ ਹੋਵੇ। </p> <ul> <li>ਜੇਕਰ ਤੁਸੀਂ ਪਤਾ ਲਿਖਿਆ ਹੈ ਤਾਂ ਸ਼ਬਦ ਜੋੜ ਦੀ ਪੜਤਾਲ ਕਰੋ।</li> <li> ਜੇਕਰ ਤੁਸੀਂ ਤੰਦ ਕਿਸੇ ਹੋਰ ਥਾਂ ਤੋਂ ਲਈ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ %(open_bug_link)sਮਾਮਲਾ ਦਰਜ ਕਰਾਉ%(close_bug_link)s। ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ "
-"ਅਤੇ ਕੀ ਭਾਲ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸਦੀ ਮੁਰੰਮਤ ਲਈ ਪੂਰਾ ਜ਼ੋਰ ਲਾਵਾਂਗੇ। </li> </ul> <p>ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਸਾਡੀ ਸਾਈਟ ਦੇ ਕੁੱਝ ਮਸ਼ਹੂਰ ਸਫ਼ਿਆਂ ਨੂੰ ਵੀ ਵੇਖ ਸਕਦੇ ਹੋ।<p> <ul> <li>ਕੀ ਤੁਹਾਨੂੰ <a href=\"%(rec)s\">ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨਾਂ ਦੀ ਸੂਚੀ</a> ਵਿੱਚ ਦਿਲਚਸਪੀ ਹੈ?</"
-"li> <li> ਕੀ ਤੁਸੀਂ <a href=\"%(search)s\">ਐਡ-ਆਨਾਂ ਲਈ ਖੋਜ</a> ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਤੁਸੀਂ <a href=\"%(search)s\">ਖੋਜ ਸਫ਼ੇ</a> ਤੇ ਜਾ ਸਕਦੇ ਹੋ ਜਾਂ ਫਿਰ ਉੱਪਰ ਦਿੱਤਾ ਖੋਜ ਖਾਨਾ ਵਰਤ ਸਕਦੇ ਹੋ। </li> <li> ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ ਤੋਂ ਸ਼ੁਰੂਆਤ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦੇਣੀ "
-"ਚਾਹੋ, ਤਾਂ ਤੁਸੀਂ <a href=\"%(home)s\">ਐਡ-ਆਨ ਦੇ ਮੁੱਖ ਸਫ਼ੇ</a> ਤੇ ਜਾਉ।</li> </ul>"
+"<h1>ਸਾਨੂੰ ਅਫ਼ਸੋਸ ਹੈ, ਪਰ ਤੁਸੀਂ ਜਿਸਦੀ ਭਾਲ ਕਰ ਰਹੇ ਹੋ ਅਸੀਂ ਉਹ ਲੱਭ ਨਹੀਂ ਸਕੇ।</h1> <p> ਜਿਸ ਵਰਕੇ ਜਾਂ ਫ਼ਾਈਲ ਦੀ ਬੇਨਤੀ ਤੁਸੀਂ ਕੀਤੀ ਸੀ, ਉਹ ਸਾਡੀ ਸਾਈਟ ਤੇ ਨਹੀਂ ਲੱਭੀ। ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਿਸੇ ਵੇਲਾ ਵਿਹਾ ਚੁੱਕੀ ਕਿਸੇ ਤੰਦ"
+" ਤੇ ਕਲਿੱਕ ਕੀਤਾ ਹੋਵੇ, ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਗਲਤ ਪਤਾ ਲਿਖ ਦਿੱਤਾ ਹੋਵੇ। </p> <ul> <li>ਜੇਕਰ ਤੁਸੀਂ ਪਤਾ ਲਿਖਿਆ ਹੈ ਤਾਂ ਸ਼ਬਦ ਜੋੜ ਦੀ ਪੜਤਾਲ ਕਰੋ।</li> <li> ਜੇਕਰ ਤੁਸੀਂ ਤੰਦ ਕਿਸੇ ਹੋਰ ਥਾਂ ਤੋਂ ਲਈ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ "
+"%(open_bug_link)sਮਾਮਲਾ ਦਰਜ ਕਰਾਉ%(close_bug_link)s। ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ ਅਤੇ ਕੀ ਭਾਲ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸਦੀ ਮੁਰੰਮਤ ਲਈ ਪੂਰਾ ਜ਼ੋਰ ਲਾਵਾਂਗੇ। </li> </ul> <p>ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਸਾਡੀ ਸਾਈਟ ਦੇ ਕੁੱਝ ਮਸ਼ਹੂਰ "
+"ਸਫ਼ਿਆਂ ਨੂੰ ਵੀ ਵੇਖ ਸਕਦੇ ਹੋ।<p> <ul> <li>ਕੀ ਤੁਹਾਨੂੰ <a href=\"%(rec)s\">ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨਾਂ ਦੀ ਸੂਚੀ</a> ਵਿੱਚ ਦਿਲਚਸਪੀ ਹੈ?</li> <li> ਕੀ ਤੁਸੀਂ <a href=\"%(search)s\">ਐਡ-ਆਨਾਂ ਲਈ ਖੋਜ</a> ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? "
+"ਤੁਸੀਂ <a href=\"%(search)s\">ਖੋਜ ਸਫ਼ੇ</a> ਤੇ ਜਾ ਸਕਦੇ ਹੋ ਜਾਂ ਫਿਰ ਉੱਪਰ ਦਿੱਤਾ ਖੋਜ ਖਾਨਾ ਵਰਤ ਸਕਦੇ ਹੋ। </li> <li> ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ ਤੋਂ ਸ਼ੁਰੂਆਤ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦੇਣੀ ਚਾਹੋ, ਤਾਂ ਤੁਸੀਂ <a href=\"%(home)s\">ਐਡ-ਆਨ ਦੇ "
+"ਮੁੱਖ ਸਫ਼ੇ</a> ਤੇ ਜਾਉ।</li> </ul>"
 
 msgid "Oops"
 msgstr "ਓ ਹੋ"
@@ -443,7 +461,8 @@ msgstr "ਓ ਹੋ"
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>ਓ ਹੋ!  ਸਾਨੂੰ ਗ਼ਲਤੀ ਮਿਲੀ।</h1> <p>ਅਸੀਂ ਛੇਤੀ ਹੋ ਇਸਨੂੰ ਸੋਧਣ ਵਿੱਚ ਲੱਗ ਜਾਵਾਂਗੇ।</ p> <p> ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਨੂੰ ਤਾਜਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ <a href=\"%(home)s\">ਐਡਆਨ ਮੁੱਖ-ਸਫ਼ੇ</a> ਤੇ ਵਾਪਸ ਜਾਓ। </p>"
+msgstr ""
+"<h1>ਓ ਹੋ!  ਸਾਨੂੰ ਗ਼ਲਤੀ ਮਿਲੀ।</h1> <p>ਅਸੀਂ ਛੇਤੀ ਹੋ ਇਸਨੂੰ ਸੋਧਣ ਵਿੱਚ ਲੱਗ ਜਾਵਾਂਗੇ।</ p> <p> ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਨੂੰ ਤਾਜਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ <a href=\"%(home)s\">ਐਡਆਨ ਮੁੱਖ-ਸਫ਼ੇ</a> ਤੇ ਵਾਪਸ ਜਾਓ। </p>"
 
 msgid "Register or Log in"
 msgstr "ਰਜਿਸਟਰ ਜਾਂ ਲਾਗਇਨ ਕਰੋ"
@@ -452,7 +471,7 @@ msgid "Email:"
 msgstr "ਈਮੇਲ:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "ਦੋ-ਪੜ੍ਹਾਵੀਂ ਪਰਮਾਣੀਕਰਨ"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -474,6 +493,12 @@ msgstr "ਇਹ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਅਯੋਗ ਹੈ �
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "ਇਸ ਸਫ਼ੇ ਦੇ ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਅਯੋਗ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈਬਸਾਈਟ ਦੀ ਸਾਂਭ ਕਰ ਰਹੇ ਹਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਕੁੱਝ ਦੇਰ ਬਾਅਦ ਕੋਸ਼ਿਸ ਕਰੋ।"
 
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
+
 msgid "Add-ons for {0}"
 msgstr "{0} ਲਈ ਐਡ-ਆਨ"
 
@@ -491,7 +516,7 @@ msgid "Another Title"
 msgstr "ਦੂਜਾ ਸਿਰਲੇਖ"
 
 msgid "Another Body"
-msgstr "ਦੂਜਾ ਧੜ੍ਹ"
+msgstr "ਹੋਰ ਹਿੱਸਾ"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr "ਅਯੋਗ ਅਧਿਕਾਰਤ ਸਿਰਲੇਖ। ਕੋਈ ਪ੍ਰਮਾਣ-ਪੱਤਰ ਮੁਹੱਈਆ ਨਹੀਂ ਕੀਤੇ ਗਏ।"
@@ -563,6 +588,12 @@ msgstr "ਇਹ ਚੋਣਵਾਂ URL ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕ
 msgid "This add-on already belongs to the collection"
 msgstr "ਇਹ ਐਡਆਨ ਪਹਿਲਾਂ ਹੀ ਸੰਗ੍ਰਹਿ ਨਾਲ ਸਬੰਧਤ ਹੈ"
 
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
+
 msgid "{addon} was created."
 msgstr "{addon} ਰਚਿਆ ਗਿਆ।"
 
@@ -573,7 +604,7 @@ msgid "{addon} description edited."
 msgstr "{addon} ਵੇਰਵੇ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
 
 msgid "Categories edited for {addon}."
-msgstr "{addon}ਲਈ ਵਰਗਾਂ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
+msgstr "{addon} ਲਈ ਕੈਟਾਗਰੀਆਂ ਵਿੱਚ ਸੋਧ ਕੀਤੀ।"
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
@@ -616,7 +647,7 @@ msgid "{addon} {version} approved."
 msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
 
 msgid "Approved"
-msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
+msgstr "ਮਨਜ਼ੂਰ ਹੈ"
 
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
@@ -625,7 +656,7 @@ msgid "Preliminarily approved"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਮਨਜ਼ੂਰ ਕੀਤਾ"
 
 msgid "{addon} {version} rejected."
-msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
+msgstr "{addon} {version} ਨੂੰ ਠੁਕਰਾਇਆ।"
 
 msgid "Rejected"
 msgstr "ਠੁਕਰਾਇਆ"
@@ -635,12 +666,6 @@ msgstr "{addon} {version} ਰੱਖਿਆ।"
 
 msgid "Retained"
 msgstr "ਰੱਖਿਆ"
-
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} ਵਧਾਇਆ।"
-
-msgid "Super review requested"
-msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
 
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
@@ -654,14 +679,8 @@ msgstr "{addon} {version} ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹ�
 msgid "More information requested"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-
-msgid "Commented"
-msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} {addon} ਵਿੱਚ ਜੋੜਿਆ।"
@@ -677,20 +696,6 @@ msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} ਲਈ {addon} ਲਿਖਿਆ।"
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} {0}ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ।"
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} {0} ਵਿੱਚ ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
-
-msgid "{addon} is now featured."
-msgstr "{addon} ਹੁਣ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -735,20 +740,10 @@ msgid "Approved but waiting"
 msgstr "ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 
 msgid "Account updated."
-msgstr "ਖਾਤਾ ਨਵਿਆਇਆ ਗਿਆ।"
+msgstr "ਖਾਤੇ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ।"
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "ਖਾਤਾ ਨਵਿਆਇਆ ਗਿਆ।"
-
-msgid "Created: {0}."
-msgstr "ਰਚਿਆ: {0}।"
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "ਸੋਧਿਆ ਗਿਆ ਖੇਤਰ: {2} ਸੈੱਟ ਕੀਤਾ: {0}।"
-
-msgid "Deleted: {1}."
-msgstr "ਹਟਾਏ: {1}।"
+msgstr "{user} ਖਾਤੇ ਨੂੰ ਹਟਾਇਆ ਗਿਆ।"
 
 msgid "{rating} for {addon} updated."
 msgstr "{addon} ਲਈ {rating} ਅਪਡੇਟ ਕੀਤਾ।"
@@ -756,30 +751,15 @@ msgstr "{addon} ਲਈ {rating} ਅਪਡੇਟ ਕੀਤਾ।"
 msgid "{addon} reviewed."
 msgstr "{addon} ਦੀ ਸਮੀਖਿਆ ਹੋਈ।"
 
-msgid "User {user} banned."
-msgstr "ਵਰਤੋਂਕਾਰ {user} ਤੇ ਪਾਬੰਦੀ ਲਾਈ ਗਈ।"
-
-msgid "User {user} picture deleted."
-msgstr "ਵਰਤੋਂਕਾਰ {user} ਦੀ ਤਸਵੀਰ ਮਿਟਾਈ ਗਈ।"
-
-msgid "User {user} added to {group}."
-msgstr ""
-
-msgid "User {user} removed from {group}."
-msgstr ""
-
 msgid "{addon} unlisted."
 msgstr "{addon} ਅਣਸੂਚੀਬੱਧ।"
-
-msgid "{file} was signed."
-msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} ਪ੍ਰਾਇਮਰੀ ਤੋਂ ਆਵਾਸ ਕੀਤਾ।"
+msgid "{file} was signed."
+msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "ਵਿਕਾਸਕਾਰ ਦੁਆਰਾ {addon} {version}ਤੇ ਜਵਾਬ ਦਿਓ।"
@@ -805,53 +785,17 @@ msgstr "{addon} {version} ਲਈ ਸਰੋਤ ਕੋਡ ਲੱਦਿਆ ਗਿ�
 msgid "Source code uploaded"
 msgstr "ਸਰੋਤ ਕੋਡ ਲੱਦਿਆ ਗਿਆ"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਦੀ ਪੁਸ਼ਟੀ ਕੀਤੀ"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} ਦੁਬਾਰਾ-ਸਮਰਥਿਤ।"
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} ਅਯੋਗ।"
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} ਸਮੱਗਰੀ ਮਨਜ਼ੂਰ ਹੋਇਆ।"
-
-msgid "Content approved"
-msgstr "ਸਮੱਗਰੀ ਪਰਵਾਨ ਹੋਈ"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} ਸਮੱਗਰੀ ਰੱਦ ਕੀਤੀ।"
 
 msgid "Content rejected"
 msgstr "ਸਮੱਗਰੀ ਰੱਦ ਹੋਈ"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} ਜਾਣਕਾਰੀ ਬੇਨਤੀ ਨੂੰ ਪ੍ਰਸ਼ਾਸਕ ਦੁਆਰਾ ਬਦਲਿਆ ਜਾਂ ਹਟਾਇਆ ਗਿਆ।"
-
-msgid "Information request altered"
-msgstr "ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਬਦਲ ਦਿੱਤੀ ਗਈ"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "{addon} {version}ਤੇ ਵਿਕਾਸਕਾਰ ਦੁਆਰਾ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਸਾਫ਼ ਕੀਤੀ ਗਈ।"
-
-msgid "Information request removed"
-msgstr "ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹਟਾਈ ਗਈ"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} ਐਡਮਿਨ ਐਡ-ਆਨ-ਰਿਵੀਊ ਦਾ ਅਨੁਰੋਧ ਕੀਤਾ ਗਿਆ।"
-
-msgid "Admin add-on-review requested"
-msgstr "ਐਡਮਿਨ ਐਡ-ਆਨ-ਰਿਵਿਊ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} ਐਡਮਿਨ ਦੀ ਸਮੱਗਰੀ-ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ।"
-
-msgid "Admin content-review requested"
-msgstr "ਐਡਮਿਨ ਨੇ ਸਮੱਗਰੀ ਸਮੀਖਿਆ ਲਈ ਬੇਨਤੀ ਕੀਤੀ"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} ਐਡਮਿਨ ਥੀਮ-ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ।"
@@ -861,44 +805,6 @@ msgstr "ਐਡਮਿਨ ਥੀਮ-ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕ�
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} ਇੱਕ ਹਲਕੇ ਥੀਮ ਤੋਂ ਪਰਵਾਸ ਕੀਤਾ ਗਿਆ ਸੀ।"
-
-msgid "User {user} api key reset."
-msgstr "ਵਰਤੋਂਕਾਰ {user} api ਕੁੰਜੀ ਰੀਸੈਟ।"
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr "ਬਲਾਕ ਜੋੜਿਆ ਗਿਆ"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr ""
-
-msgid "Block edited"
-msgstr "ਬਲਾਕ ਸੋਧਿਆ ਗਿਆ"
-
-#, fuzzy
-msgid "Block for {0} deleted from Blocklist."
-msgstr "ਵਰਜ਼ਨ {0} {addon} ਤੋਂ ਹਟਾਇਆ।"
-
-msgid "Block deleted"
-msgstr "ਪਾਬੰਦੀ ਹਟਾਈ"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
-
-#, fuzzy
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr ""
-
-msgid "User {user} session(s) reset."
-msgstr "ਵਰਤੋਂਕਾਰ {user} api ਕੁੰਜੀ ਰੀਸੈਟ।"
 
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
@@ -916,9 +822,8 @@ msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
 msgid "Rejection scheduled"
 msgstr "ਜਾਣਕਾਰੀ ਬੇਨਤੀ ਦੀ ਆਖਰੀ ਤਾਰੀਖ"
 
-#, fuzzy
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr ""
 
 #, fuzzy
 msgid "Version re-signed"
@@ -945,24 +850,6 @@ msgstr ""
 msgid "Pending rejection cleared"
 msgstr ""
 
-msgid "{version} added to Blocklist."
-msgstr ""
-
-msgid "Version Blocked"
-msgstr ""
-
-msgid "{version} removed from Blocklist."
-msgstr ""
-
-msgid "Version Unblocked"
-msgstr ""
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
-msgstr ""
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
@@ -978,10 +865,16 @@ msgstr ""
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
+msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
-msgid "User {user} unbanned."
+msgid "Rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} {version} content rejected automatically after delay expired."
+msgstr ""
+
+msgid "Content rejected automatically after delay expired"
 msgstr ""
 
 msgid "Firefox"
@@ -1003,7 +896,7 @@ msgid "Firefox for Android"
 msgstr "Android ਲਈ Firefox"
 
 msgid "Mozilla"
-msgstr "ਮੌਜ਼ੀਲਾ"
+msgstr "Mozilla"
 
 msgid "Incomplete"
 msgstr "ਅਧੂਰਾ"
@@ -1012,7 +905,7 @@ msgid "Awaiting Review"
 msgstr "ਪੜਤਾਲ ਦੀ ਉਡੀਕ"
 
 msgid "Disabled by Mozilla"
-msgstr "ਮੌਜੀਲਾ ਵੱਲੋਂ ਅਯੋਗ ਕੀਤਾ"
+msgstr "Mozilla ਵਲੋਂ ਅਸਮਰੱਥ ਕੀਤਾ"
 
 msgid "Deleted"
 msgstr "ਹਟਾਇਆ"
@@ -1039,7 +932,7 @@ msgid "(Deleted)"
 msgstr "(ਹਟਾਇਆ)"
 
 msgid "Extension"
-msgstr "ਵਾਧਰਾ"
+msgstr "ਇਕਸਟੈਨਸ਼ਨ"
 
 #, fuzzy
 msgid "Deprecated Complete Theme"
@@ -1052,10 +945,10 @@ msgid "Deprecated Search Engine"
 msgstr ""
 
 msgid "Language Pack"
-msgstr ""
+msgstr "ਭਾਸ਼ਾ ਪੈਕ"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "ਬਰਤਰਫ਼ ਕੀਤਾ ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
 
 msgid "Deprecated Plugin"
 msgstr ""
@@ -1063,14 +956,14 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr "ਛੱਡੇ ਗਏ LWT"
 
-msgid "Theme (Static)"
-msgstr "ਥੀਮ (ਸਥਿਰ)"
+msgid "Theme"
+msgstr "ਥੀਮ"
 
 msgid "Deprecated Site Permission"
 msgstr ""
 
 msgid "Extensions"
-msgstr "ਵਾਧਰੇ"
+msgstr "ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #, fuzzy
 msgid "Deprecated Complete Themes"
@@ -1083,7 +976,7 @@ msgid "Deprecated Search Tools"
 msgstr ""
 
 msgid "Language Packs"
-msgstr ""
+msgstr "ਭਾਸ਼ਾ ਪੈਕ"
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
@@ -1092,37 +985,41 @@ msgid "Deprecated Plugins"
 msgstr ""
 
 msgid "Deprecated LWTs"
-msgstr "ਛੱਡੇ ਗਏ LWTs"
+msgstr "ਛੱਡੇ ਗਏ LWT"
 
-msgid "Themes (Static)"
-msgstr "ਥੀਮ (ਸਥਾਈ)"
+msgid "Themes"
+msgstr "ਥੀਮ"
 
 msgid "Deprecated Site Permissions"
 msgstr ""
 
 msgid "Alerts & Updates"
-msgstr "ਚੇਤਾਵਨੀਆਂ ਅਤੇ ਨਵਿਆਈਆਂ"
+msgstr "ਚੇਤਾਵਨੀਆਂ ਅਤੇ ਅੱਪਡੇਟ"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr "Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ, ਜੋ ਤੁਹਾਨੂੰ ਅਪ-ਟੂ-ਡੇਟ ਰਹਿਣ, ਕੰਮ ਨੂੰ ਟਰੈਕ ਕਰਨ, ਕਾਰਗੁਜ਼ਾਰੀ ਵਿੱਚ ਸੁਧਾਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।ਉਹ ਇਕਸਟੈਨਸ਼ਨਾਂ ਲੱਭੋ, ਜੋ ਟੈਬਾਂ ਮੁੜ ਲੋਡ ਕਰਦੀਆਂ ਹਨ, ਪਰਦਰਸ਼ਨ ਦਾ ਇੰਤਜ਼ਾਮ ਕਰਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
+msgstr ""
+"Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ, ਜੋ ਤੁਹਾਨੂੰ ਅਪ-ਟੂ-ਡੇਟ ਰਹਿਣ, ਕੰਮ ਨੂੰ ਟਰੈਕ ਕਰਨ, ਕਾਰਗੁਜ਼ਾਰੀ ਵਿੱਚ ਸੁਧਾਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।ਉਹ ਇਕਸਟੈਨਸ਼ਨਾਂ ਲੱਭੋ, ਜੋ ਟੈਬਾਂ ਮੁੜ ਲੋਡ ਕਰਦੀਆਂ ਹਨ, ਪਰਦਰਸ਼ਨ ਦਾ ਇੰਤਜ਼ਾਮ ਕਰਦੀਆਂ "
+"ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
 
 msgid "Appearance"
 msgstr "ਦਿੱਖ"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "ਇਕਸਟੈਨਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ, ਜੋ ਵੈਬਸਾਈਟਾਂ ਅਤੇ ਬਰਾਊਜ਼ਰ Firefox ਦੀ ਦਿੱਖ ਬਦਲਣ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਗੂੜ੍ਹੇ ਥੀਮ, ਟੈਬ ਇੰਤਜ਼ਾਮ, ਅਤੇ ਹੋਰ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹਨ।"
+msgstr "ਵੈਬਸਾਈਟਾਂ ਅਤੇ ਬਰਾਊਜ਼ਰ Firefox ਦੀ ਦਿੱਖ ਬਦਲਣ ਵਾਲੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਕੈਟਾਗਰੀ ਵਿੱਚ ਗੂੜ੍ਹੇ ਥੀਮ, ਟੈਬ ਇੰਤਜ਼ਾਮ, ਅਤੇ ਹੋਰ ਕਈ ਕੁਝ ਕਰਨ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Bookmarks"
 msgstr "ਬੁੱਕਮਾਰਕ"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "ਉਹਨਾਂ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਪਾਸਵਰਡ-ਦੀ ਸੁਰੱਖਿਆ ਦੁਆਰਾ ਬੁੱਕਮਾਰਕ ਨੂੰ ਵਧਾਉ, ਡੁਪਲਿਕਸ ਦੀ ਖੋਜ ਕਰਨ, ਖਰਾਬ ਬੁੱਕਮਾਰਕਾਂ ਨੂੰ ਲੱਭਣ, ਅਤੇ ਹੋਰ ਵੀ।"
+msgstr "ਪਾਸਵਰਡ ਰਾਹੀਂ ਸੁਰੱਖਿਆ ਦੇ ਕੇ, ਡੁਪਲੀਕੇਟ ਲੱਭ ਕੇ, ਖ਼ਰਾਬ ਬੁੱਕਮਾਰਕਾਂ ਦਾ ਪਤਾ ਲੱਗਾ ਕੇ ਬੁੱਕਮਾਰਕਾਂ ਨੂੰ ਵਧੀਆ ਬਣਾਉਣ ਵਾਲੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
 msgid "Download Management"
 msgstr "ਡਾਊਨਲੋਡ ਇੰਤਜ਼ਾਮ"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ, ਜੋ ਵੈੱਬ, ਸੰਗੀਤ ਅਤੇ ਵਿਡੀਓ ਸਮੱਗਰੀ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦੇ ਹਨ। ਤੁਸੀਂ ਡਾਊਨਲੋਡ ਦੇ ਇੰਤਜ਼ਾਮ, ਫਾਇਲਾਂ ਸਾਂਝੀਆਂ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਕਰਨ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਲੱਭ ਸਕਦੇ ਹੋ।"
+msgstr ""
+"Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ, ਜੋ ਵੈੱਬ, ਸੰਗੀਤ ਅਤੇ ਵਿਡੀਓ ਸਮੱਗਰੀ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦੇ ਹਨ। ਤੁਸੀਂ ਡਾਊਨਲੋਡ ਦੇ ਇੰਤਜ਼ਾਮ, ਫਾਇਲਾਂ ਸਾਂਝੀਆਂ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਕਰਨ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਲੱਭ "
+"ਸਕਦੇ ਹੋ।"
 
 msgid "Feeds, News & Blogging"
 msgstr "ਫੀਡਜ਼, ਖਬਰਾਂ ਅਤੇ ਬਲੌਗ"
@@ -1146,13 +1043,14 @@ msgid "Photos, Music & Videos"
 msgstr "ਤਸਵੀਰਾਂ, ਸੰਗੀਤ ਅਤੇ ਵੀਡੀਉ"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫੋਟੋ, ਸੰਗੀਤ ਅਤੇ ਵਿਡੀਓ ਤਜਰਬੇ ਵਧਾਉਂਦੇ ਹਨ। ਇਸ ਵਰਗ ਵਿੱਚ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵਿੱਚ ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ, ਉਲਟਾ ਚਿੱਤਰ ਖੋਜ ਅਤੇ ਹੋਰ ਸ਼ਾਮਲ ਹਨ।"
+msgstr "Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫੋਟੋ, ਸੰਗੀਤ ਅਤੇ ਵੀਡੀਓ ਤਜਰਬੇ ਵਧਾਉਂਦੇ ਹਨ। ਇਸ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵਿੱਚ ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ, ਉਲਟ ਚਿੱਤਰ ਖੋਜ ਅਤੇ ਹੋਰ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Privacy & Security"
 msgstr "ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr "ਪ੍ਰਾਈਵੇਟ ਅਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਨਾਲ ਬਰਾਊਜ਼ ਕਰਨ ਲਈ Firefox ਇਕਸਟੈਨਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਵਰਗ ਵਿੱਚ ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕਣ, ਟਰੈਕਿੰਗ ਨੂੰ ਰੋਕਣ, ਰੀਡਾਇਰੈਕਟਾਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਹਨ।"
+msgstr ""
+"ਪ੍ਰਾਈਵੇਟ ਅਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਨਾਲ ਬਰਾਊਜ਼ ਕਰਨ ਲਈ Firefox ਇਕਸਟੈਨਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਵਰਗ ਵਿੱਚ ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕਣ, ਟਰੈਕਿੰਗ ਨੂੰ ਰੋਕਣ, ਰੀਡਾਇਰੈਕਟਾਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Search Tools"
 msgstr "ਖੋਜ ਸੰਦ"
@@ -1176,7 +1074,8 @@ msgid "Tabs"
 msgstr "ਟੈਬਾਂ"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr "ਟੈਬਾਂ ਅਤੇ ਨਵੀਂ ਟੈਬ ਸਫ਼ਾ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਉਣ ਲਈ Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹ ਇਕਸਟੈਨਸ਼ਨਾਂ ਖੋਜੋ, ਜੋ ਟੈਬਾਂ ਨੂੰ ਕੰਟਰੋਲ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਉਨ੍ਹਾਂ ਨਾਲ ਕਿਵੇਂ ਤਾਲਮੇਲ ਬਿਠਾ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ।"
+msgstr ""
+"ਟੈਬਾਂ ਅਤੇ ਨਵੀਂ ਟੈਬ ਸਫ਼ਾ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਉਣ ਲਈ Firefox ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹ ਇਕਸਟੈਨਸ਼ਨਾਂ ਖੋਜੋ, ਜੋ ਟੈਬਾਂ ਨੂੰ ਕੰਟਰੋਲ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਉਨ੍ਹਾਂ ਨਾਲ ਕਿਵੇਂ ਤਾਲਮੇਲ ਬਿਠਾ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ।"
 
 msgid "Web Development"
 msgstr "ਵੈੱਬ ਵਿਕਾਸ"
@@ -1257,7 +1156,7 @@ msgid "Download Firefox themes for all four seasons—fall, winter, spring, and 
 msgstr "ਸਾਰੇ ਚਾਰ ਮੌਸਮ ਲਈ Firefox ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ — ਪਤਝੜ, ਸਰਦੀ, ਬਸੰਤ ਅਤੇ ਗਰਮੀ ਪਤਝੜ ਦੇ ਪੱਤੇ, ਬਰਫ਼ਬਾਰੀ ਪਹਾੜ ਪੀਕ, ਧੁੱਪ ਦੀਆਂ ਗਰਮੀ ਦੇ ਦਿਨ ਅਤੇ ਬਸੰਤ ਦੇ ਫੁੱਲ।"
 
 msgid "Solid"
-msgstr "ਸਖ਼ਤ"
+msgstr "ਠੋਸ"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਵਿਅਕਤੀਗਤ ਬਣਾਉਣ ਲਈ ਠੋਸ ਅਤੇ ਗਰੇਡੀਐਂਟ ਰੰਗ ਨਾਲ Firefox ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਵਰਗ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ ਡੌਟ੍ਰੀ ਲਾਲ, ਪੇਸਟਲਸ, ਨਰਮ ਗ੍ਰੇਜ਼ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
@@ -1278,29 +1177,37 @@ msgid "General"
 msgstr "ਆਮ"
 
 msgid "Mozilla Public License 2.0"
+msgstr "Mozilla ਪਬਲਿਕ ਲਸੰਸ 2.0"
+
+msgid "Apache License 2.0"
 msgstr ""
 
-msgid "GNU General Public License v2.0"
+msgid "GNU General Public License v2.0 only"
 msgstr ""
 
-msgid "GNU General Public License v3.0"
+msgid "GNU General Public License v3.0 only"
 msgstr ""
 
-msgid "GNU Library General Public License v2.1"
+msgid "GNU Lesser General Public License v2.1 only"
 msgstr ""
 
-msgid "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v3.0 only"
 msgstr ""
 
-msgid "The MIT License"
-msgstr "MIT ਲਸੰਸ"
+msgid "GNU Affero General Public License v3.0 only"
+msgstr ""
 
-#, fuzzy
-msgid "The BSD License"
-msgstr "ਲਸੰਸ"
+msgid "MIT License"
+msgstr ""
+
+msgid "ISC License"
+msgstr ""
+
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla ਪਬਲਿਕ ਲਸੰਸ 1.1"
 
 msgid "All Rights Reserved"
 msgstr "ਸੱਭ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
@@ -1323,6 +1230,27 @@ msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨੋ
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਸ਼ੇਅਰ ਅਲਾਈਕ 3.0"
 
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
+
+msgid "The Unlicense"
+msgstr ""
+
 #, fuzzy
 msgid "Not Promoted"
 msgstr "ਉਤਸ਼ਾਹਿਤ"
@@ -1330,12 +1258,6 @@ msgstr "ਉਤਸ਼ਾਹਿਤ"
 #, fuzzy
 msgid "Recommended"
 msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
-
-msgid "Sponsored"
-msgstr "ਸਪੌਂਸਰ ਕੀਤਾ"
-
-msgid "Verified"
-msgstr "ਤਸਦੀਕ ਕੀਤਾ"
 
 msgid "By Firefox"
 msgstr "Firefox ਵਲੋਂ"
@@ -1368,7 +1290,7 @@ msgid "Flag"
 msgstr "ਨਿਸ਼ਾਨਬੱਧ"
 
 msgid "Duplicate"
-msgstr "ਨਕਲ"
+msgstr "ਡੁਪਲੀਕੇਟ"
 
 msgid "Reject"
 msgstr "ਰੱਦ"
@@ -1378,9 +1300,6 @@ msgstr "ਪਰਵਾਨ"
 
 msgid "All"
 msgstr "ਸਭ"
-
-msgid "Theme"
-msgstr "ਥੀਮ"
 
 msgid "No action"
 msgstr "ਕੋਈ ਕਾਰਵਾਈ ਨਹੀਂ"
@@ -1436,10 +1355,10 @@ msgstr "ਕੋਰ"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr "%s ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
+msgstr "%s ਲਈ ਸੱਜਰੀਆਂ ਤਬਦੀਲੀਆਂ"
 
 msgid "Recent Changes for My Add-ons"
-msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
+msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸੱਜਰੀਆਂ ਤਬਦੀਲੀਆਂ"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
@@ -1551,10 +1470,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "ਤੁਸੀਂ ਹਾਲ ਹੀ ਵਿੱਚ ਬਹੁਤ ਸਾਰੇ ਅਪਲੋਡ ਕੀਤੇ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਸਮੇਂ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਲੱਦੀ ਅਤੇ ਮਿਟਾਈ ਗਈ।"
+msgstr "ਵਰਜ਼ਨ {version} ਪਹਿਲਾਂ ਹੀ ਅੱਪਲੋਡ ਕੀਤਾ ਅਤੇ ਹਟਾਇਆ ਗਿਆ ਸੀ।"
 
 msgid "Version {version} already exists."
-msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
+msgstr "ਵਰਜ਼ਨ {version} ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
 
 msgid "Continue with existing upload instead?"
 msgstr "ਇਸਦੀ ਬਜਾਏ ਮੌਜੂਦਾ ਅਪਲੋਡ ਨਾਲ ਜਾਰੀ ਰੱਖਣਾ ਹੈ?"
@@ -1584,6 +1503,41 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "ਦਿਖਾਉਣ ਦਾ ਨਾਂ"
+
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ"
+
+msgid "Revoke and regenerate credentials"
+msgstr "ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਰੱਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਬਣਾਉ"
+
+msgid "Revoke"
+msgstr "ਰੱਦ ਕਰੋ"
+
+msgid "JWT issuer"
+msgstr "JWT ਜਾਰੀ ਕਰਤਾ"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT ਗੁਪਤ"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
+msgid "You don't have any API credentials."
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ API ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਨਹੀਂ ਹਨ।"
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "ਗ਼ਲਤ ਜਾਂ ਖਰਾਬ ਐਡ-ਆਨ ਫ਼ਾਇਲ ਹੈ।"
@@ -1616,6 +1570,9 @@ msgstr "ਰਚਿਆ"
 msgid "Downloads"
 msgstr "ਡਾਊਨਲੋਡ"
 
+msgid "Rating"
+msgstr "ਰੇਟਿੰਗ"
+
 msgid "All My Add-ons"
 msgstr "ਮੇਰੇ ਸਾਰੇ ਐਡ-ਆਨ"
 
@@ -1629,7 +1586,7 @@ msgid "Add-on Status"
 msgstr "ਐਡ-ਆਨ ਦਰਜਾ"
 
 msgid "User Collections"
-msgstr "ਵਰਤੋਂਕਾਰ ਸੰਗ੍ਰਹਿ"
+msgstr "ਵਰਤੋਂਕਾਰ ਭੰਡਾਰ"
 
 msgid "User Reviews"
 msgstr "ਵਰਤੋਂਕਾਰ ਰੀਵਿਊ"
@@ -1751,6 +1708,9 @@ msgstr ""
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
+msgid "Add-on uploads are temporarily unavailable"
+msgstr ""
+
 msgid "Review requested."
 msgstr "ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ।"
 
@@ -1759,6 +1719,9 @@ msgstr "ਅੱਗੇ ਵਧਣ ਲਈ ਤੁਹਾਨੂੰ ਹੋਰ ਵੇਰ�
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਸਰਟੀਫਿਕੇਟਸ ਰੱਦ ਕੀਤੇ ਗਏ ਸਨ ਅਤੇ ਹੁਣ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹਨ।"
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "ਨਵੀਂ API ਕੁੰਜੀ ਬਣਾਈ ਗਈ"
@@ -1769,7 +1732,7 @@ msgstr "API ਕੁੰਜੀ ਰੱਦ ਕੀਤੀ ਗਈ"
 msgid "Verify email"
 msgstr ""
 
-msgid "Try again"
+msgid "Send another email"
 msgstr ""
 
 msgid "Your email has been verified"
@@ -1803,9 +1766,6 @@ msgstr "ਦਸਤਾਵੇਜ਼"
 
 msgid "Extension Development"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਿਕਾਸ"
-
-msgid "Themes"
-msgstr "ਥੀਮ"
 
 msgid "Developer Policies"
 msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
@@ -1864,25 +1824,26 @@ msgstr "ਤੇ ਪ੍ਰਮਾਣਿਤ ਹੋਇਆ:"
 msgid "Email Address Verification"
 msgstr ""
 
+msgid "Status:"
+msgstr "ਸਥਿਤੀ:"
+
 msgid "Your email address is verified."
 msgstr ""
 
-msgid "Please verify your email by clicking \"Verify email\" above."
+msgid "Please verify your email."
 msgstr ""
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr ""
 
-msgid "Working... Please be patient."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
 msgstr ""
 
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
 msgstr ""
 
-msgid "This is taking longer than expected. Try again."
-msgstr ""
+msgid "Success!"
+msgstr "ਕਾਮਯਾਬ!"
 
 #, python-format
 msgid ""
@@ -1891,7 +1852,37 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr ""
+
+msgid "Date"
+msgstr "ਤਾਰੀਖ"
+
+msgid "From"
+msgstr "ਤੋਂ"
+
+msgid "To"
+msgstr "ਤੱਕ"
+
+msgid "Subject"
+msgstr "ਵਿਸ਼ਾ"
+
+msgid "Status"
+msgstr "ਹਾਲਤ"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr ""
+
+msgid "Refresh results"
+msgstr ""
+
+#, python-format
+msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -1952,10 +1943,10 @@ msgid "Preview"
 msgstr "ਝਲਕ"
 
 msgid "Preview of listed version"
-msgstr "ਸੂਚੀਬੱਧ ਵੰਨਗੀ ਦੀ ਪਹਿਲ ਝਲਕ"
+msgstr "ਸੂਚੀਬੱਧ ਵਰਜ਼ਨ ਦੀ ਪਹਿਲ ਝਲਕ"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr "ਝਲਕ ਅਜੇ ਵੀ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਐ - ਮੁੜ ਕੇ ਆਇਉ ਜਾਂ ਵਰਕਾ ਸੱਜਰਾ ਕਰੋ।"
+msgstr "ਝਲਕ ਅਜੇ ਵੀ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਐ - ਮੁੜ ਕੇ ਆਇਉ ਜਾਂ ਸਫ਼ੇ ਨੂੰ ਤਾਜ਼ਾ ਕਰੋ।"
 
 msgid "Author invitation for {addon_name}"
 msgstr "{addon_name} ਲਈ ਲੇਖਕ ਦਾ ਸੱਦਾ"
@@ -1997,8 +1988,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>ਐਡਆਨ ਕੋਲ 2 ਸੰਭਾਵਿਤ ਭੂਮਿਕਾਵਾਂ ਦੇ ਨਾਲ ਕੋਈ ਵੀ ਲੇਖਕ ਹੋ ਸਕਦੇ ਹਨ:</p> <ul> <li><b>ਮਾਲਕ:</b> ਐਡਆਨ ਦੀ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪਹਿਲੂਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰ ਸਕਦਾ ਹੈ, ਸ਼ਾਮਲ ਅਤੇ </li> <li><b>ਡਿਵੈਲਪਰ:</b> ਐਡਆਨ ਦੀ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪਹਿਲੂਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰ ਸਕਦਾ "
-"ਹੈ, ਹੋਰ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਨ ਅਤੇ ਹਟਾਉਣ ਤੋਂ ਇਲਾਵਾ</li> </ul>"
+"<p>ਐਡਆਨ ਕੋਲ 2 ਸੰਭਾਵਿਤ ਭੂਮਿਕਾਵਾਂ ਦੇ ਨਾਲ ਕੋਈ ਵੀ ਲੇਖਕ ਹੋ ਸਕਦੇ ਹਨ:</p> <ul> <li><b>ਮਾਲਕ:</b> ਐਡਆਨ ਦੀ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪਹਿਲੂਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰ ਸਕਦਾ ਹੈ, ਸ਼ਾਮਲ ਅਤੇ </li> <li><b>ਡਿਵੈਲਪਰ:</b> ਐਡਆਨ ਦੀ ਸੂਚੀ ਦੇ ਸਾਰੇ "
+"ਪਹਿਲੂਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰ ਸਕਦਾ ਹੈ, ਹੋਰ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਨ ਅਤੇ ਹਟਾਉਣ ਤੋਂ ਇਲਾਵਾ</li> </ul>"
 
 msgid "Close"
 msgstr "ਬੰਦ ਕਰੋ"
@@ -2039,7 +2030,9 @@ msgstr "ਮੁੱਖ ਸਫ਼ਾ"
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
-msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਕੋਈ ਹੋਰ ਵੀ ਮੁੱਖ-ਸਫ਼ਾ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਤਰਜਮਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹੋਇਆ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+msgstr ""
+"ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਕੋਈ ਹੋਰ ਵੀ ਮੁੱਖ-ਸਫ਼ਾ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਤਰਜਮਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹੋਇਆ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ "
+"ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "or"
 msgstr "ਜਾਂ"
@@ -2060,7 +2053,9 @@ msgstr "ਨਾਂ ਅਤੇ ਸੰਖੇਪ"
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
-msgstr "ਸੰਖੇਪ ਵਿੱਚ ਇਹ ਦੱਸਣਾ ਚਾਹੀਦਾ ਹੈ ਕਿ ਤੁਹਾਡੀ ਐਡ-ਆਨ ਕੀ ਕਰਦੀ ਹੈ, ਸਪਸ਼ਟ ਅਤੇ ਸੰਖੇਪ ਰੂਪ ਵਿੱਚ। ਦੋਵੇਂ ਨਾਮ ਅਤੇ ਸੰਖੇਪ ਤੁਹਾਡੇ ਉਤਪਾਦ ਪੇਜ ਅਤੇ ਖੋਜ ਨਤੀਜਿਆਂ ਤੇ ਦਿਖਾਈ ਦੇਣਗੇ। ਉਨ੍ਹਾਂ ਕੋਲ ਹਰੇਕ ਲਈ 70 ਅੱਖਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਲੰਬਾਈ ਅਤੇ ਘੱਟੋ ਘੱਟ 2 ਅੱਖਰਾਂ ਦੀ ਲੰਬਾਈ ਹੈ।"
+msgstr ""
+"ਸੰਖੇਪ ਵਿੱਚ ਇਹ ਦੱਸਣਾ ਚਾਹੀਦਾ ਹੈ ਕਿ ਤੁਹਾਡੀ ਐਡ-ਆਨ ਕੀ ਕਰਦੀ ਹੈ, ਸਪਸ਼ਟ ਅਤੇ ਸੰਖੇਪ ਰੂਪ ਵਿੱਚ। ਦੋਵੇਂ ਨਾਮ ਅਤੇ ਸੰਖੇਪ ਤੁਹਾਡੇ ਉਤਪਾਦ ਪੇਜ ਅਤੇ ਖੋਜ ਨਤੀਜਿਆਂ ਤੇ ਦਿਖਾਈ ਦੇਣਗੇ। ਉਨ੍ਹਾਂ ਕੋਲ ਹਰੇਕ ਲਈ 70 ਅੱਖਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ "
+"ਲੰਬਾਈ ਅਤੇ ਘੱਟੋ ਘੱਟ 2 ਅੱਖਰਾਂ ਦੀ ਲੰਬਾਈ ਹੈ।"
 
 msgid "Summary"
 msgstr "ਸਾਰ"
@@ -2108,7 +2103,7 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਕਿਸੇ ਵਾਧੂ ਭੁਗਤਾਨ, ਅਦਾਇਗੀ ਸੇਵਾਵਾਂ ਜਾਂ ਸਾਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਨਹੀਂ ਹੁੰਦੀ।"
 
 msgid "Categories"
-msgstr "ਵਰਗ"
+msgstr "ਕੈਟਾਗਰੀਆਂ"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਐਡ-ਆਨ ਵੇਖਣ ਦਾ ਮੁੱਖ ਢੰਗ ਸੰਗ੍ਰਹਿ ਹਨ। ਕਿਸੇ ਨੂੰ ਵੀ ਚੁਣੋ ਜੋ ਜਿਆਦਾ ਪ੍ਰਭਾਵ ਪਾਉਣ ਲਈ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਲਈ ਠੀਕ ਹੋਵੇ।"
@@ -2117,9 +2112,11 @@ msgid "Email"
 msgstr "ਈਮੇਲ"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
-msgstr "ਜੇਕਰ ਤੁਸੀਂ ਸਹਿਯੋਗ ਪੁੱਛਗਿੱਛਾਂ ਲਈ ਇੱਕ ਈਮੇਲ ਪਤਾ ਵਿਖਾਉਣ ਦੇ ਚਾਹਵਾਨ ਹੋ, ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਹਰੇਕ ਭਾਸ਼ਾ ਲਈ ਵੱਖ-ਵੱਖ ਪਤੇ ਹਨ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
+msgstr ""
+"ਜੇਕਰ ਤੁਸੀਂ ਸਹਿਯੋਗ ਪੁੱਛਗਿੱਛਾਂ ਲਈ ਇੱਕ ਈਮੇਲ ਪਤਾ ਵਿਖਾਉਣ ਦੇ ਚਾਹਵਾਨ ਹੋ, ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਹਰੇਕ ਭਾਸ਼ਾ ਲਈ ਵੱਖ-ਵੱਖ ਪਤੇ ਹਨ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-"
+"ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Website"
 msgstr "ਵੈਬਸਾਈਟ"
@@ -2127,7 +2124,9 @@ msgstr "ਵੈਬਸਾਈਟ"
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
-msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਇੱਕ ਸਹਿਯੋਗ ਵੈੱਬਸਾਈਟ ਜਾਂ ਫੋਰਮ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਤਰਜਮਾ ਹੋਇਆ, ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+msgstr ""
+"ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਇੱਕ ਸਹਿਯੋਗ ਵੈੱਬਸਾਈਟ ਜਾਂ ਫੋਰਮ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਤਰਜਮਾ ਹੋਇਆ, ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ"
+" ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Images"
 msgstr "ਤਸਵੀਰਾਂ"
@@ -2146,8 +2145,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"ਅੰਤ ਵਰਤੋਂਕਾਰ ਕੋਈ ਵੀ ਜਾਣਕਾਰੀ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋਣ ਜੋ ਜ਼ਰੂਰੀ ਨਹੀਂ ਐਡ-ਆਨ ਦੇ ਸੰਖੇਪ ਵਰਣਨ ਜਾਂ ਵੇਰਵੇ ਤੇ ਲਾਗੂ ਹੋਵੋ। ਆਮ ਵਰਤੋਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਜਾਣੂ ਬੱਗਾਂ ਦੀ ਸੂਚੀ, ਬੱਗਾਂ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਭੇਜੀਏ ਦੀ ਜਾਣਕਾਰੀ, ਨਵੇਂ ਵਰਜਨ ਦੇ ਜਾਰੀ ਹੋਣ ਦੀ ਤਰੀਕ ਦਾ ਅਨੁਮਾਨ, ਆਦਿ। ਇਹ ਕੇਵਲ "
-"ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+"ਅੰਤ ਵਰਤੋਂਕਾਰ ਕੋਈ ਵੀ ਜਾਣਕਾਰੀ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋਣ ਜੋ ਜ਼ਰੂਰੀ ਨਹੀਂ ਐਡ-ਆਨ ਦੇ ਸੰਖੇਪ ਵਰਣਨ ਜਾਂ ਵੇਰਵੇ ਤੇ ਲਾਗੂ ਹੋਵੋ। ਆਮ ਵਰਤੋਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਜਾਣੂ ਬੱਗਾਂ ਦੀ ਸੂਚੀ, ਬੱਗਾਂ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਭੇਜੀਏ ਦੀ ਜਾਣਕਾਰੀ, ਨਵੇਂ ਵਰਜਨ "
+"ਦੇ ਜਾਰੀ ਹੋਣ ਦੀ ਤਰੀਕ ਦਾ ਅਨੁਮਾਨ, ਆਦਿ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Universally unique identifier"
 msgstr "ਵਿਆਪਕ ਵਿਲੱਖਣ ਪਛਾਣਕਰਤਾ"
@@ -2162,8 +2161,8 @@ msgid "Whiteboard"
 msgstr "ਵਾਇਟਬੋਰਡ"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
-"may help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
+" help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2176,8 +2175,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਆਈਕਾਨ ਅੱਪਲੋਡ ਕਰੋ ਜਾਂ ਸਾਡਿਆਂ ਵਿੱਚ ਇੱਕ ਚੁਣੋ। ਆਈਕਾਨ ਲਗਭਗ ਹਰੇਕ ਥਾਂ ਵਿਖਾਇਆ ਜਾਏਗਾ ਜਿੱਥੇ ਵੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹੈ। ਅੱਪਲੋਡ ਕੀਤੀਆਂ ਤਸਵੀਰਾਂ ਅੱਗੇ ਦਿੱਤੀਆਂ ਤਸਵੀਰ ਕਿਸਮਾਂ ਵਿੱਚ ਇੱਕ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ: .png, .jpg। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ "
-"ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+"ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਆਈਕਾਨ ਅੱਪਲੋਡ ਕਰੋ ਜਾਂ ਸਾਡਿਆਂ ਵਿੱਚ ਇੱਕ ਚੁਣੋ। ਆਈਕਾਨ ਲਗਭਗ ਹਰੇਕ ਥਾਂ ਵਿਖਾਇਆ ਜਾਏਗਾ ਜਿੱਥੇ ਵੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹੈ। ਅੱਪਲੋਡ ਕੀਤੀਆਂ ਤਸਵੀਰਾਂ ਅੱਗੇ ਦਿੱਤੀਆਂ ਤਸਵੀਰ ਕਿਸਮਾਂ ਵਿੱਚ ਇੱਕ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ: "
+".png, .jpg। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Select an icon for your add-on:"
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਆਈਕਾਨ ਚੁਣੋ:"
@@ -2300,7 +2299,9 @@ msgstr "ਚੋਟੀ ਦੇ"
 
 #, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
+msgstr ""
+"ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ "
+"ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
@@ -2333,7 +2334,7 @@ msgid "Edit details on this add-on's product page"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੇ ਉਤਪਾਦ ਪੇਜ ਤੇ ਵੇਰਵੇ ਸੰਪਾਦਿਤ ਕਰੋ"
 
 msgid "Upload a new version of this add-on"
-msgstr "ਇਸ ਐਡਆਨ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
+msgstr "ਇਸ ਐਡਆਨ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜ਼ਨ ਅੱਪਲੋਡ ਕਰੋ"
 
 msgid "New Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ"
@@ -2348,16 +2349,16 @@ msgid "More"
 msgstr "ਹੋਰ"
 
 msgid "Manage Status & Versions"
-msgstr "ਦਰਜੇ ਅਤੇ ਵਰਜਨਾਂ ਦਾ ਇੰਤਜ਼ਾਮ"
+msgstr "ਸਥਿਤੀ ਅਤੇ ਵਰਜ਼ਨਾਂ ਦਾ ਇੰਤਜ਼ਾਮ"
 
 msgid "View Recent Changes"
-msgstr "ਤਾਜ਼ਾ ਬਦਲਾਵ ਵੇਖੋ"
+msgstr "ਸੱਜਰੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਵੇਖੋ"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "ਇਹ ਐਡ-ਓਨ ਪਬਲੀਕੇਸ਼ਨ ਲਈ ਜਮ੍ਹਾਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕੁਝ ਜਰੂਰੀ ਜਾਣਕਾਰੀ ਗੁਆਚ ਰਿਹਾ ਹੈ।"
 
 msgid "This add-on doesn't have any versions."
-msgstr "ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਕੋਈ ਵੀ ਵਰਜਨ ਨਹੀਂ ਹਨ।"
+msgstr "ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਕੋਈ ਵੀ ਵਰਜ਼ਨ ਨਹੀਂ ਹਨ।"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2372,10 +2373,10 @@ msgstr[0] "<strong>{0}</strong> ਸਰਗਰਮ ਵਰਤੋਂਕਾਰ"
 msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਵਰਤੋਂਕਾਰ"
 
 msgid "Submit a New Version"
-msgstr "ਇੱਕ ਨਵਾਂ ਸੰਸਕਰਣ ਦਰਜ ਕਰੋ"
+msgstr "ਇੱਕ ਨਵਾਂ ਵਰਜ਼ਨ ਭੇਜੋ"
 
 msgid "Cancel and Disable Version"
-msgstr "ਰੱਦ ਅਤੇ ਅਸਮਰੱਥ ਕਰੋ ਵਰਜਨ"
+msgstr "ਵਰਜ਼ਨ ਨੂੰ ਰੱਦ ਅਤੇ ਸਮਰੱਥ ਕਰੋ"
 
 #, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
@@ -2397,7 +2398,9 @@ msgstr "ਜ਼ਰੂਰਤ"
 msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
-msgstr "ਚੇਤਾਵਨੀ: ਤੁਹਾਡੇ ਕੋਲ ਹੋਰ ਲੋਕਲ ਵਿੱਚ ਨਾਮ/summary ਮੁੱਲ ਹਨ ਜੋ ਕਿ ਆਟੋਮੈਟਿਕ ਹੀ %(max_length)s ਦੇ ਅੱਖਰਾਂ ਦੇ ਅਨੁਸਾਰ ਫਿੱਟ ਕੀਤੇ ਜਾਣਗੇ।  ਸਬਮਿਸ਼ਨ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋਣ ਤੋਂ ਬਾਦ ਇਨ੍ਹਾਂ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ Edit Product Page ਵੱਲ ਜਾਓ।"
+msgstr ""
+"ਚੇਤਾਵਨੀ: ਤੁਹਾਡੇ ਕੋਲ ਹੋਰ ਲੋਕਲ ਵਿੱਚ ਨਾਮ/summary ਮੁੱਲ ਹਨ ਜੋ ਕਿ ਆਟੋਮੈਟਿਕ ਹੀ %(max_length)s ਦੇ ਅੱਖਰਾਂ ਦੇ ਅਨੁਸਾਰ ਫਿੱਟ ਕੀਤੇ ਜਾਣਗੇ।  ਸਬਮਿਸ਼ਨ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋਣ ਤੋਂ ਬਾਦ ਇਨ੍ਹਾਂ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ Edit "
+"Product Page ਵੱਲ ਜਾਓ।"
 
 msgid "Add-on URL:"
 msgstr "ਐਡ-ਆਨ URL:"
@@ -2452,8 +2455,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"ਜੇ ਤੁਸੀਂ ਸਰੋਤ ਕੋਡ ਜਮ੍ਹਾਂ ਕਰ ਦਿੱਤਾ ਹੈ, ਪਰ ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਉਨ੍ਹਾਂ ਨੂੰ ਇੱਥੇ ਮੁਹੱਈਆ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ। ਐਡਆਨ ਕੋਡ ਦੀ ਪ੍ਰਤੀਲਿਪੀ, ਪ੍ਰਤੀ %(policy_requirements_open)sਸਪੋਰਿਸ਼ੀ ਜ਼ਰੂਰਤਾਂ %(policy_requirements_close)sਬਣਾਉਣ "
-"ਲਈ ਕਦਮ-ਦਰ-ਕਦਮ ਬਿਲਡ ਹਦਾਇਤਾਂ ਦਾਖਲ ਕਰੋ।"
+"ਜੇ ਤੁਸੀਂ ਸਰੋਤ ਕੋਡ ਜਮ੍ਹਾਂ ਕਰ ਦਿੱਤਾ ਹੈ, ਪਰ ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਉਨ੍ਹਾਂ ਨੂੰ ਇੱਥੇ ਮੁਹੱਈਆ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ। ਐਡਆਨ ਕੋਡ ਦੀ ਪ੍ਰਤੀਲਿਪੀ, ਪ੍ਰਤੀ %(policy_requirements_open)sਸਪੋਰਿਸ਼ੀ "
+"ਜ਼ਰੂਰਤਾਂ %(policy_requirements_close)sਬਣਾਉਣ ਲਈ ਕਦਮ-ਦਰ-ਕਦਮ ਬਿਲਡ ਹਦਾਇਤਾਂ ਦਾਖਲ ਕਰੋ।"
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "ਇਹ ਨੋਟ ਸਿਰਫ ਤੁਹਾਡੇ ਅਤੇ ਸਾਡੇ ਸਮੀਖਿਅਕਾਂ ਨੂੰ ਦਿਖਾਈ ਦੇਣਗੇ।"
@@ -2578,12 +2581,16 @@ msgstr "ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਅਤੇ ਵਾਤਾਵਰਨ
 #, fuzzy
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
-"ਬਿਲਡ ਪ੍ਰਕਿਰਿਆ (ਲੋੜੀਂਦੀ ਵਰਜਨ ਅਤੇ ਇੰਸਟਾਲੇਸ਼ਨ ਹਦਾਇਤ ਸਮੇਤ), ਬਿਲਡ ਪ੍ਰਕਿਰਿਆ ਵਿਚ ਵਰਤੇ ਗਏ ਕਿਸੇ ਵੀ ਪ੍ਰੋਗ੍ਰਾਮ ਦੇ (ਉਦਾਹਰਨ ਲਈ: <span class=\"tech-emphasis\">node</span> ਅਤੇ <span class=\"tech-emphasis\">npm</span> ਵਰਜ਼ਨ ਵਰਤਿਆ "
-"ਗਿਆ ਹੈ)।"
+"ਬਿਲਡ ਪ੍ਰਕਿਰਿਆ (ਲੋੜੀਂਦੀ ਵਰਜਨ ਅਤੇ ਇੰਸਟਾਲੇਸ਼ਨ ਹਦਾਇਤ ਸਮੇਤ), ਬਿਲਡ ਪ੍ਰਕਿਰਿਆ ਵਿਚ ਵਰਤੇ ਗਏ ਕਿਸੇ ਵੀ ਪ੍ਰੋਗ੍ਰਾਮ ਦੇ (ਉਦਾਹਰਨ ਲਈ: <span class=\"tech-emphasis\">node</span> ਅਤੇ <span class=\"tech-"
+"emphasis\">npm</span> ਵਰਜ਼ਨ ਵਰਤਿਆ ਗਿਆ ਹੈ)।"
 
 #, fuzzy
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "<span class=\"instruction-emphasis\">ਨੋਟ:</span> ਸ੍ਰੋਤ ਫਾਈਲਾਂ (ਇੱਕ ਪਾਸੇ ਤੋਂ ਓਪਨ-ਸਰੋਤ ਥਰਡ ਪਾਰਟੀ ਲਾਇਬਰੇਰੀਆਂ) ਨੂੰ ਟਰਾਂਸਪਾਈਜ਼ਡ, ਓਫਫਸਕੇਟਡ, ਮਾਈਮਿਫਿਡ ਜਾਂ ਮਸ਼ੀਨ ਦੁਆਰਾ ਤਿਆਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
@@ -2609,6 +2616,10 @@ msgstr "ਵਰਜਨ ਅਪਲੋਡ ਕਰੋ"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "ਆਪਣੇ ਐਡਆਨ ਪੈਕੇਜ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਖੇਤਰਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ। ਅਪਲੋਡ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਹਾਡੀ ਫਾਈਲ ਵਿੱਚ ਆਟੋਮੈਟਿਕ ਵੈਧਤਾ ਦੀ ਇੱਕ ਲੜੀ ਚੱਲੇਗੀ।"
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "ਕਿਹੜਾ ਐਪਲੀਕੇਸ਼ਨ ਇਸ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲ ਹੈ?"
@@ -2674,47 +2685,6 @@ msgid "API Credentials"
 msgstr "API ਸਨਦਾਂ"
 
 #, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "ਵਿਸਥਾਰਤ ਹਦਾਇਤਾਂ ਲਈ, <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜਾਂ</a> ਤੇ ਵਿਚਾਰ ਕਰੋ।"
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "ਆਪਣੀ API ਕੁੰਜੀਆਂ ਨੂੰ ਗੁਪਤ ਰੱਖੋ ਅਤੇ ਮੋਜ਼ੀਲਾ ਸਹਿਯੋਗੀਆਂ ਸਮੇਤ <strong>ਉਹਨਾਂ ਨੂੰ ਕਿਸੇ ਨਾਲ ਵੀ ਸਾਂਝਾ ਨਾ ਕਰੋ</strong>।"
-
-msgid "JWT issuer"
-msgstr "JWT ਜਾਰੀ ਕਰਤਾ"
-
-msgid "JWT secret"
-msgstr "JWT ਗੁਪਤ"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
-msgstr "API ਬੇਨਤੀ ਕਰਨ ਲਈ, ਇੱਕ <a href=\"%(jwt_url)s\">JSON ਵੈਬ ਟੋਕਨ (JWT)</a> ਨੂੰ ਅਧਿਕ੍ਰਿਤੀ ਸਿਰਲੇਖ ਦੇ ਤੌਰ ਤੇ ਭੇਜੋ। ਤੁਹਾਨੂੰ <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜ਼ਾਂ</a>ਵਿੱਚ ਦੱਸੇ ਗਏ ਹਰ ਬੇਨਤੀ ਲਈ JWT ਤਿਆਰ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੋਏਗੀ।"
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "ਵਰਤੋਂਕਾਰ <strong>%(name)s</strong> ਲਈ API ਸਨਦਾਂ ਤਿਆਰ ਕਰਨ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਤਸਦੀਕੀਕਰਨ ਬਟਨ ਉੱਤੇ ਕਲਿਕ ਕਰੋ।"
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
-
-msgid "You don't have any API credentials."
-msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ API ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਨਹੀਂ ਹਨ।"
-
-msgid "Revoke"
-msgstr "ਰੱਦ ਕਰੋ"
-
-msgid "Revoke and regenerate credentials"
-msgstr "ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਰੱਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਬਣਾਉ"
-
-msgid "Confirm and generate new credentials"
-msgstr "ਪੁਸ਼ਟੀ ਕਰੋ ਅਤੇ ਨਵੇਂ ਪ੍ਰਮਾਣ ਪੱਤਰ ਬਣਾਓ"
-
-msgid "Generate new credentials"
-msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ"
-
-#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -2761,8 +2731,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2824,9 +2793,6 @@ msgstr "ਆਖਰੀ ਵਾਰ ਨਵਿਆਇਆ ਗਿਆ:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "ਕੋਡ ਰਿਵਿਊ ਪਾਸ ਕਰਨ ਤੋਂ ਬਾਅਦ ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਬੱਧ। ਇਸ ਸਾਈਟ ਦੁਆਰਾ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕੀਤਾ ਜਾਂਦਾ ਹੈ"
 
-msgid "Status:"
-msgstr "ਦਰਜਾ:"
-
 msgid "Listed Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 
@@ -2885,8 +2851,8 @@ msgid "Firefox for Android compatibility"
 msgstr ""
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
-"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -2917,13 +2883,13 @@ msgstr "ਤੁਹਾਡੇ ਵੱਲੋਂ ਆਪਣੇ ਸੋਰਸ ਕੋਡ �
 msgid "Sort by:"
 msgstr "ਇੰਞ ਕ੍ਰਮਬੱਧ:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "ਇਜਾਜ਼ਤ HTML : %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr ""
 
-msgid "Some HTML supported."
-msgstr "ਕੁੱਝ HTML ਨੂੰ ਸਹਿਯੋਗ ਕਰਦਾ।"
+msgid "Some Markdown supported."
+msgstr ""
 
 msgid "Remove this application"
 msgstr "ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਹਟਾਓ"
@@ -2963,9 +2929,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਰਕਸ਼ਾਪ ਵੇਖੋ"
+msgstr "Firefox ਇਕਸਟੈਨਸ਼ਨ ਵਰਕਸ਼ਾਪ ਵੇਖੋ"
 
 msgid "Connect with us"
 msgstr "ਸਾਡੇ ਨਾਲ ਜੁੜੋ"
@@ -2982,13 +2947,11 @@ msgstr "ਅੰਤਮ ਵਰਤੋਂਕਾਰਾਂ ਲਈ"
 msgid "Matrix"
 msgstr "ਸਾਰਣੀ"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "ਭਾਈਚਾਰਾ ਅਤੇ ਸਹਿਯੋਗ"
+msgstr "ਕਮਿਊਨਟੀ ਫੋਰਮ"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਿਕਾਸ"
+msgstr "ਇਕਸਟੈਨਸ਼ਨ ਡਿਵੈਲਪਰ ਖ਼ਬਰਸਾਰ"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3025,19 +2988,10 @@ msgid "\"Get The Add-on\" button"
 msgstr "\"ਐਡ-ਆਨ ਪ੍ਰਾਪਤ ਕਰੋ\" ਬਟਨ"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "ਸਿਫ਼ਾਰਸ਼ੀ ਇਕਸਟੈਨਸ਼ਨ ਪਰੋਗਰਾਮ"
 
 msgid "Contribute"
 msgstr "ਯੋਗਦਾਨ ਪਾਓ"
-
-msgid "Review Add-ons"
-msgstr "ਐਡਆਨ ਦੀ ਪੜਤਾਲ ਕਰੋ"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "ਵਲੰਟੀਅਰ ਸਮੀਖਿਅਕਾਂ ਨੂੰ ਵਰਤਣ ਲਈ ਐਡਆਨ ਸੁਰੱਖਿਅਤ ਅਤੇ ਭਰੋਸੇਯੋਗ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ। ਉਨ੍ਹਾਂ ਨੂੰ ਬਹੁਤ ਵਧੀਆ ਸਹੂਲਤਾਂ ਵੀ ਮਿਲਦੀਆਂ ਹਨ!"
-
-msgid "Join us!"
-msgstr "ਸਾਡੇ ਨਾਲ ਰਲੋ!"
 
 msgid "Write Some Code"
 msgstr "ਕੁੱਝ ਕੋਡ ਲਿਖੋ"
@@ -3226,16 +3180,15 @@ msgstr "{label_open}ਦ੍ਰਿਸ਼ਮਾਨ:{label_close} {site_url} ਤੇ 
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "{label_open}ਅਦਿੱਖ:{label_close} ਖੋਜ ਪਰਿਣਾਮਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ, ਅਤੇ ਇਸ ਦੀ ਉਤਪਾਦ ਪੰਨੇ ਇਹ ਸੰਕੇਤ ਦੇਵੇਗੀ ਕਿ ਤੁਸੀਂ ਇਸ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਇਆ ਹੈ। ਉਤਪਾਦ ਲਈ ਨਵੀਆਂ ਵਰਜਨ ਬੇਨਤੀਆਂ ਨੂੰ ਇਸ ਰਾਜ ਵਿੱਚ ਸਵੀਕਾਰ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ।"
+msgstr ""
+"{label_open}ਅਦਿੱਖ:{label_close} ਖੋਜ ਪਰਿਣਾਮਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ, ਅਤੇ ਇਸ ਦੀ ਉਤਪਾਦ ਪੰਨੇ ਇਹ ਸੰਕੇਤ ਦੇਵੇਗੀ ਕਿ ਤੁਸੀਂ ਇਸ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਇਆ ਹੈ। ਉਤਪਾਦ ਲਈ ਨਵੀਆਂ ਵਰਜਨ ਬੇਨਤੀਆਂ ਨੂੰ ਇਸ ਰਾਜ ਵਿੱਚ ਸਵੀਕਾਰ "
+"ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 msgid "Listed versions"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ"
 
 msgid "Currently on AMO"
 msgstr "ਮੌਜੂਦਾ ਤੌਰ ਤੇ AMO"
-
-msgid "Status"
-msgstr "ਹਾਲਤ"
 
 msgid "Validation"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ"
@@ -4062,6 +4015,10 @@ msgid "Cut through the nonsense of typical TOS agreements. This clever extension
 msgstr ""
 
 #. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "ਹੋਰ ਸਫ਼ਾਈ ਅਤੇ ਸੌਖੀ ਤਰ੍ਹਾਂ ਪੜ੍ਹੋ। ਵੈੱਬ ਸਫ਼ਿਆਂ ਉੱਤੇ ਲਿਖਤ ਦੁਆਲੇ ਘੜਮਸ ਹਟਾਓ।"
@@ -4195,10 +4152,6 @@ msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Blues & Yellows"
-msgstr ""
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -4255,6 +4208,14 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4394,11 +4355,11 @@ msgstr "ਇਸ਼ਤਿਹਾਰਾਂ ਉੱਤੇ ਰੋਕ ਲਾਓ ਅਤੇ �
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "ਕਾਪੀ ਕੀਤੀ ਕਲਿੱਪਬੋਰਡ ਲਿਖਤ ਵਿੱਚੋਂ ਫਾਰਮੈਟ ਨੂੰ ਹਟਾਓ।"
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "ਫਿੰਫਿੰਗਰ-ਪਰਿੰਟਿੰਗ ਪਰਦੇਦਾਰੀ ਸੁਰੱਖਿਆ।"
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
@@ -4416,10 +4377,13 @@ msgstr ""
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਪੁਰਾਣੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ।"
+msgstr "ਇਕਸਟੈਸ਼ਨਾਂ Firefox ਲਈ ਐਪਾਂ ਵਰਗੀਆਂ ਹਨ।"
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
@@ -4427,165 +4391,140 @@ msgstr "ਇਹ Firefox ਵਿੱਚ ਫ਼ੀਚਰ ਜੋੜਦੇ ਹਨ, ਜ�
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
-
-#. editorial content for the secondary hero shelves.
-msgid "New Android extensions!"
-msgstr ""
+msgstr "ਸਭ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "ਪਰਦੇਦਾਰੀ ਤੇ ਸੁਰੱਖਿਆ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "ਟੈਬ ਮੈਨੇਜਰ"
+
+#. editorial content for the secondary hero shelves.
+msgid "Spotlight: Adaptive Tab Bar Color"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "ਸਟਾਫ਼ ਦੀਆਂ ਚੋਣਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਸਿਫਾਰਸ਼ੀ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਹੋਰ ਸਿਫਾਰਸ਼ੀ ਇਕਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
 msgstr "ਹਰਮਨਪਿਆਰੇ ਥੀਮ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
+msgstr "ਵਧੇਰੇ ਪ੍ਰਸਿੱਧ ਥੀਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਵਾਧਾ ਕੀਤੀਆਂ ਪਰਦੇਦਾਰੀ ਇਕਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਹੋਰ ਸਿਫਾਰਸ਼ੀ ਪਰਦੇਦਾਰੀ ਇਕਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Popular extensions"
-msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ"
+msgstr "ਹਰਮਨਪਿਆਰੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਹੋਰ ਹਰਮਨਪਿਆਰੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਸਿਫਾਰਸ਼ੀ ਥੀਮ"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "ਹੋਰ ਸਿਫਾਰਸ਼ ਕੀਤੇ ਥੀਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
-msgstr ""
+msgstr "ਮਜ਼ਬੂਤ ਪਾਸਵਰਡ ਮੈਨੇਜਰ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਪਾਸਵਰਡ ਮੈਨੇਜਰਾਂ ਨੂੰ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
-msgstr ""
+msgstr "ਉਲੱਥਾ ਟੂਲ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਉਲੱਥਾ ਟੂਲ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
+msgstr "ਸਮਾਜਿਕ ਸਟਰੀਮਿੰਗ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਸ਼ੋਸ਼ਲ ਸਟਰੀਮਿੰਗ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਟੈਬ ਇੰਤਜ਼ਾਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "“{tag}” ਟੈਗ  ਕੀਤੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "\"{tag}\" ਟੈਗ ਵਾਲੀਆਂ ਹੋਰ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "ਬੇਹਤਰੀਨ ਇਸ਼ਤਿਹਾਰ ਰੋਕੂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਇਸ਼ਤਿਹਾਰ ਰੋਕੂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "ਯੂਟਿਊਬ ਕਸਟਮਾਈਜ਼ ਕਰਨ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਯੂਟਿਊਬ ਇਕਸਟੈਨਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਰੁਝਾਨ ਵਾਲੇ ਥੀਮ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
+msgstr "ਹੋਰ ਰੁਝਾਨ ਵਾਲੇ ਥੀਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਚੋਟੀ ਦੇ ਰੇਟ ਕੀਤੇ ਥੀਮ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
+msgstr "ਹੋਰ ਚੋਟੀ ਦੇ ਰੇਟ ਕੀਤੇ ਥੀਮ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+msgstr "ਰੁਝਾਨ ਵਾਲੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+msgstr "ਹੋਰ ਰੁਝਾਨ ਵਾਲੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
@@ -4608,39 +4547,51 @@ msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "ਸ਼ੋਸ਼ਲ ਮੀਡੀਆ ਇਕਸਟੈਨਸ਼ਨ"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਸ਼ੋਸ਼ਲ ਮੀਡੀਆ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "ਸਿਖਰਲੇ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰ"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰਾਂ ਨੂੰ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+msgid "Accessibility extensions"
+msgstr "ਅਸੈਸਬਿਲਟੀ ਇਕਸਟੈਨਸ਼ਨ"
+
+#. editorial content for the homepage shelves.
+msgid "See more accessibility staff picks"
+msgstr "ਸਟਾਫ਼ ਵਲੋਂ ਚੁਣੇ ਹੋਰ ਅਸੈਸਬਿਲਟੀ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
 msgstr ""
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "ਗ਼ੈਰ-ਸਮੀਖਿਆ ਕੀਤੇ"
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[ਸਥਿਤੀ:%s]"
 
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "ਇਹ ਅੱਪਲੋਡ ਨੂੰ ਪਹਿਲਾਂ ਹੀ ਭੇਜਿਆ ਜਾ ਚੁੱਕਾ ਹੈ।"
 
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
-#, fuzzy
-msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "ਫਾਇਰਫਾਕਸ 47 ਅਤੇ ਹੇਠ ਲਈ GUID ਦੀ ਲੋੜ ਹੈ।"
-
-msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "ਸਭ ਤੋਂ ਘੱਟ ਸਮਰਥਿਤ \"ਸਖਤ_ਮੰਨ_ਵਰਜਨ\" 42.0 ਹੈ।"
+msgid "Lowest supported \"strict_min_version\" is {min_version}."
+msgstr ""
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "{app} ਲਈ ਅਣਜਾਣ \"strict_min_version\" {appver}"
@@ -4802,6 +4753,12 @@ msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚੋਂ %(rating)s ਮਿਲੇ"
 
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
+
+msgid "File too large."
+msgstr ""
+
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
@@ -4950,12 +4907,6 @@ msgstr "ਬੰਦ ਕਰੋ"
 
 msgid "Custom Date Range"
 msgstr "ਪਸੰਦੀਦਾ ਮਿਤੀ ਸੀਮਾ"
-
-msgid "From"
-msgstr "ਤੋਂ"
-
-msgid "To"
-msgstr "ਤੱਕ"
 
 msgid "Update"
 msgstr "ਅੱਪਡੇਟ"
@@ -5106,8 +5057,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ ਕੀ ਹਨ?</h2> <p>ਇਸ ਸਾਈਟ ਤੋਂ ਡਾਊਨਲੋਡ ਕੀਤੇ ਐਡ-ਆਨ ਦਿਨ ਵਿੱਚ ਇੱਕ ਵਾਰ ਅੱਪਡੇਟਾਂ ਦੀ ਪੜਤਾਲ ਕਰਦੇ ਹਨ। ਇਹਨਾਂ ਅੱਪਡੇਟ ਪਿੰਗਾਂ ਦੀ ਕੁੱਲ ਗਿਣਤੀ ਨੂੰ ਸਰਗਰਮ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ ਵੱਜੋਂ ਜਾਣਿਆ ਜਾਂਦਾ। ਸਰਗਰਮ ਵਰਤੋਂਕਾਰ ਐਡ-ਆਨ ਵਰਜਨ, ਓਪਰੇਟਿੰਗ "
-"ਸਿਸਟਮ, ਐਡ-ਆਨ ਦਰਜੇ, ਐਪਲੀਕੇਸ਼ਨ, ਅਤੇ ਲੋਕੇਲ ਦੇ ਅਧਾਰ ਤੇ ਵੰਡੇ ਜਾ ਸਕਦੇ ਹਨ।"
+"<h2>ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ ਕੀ ਹਨ?</h2> <p>ਇਸ ਸਾਈਟ ਤੋਂ ਡਾਊਨਲੋਡ ਕੀਤੇ ਐਡ-ਆਨ ਦਿਨ ਵਿੱਚ ਇੱਕ ਵਾਰ ਅੱਪਡੇਟਾਂ ਦੀ ਪੜਤਾਲ ਕਰਦੇ ਹਨ। ਇਹਨਾਂ ਅੱਪਡੇਟ ਪਿੰਗਾਂ ਦੀ ਕੁੱਲ ਗਿਣਤੀ ਨੂੰ ਸਰਗਰਮ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ ਵੱਜੋਂ ਜਾਣਿਆ ਜਾਂਦਾ। ਸਰਗਰਮ "
+"ਵਰਤੋਂਕਾਰ ਐਡ-ਆਨ ਵਰਜਨ, ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ, ਐਡ-ਆਨ ਦਰਜੇ, ਐਪਲੀਕੇਸ਼ਨ, ਅਤੇ ਲੋਕੇਲ ਦੇ ਅਧਾਰ ਤੇ ਵੰਡੇ ਜਾ ਸਕਦੇ ਹਨ।"
 
 msgid "Application versions by Date"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ ਮਿਤੀ ਅਨੁਸਾਰ"
@@ -5117,22 +5068,6 @@ msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨ"
 
 msgid "Back to Add-ons"
 msgstr "ਐਡ-ਆਨ ਤੇ ਵਾਪਸ"
-
-msgid "Legal Notices"
-msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
-
-msgid "Report Trademark Abuse"
-msgstr "ਟਰੇਡਮਾਰਕ ਦੁਰਵਿਅਵਹਾਰ ਰਿਪੋਰਟ"
-
-msgid "Report a bug"
-msgstr "ਬੱਗ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"ਇਸ ਤੋਂ ਇਲਾਵਾ ਜਿੱਥੇ ਵੀ <a href=\"https://www.mozilla.org/about/legal/\">ਨੋਟ ਕੀਤਾ ਗਿਆ ਹੈ</a>, ਇਸ ਸਾਈਟ ਤੇ ਦਿੱਤੀ ਗਈ ਸਮੱਗਰੀ ਨੂੰ <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ "
-"ਐਟਰੀਬਿਊਸ਼ਨ ਸ਼ੇਅਰ-ਅਲਾਇਕ ਲਸੰਸ v3.0 </a> ਜਾਂ ਕਿਸੇ ਹੋਰ ਬਾਅਦ ਦੇ ਵਰਜ਼ਨ।"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
@@ -5155,6 +5090,9 @@ msgstr ""
 msgid "Forum"
 msgstr "ਫ਼ੋਰਮ"
 
+msgid "Report a bug"
+msgstr "ਬੱਗ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
+
 msgid "Review Guide"
 msgstr ""
 
@@ -5162,22 +5100,22 @@ msgid "Browsers"
 msgstr ""
 
 msgid "Desktop"
-msgstr ""
+msgstr "ਡੈਸਕਟਾਪ"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "ਇੰਟਰਪ੍ਰਾਈਜ਼"
 
 msgid "Products"
-msgstr ""
+msgstr "ਉਤਪਾਦ"
 
 msgid "Privacy"
-msgstr ""
+msgstr "ਪਰਦੇਦਾਰੀ"
 
 msgid "Cookies"
-msgstr ""
+msgstr "ਕੂਕੀਜ਼"
 
 msgid "Legal"
-msgstr ""
+msgstr "ਕਨੂੰਨੀ"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
@@ -5266,16 +5204,16 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
-"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ Firefox ਐਡ-ਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। Firefox ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਇਕਰਾਰਨਾਮਾ ਵੀ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਜੁੜਦਾ ਹੈ, ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ "
-"ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
+"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ Firefox ਐਡ-ਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। Firefox ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਇਕਰਾਰਨਾਮਾ ਵੀ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ "
+"ਜੁੜਦਾ ਹੈ, ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
-"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ Firefox ਐਡ-ਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। Firefox ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਇਕਰਾਰਨਾਮਾ ਵੀ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਜੁੜਦਾ ਹੈ, ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ "
-"ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
+"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ Firefox ਐਡ-ਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। Firefox ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਇਕਰਾਰਨਾਮਾ ਵੀ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ "
+"ਜੁੜਦਾ ਹੈ, ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
 
 msgid "User Restriction History"
 msgstr "ਵਰਤੋਂਕਾਰ ਪਾਬੰਦੀ ਅਤੀਤ"
@@ -5327,8 +5265,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5387,4 +5324,4 @@ msgid "{app} {min} and later"
 msgstr "{app} {min} and ਬਾਅਦ"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "ਇੰਸਟਾਲ ਕਰਨ ਦੇ ਮੂਲ {origin} ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।"

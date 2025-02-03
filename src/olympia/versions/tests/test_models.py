@@ -3,8 +3,6 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
-from django.db import transaction
-from django.test.testcases import TransactionTestCase
 
 import pytest
 import waffle
@@ -60,6 +58,7 @@ from ..models import (
     Version,
     VersionCreateError,
     VersionPreview,
+    VersionProvenance,
     VersionReviewerFlags,
     source_upload_path,
 )
@@ -392,6 +391,131 @@ class TestVersionManager(TestCase):
         version_preview = VersionPreview.objects.get(pk=version_preview.pk)
         assert version_preview.version == version
 
+    def test_should_have_due_date(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        addon_kws = {
+            'file_kw': {'is_signed': True, 'status': amo.STATUS_AWAITING_REVIEW}
+        }
+
+        addon_factory(**addon_kws)  # no due_date
+
+        other_nhr = addon_factory(**addon_kws).current_version
+        # having the needs_human_review flag means a due dute is needed
+        NeedsHumanReview.objects.create(
+            version=other_nhr, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
+        )
+
+        # Or if it's in a pre-review promoted group it will.
+        recommended = addon_factory(**addon_kws).current_version
+        PromotedAddon.objects.create(addon=recommended.addon, group_id=RECOMMENDED.id)
+        NeedsHumanReview.objects.create(
+            version=recommended,
+            reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP,
+        )
+
+        # And not if it's a non-pre-review group
+        PromotedAddon.objects.create(
+            addon=addon_factory(**addon_kws), group_id=STRATEGIC.id
+        )
+
+        # A disabled version with a developer reply
+        developer_reply = addon_factory(
+            file_kw={'is_signed': False, 'status': amo.STATUS_DISABLED}
+        ).versions.all()[0]
+        NeedsHumanReview.objects.create(
+            version=developer_reply, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
+        )
+
+        # dsa related needs_human_review flag means due dates are needed also
+        abuse_nhr = addon_factory(**addon_kws).current_version
+        NeedsHumanReview.objects.create(
+            version=abuse_nhr, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+        )
+        appeal_nhr = addon_factory(**addon_kws).current_version
+        NeedsHumanReview.objects.create(
+            version=appeal_nhr, reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
+        )
+        # throw in an inactive NHR that should be ignored
+        NeedsHumanReview.objects.create(
+            version=appeal_nhr,
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            is_active=False,
+        )
+
+        # And a version with multiple reasons
+        multiple = addon_factory(**addon_kws).current_version
+        PromotedAddon.objects.create(addon=multiple.addon, group_id=LINE.id)
+        NeedsHumanReview.objects.create(
+            version=multiple, reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+        )
+
+        NeedsHumanReview.objects.create(
+            version=multiple, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
+        )
+        NeedsHumanReview.objects.create(
+            version=multiple, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
+        )
+
+        # Version with escalated appeal
+        escalated = addon_factory(**addon_kws).current_version
+        NeedsHumanReview.objects.create(
+            version=escalated, reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
+        )
+
+        qs = Version.objects.should_have_due_date().order_by('id')
+        assert list(qs) == [
+            # absent addon with nothing special set
+            other_nhr,
+            recommended,
+            # absent promoted but not prereview addon
+            developer_reply,
+            abuse_nhr,
+            appeal_nhr,
+            multiple,
+            escalated,
+        ]
+
+    def test_get_due_date_reason_q_objects(self):
+        self.test_should_have_due_date()  # to set up the Versions
+
+        qs = Version.objects.all().order_by('id')
+        # See test_should_have_due_date for order
+        (
+            _,  # addon with nothing special set
+            other_nhr,
+            recommended,
+            _,  # promoted but not prereview addon
+            developer_reply,
+            abuse_nhr,
+            appeal_nhr,
+            multiple,
+            escalated,
+        ) = list(qs)
+
+        q_objects = Version.objects.get_due_date_reason_q_objects()
+        method = Version.objects.filter
+
+        assert list(method(q_objects['needs_human_review_from_cinder'])) == [
+            escalated,
+            multiple,
+        ]
+
+        assert list(method(q_objects['needs_human_review_from_abuse'])) == [abuse_nhr]
+
+        assert list(method(q_objects['needs_human_review_from_appeal'])) == [appeal_nhr]
+
+        assert list(method(q_objects['needs_human_review_other'])) == [other_nhr]
+
+        assert list(method(q_objects['needs_human_review_promoted'])) == [
+            multiple,
+            recommended,
+        ]
+
+        assert list(method(q_objects['has_developer_reply'])) == [
+            multiple,
+            developer_reply,
+        ]
+
 
 class TestVersion(AMOPaths, TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
@@ -474,7 +598,7 @@ class TestVersion(AMOPaths, TestCase):
         assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_PENDING_REJECTION_SOURCES_PROVIDED
+            == NeedsHumanReview.REASONS.PENDING_REJECTION_SOURCES_PROVIDED
         )
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
@@ -910,75 +1034,69 @@ class TestVersion(AMOPaths, TestCase):
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
-        # But if it's in a pre-review promoted group it will.
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        # But if it has a NHR it will.
+        nhr = version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
+        )
         assert version.should_have_due_date
 
-        # And not if it's a non-pre-review group
-        addon.promotedaddon.update(group_id=STRATEGIC.id)
+        # And not if it is dropped
+        nhr.update(is_active=False)
         assert not version.should_have_due_date
 
-        # But yes if auto approval is disabled
-        AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
+        # But yes if another nhr is added.
+        nhr = version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
         assert version.should_have_due_date
 
-        # unlisted auto_approval should be ignored
-        addon.reviewerflags.update(
-            auto_approval_disabled=False,
-            auto_approval_disabled_unlisted=True,
-            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=1),
-            auto_approval_disabled_until_next_approval_unlisted=True,
+    def test_should_have_due_date_listed_theme(self):
+        addon = addon_factory(
+            status=amo.STATUS_NULL,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        version = addon.versions.get()
+
+        # Listed version of an incomplete add-on should not have a due date.
         assert not version.should_have_due_date
 
-        addon.reviewerflags.update(auto_approval_disabled_until_next_approval=True)
+        # Unless they have the explicit a NeedsHumanReview flag active.
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
         assert version.should_have_due_date
 
-        # Except if the version isn't awaiting review
-        version.file.update(status=amo.STATUS_APPROVED)
+        needs_human_review.update(is_active=False)
         assert not version.should_have_due_date
 
-        # Or if the version has already been reviewed but is pending rejection
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        flags = VersionReviewerFlags.objects.create(
-            version=version,
-            pending_rejection=datetime.now(),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
+    def test_should_have_due_date_unlisted_theme(self):
+        addon = addon_factory(
+            status=amo.STATUS_NULL,
+            type=amo.ADDON_STATICTHEME,
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        assert not version.should_have_due_date
+        version = addon.versions.get()
 
-        # Clear the flags and try with an incomplete add-on
-        flags.update(
-            pending_rejection=None,
-            pending_rejection_by=None,
-            pending_content_rejection=None,
-        )
-        addon.update(status=amo.STATUS_NULL)
-        assert not version.should_have_due_date
-
-        # And now with an approved add-on.
-        addon.update(status=amo.STATUS_APPROVED)
+        # Unlisted version of an incomplete add-on should have a due date.
         assert version.should_have_due_date
 
-        # If auto_approval_delayed_until is present it should also have a
-        # due_date
-        addon.reviewerflags.update(
-            auto_approval_disabled_until_next_approval=False,
-            auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
-        )
+        # Whether they have the explicit a NeedsHumanReview flag active or not.
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
+        assert version.should_have_due_date
+
+        needs_human_review.update(is_active=False)
         assert version.should_have_due_date
 
     def _test_should_have_due_date_disabled(self, channel):
         addon = Addon.objects.get(id=3615)
-        version = addon.current_version
+        version = addon.versions.get()
         version.update(channel=channel)
         assert version.needshumanreview_set.count() == 0
         assert not version.should_have_due_date
 
         # Any non-disabled status with needs_human_review is enough to get a
         # due date, even if not signed.
-        NeedsHumanReview.objects.create(version=version)
+        nhr = NeedsHumanReview.objects.create(version=version)
         version.file.update(is_signed=False, status=amo.STATUS_AWAITING_REVIEW)
         assert version.should_have_due_date
 
@@ -988,12 +1106,20 @@ class TestVersion(AMOPaths, TestCase):
         version.file.update(is_signed=False, status=amo.STATUS_DISABLED)
         assert not version.should_have_due_date
 
-        # If it was signed however, it should get a due date.
+        # If was reported for abuse or appealed should also get a due_date,
+        # even if unsigned.
+        nhr.update(reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL)
+        assert version.should_have_due_date
+
+        # Otherwise it needs to be signed to get a due date.
+        nhr.update(reason=NeedsHumanReview.REASONS.UNKNOWN)
+        assert not version.should_have_due_date
         version.file.update(is_signed=True)
         assert version.should_have_due_date
 
         # Even if deleted (which internally disables the file), as long as it
         # was signed and needs human review, it should keep the due date.
+        version.file.update(is_signed=True)
         version.delete()
         assert version.should_have_due_date
 
@@ -1018,75 +1144,67 @@ class TestVersion(AMOPaths, TestCase):
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
-        # Promoted groups that are pre-review for unlisted get a due date.
-        promo = PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
-        # Adding Notable creates another NeedsHumanReview instance with
-        # is_active=True, so clear that.
-        needs_human_review = NeedsHumanReview.objects.filter(is_active=True).latest(
-            'pk'
-        )
-        needs_human_review.update(is_active=False)
-        assert version.should_have_due_date
-
-        # Not if it's a group that is only pre-review for listed though.
-        promo.update(group_id=RECOMMENDED.id)
-        assert not version.should_have_due_date
-
-        # But yes if auto approval is disabled
-        AddonReviewerFlags.objects.create(
-            addon=addon, auto_approval_disabled_unlisted=True
+        # But if it has a NHR it will.
+        nhr = version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
         )
         assert version.should_have_due_date
 
-        # listed properties should be ignored though
-        addon.reviewerflags.update(
-            auto_approval_disabled_unlisted=False,
-            auto_approval_disabled=True,
-            auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
-            auto_approval_disabled_until_next_approval=True,
-        )
+        # And not if it is dropped
+        nhr.update(is_active=False)
         assert not version.should_have_due_date
 
-        addon.reviewerflags.update(
-            auto_approval_disabled_until_next_approval_unlisted=True
+        # But yes if another nhr is added.
+        nhr = version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         )
         assert version.should_have_due_date
 
-        # Except if the version isn't awaiting review
-        version.file.update(status=amo.STATUS_APPROVED)
+    def test_should_have_due_date_developer_reply(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        assert version.needshumanreview_set.count() == 0
         assert not version.should_have_due_date
 
-        # Or if the version has already been reviewed but is pending rejection
+        needs_human_review = version.needshumanreview_set.create(
+            is_active=False, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
+        )
+        assert not version.should_have_due_date
+
+        needs_human_review.update(is_active=True)
+        assert version.should_have_due_date
+
+        # status/is_signed shouldn't matter for developer replies
+        version.file.update(is_signed=False, status=amo.STATUS_DISABLED)
+        assert version.should_have_due_date
+
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        flags = VersionReviewerFlags.objects.create(
-            version=version,
-            pending_rejection=datetime.now(),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
-        )
-        assert not version.should_have_due_date
-
-        # clear the flags and the due date is applicable again
-        flags.update(
-            pending_rejection=None,
-            pending_rejection_by=None,
-            pending_content_rejection=None,
-        )
         assert version.should_have_due_date
 
-        # If auto_approval_delayed_until_unlisted is present it should also have a
-        # due_date
-        addon.reviewerflags.update(
-            auto_approval_disabled_until_next_approval_unlisted=False,
-            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=1),
-        )
+        version.file.update(is_signed=True, status=amo.STATUS_APPROVED)
         assert version.should_have_due_date
+
+        version.file.update(status=amo.STATUS_DISABLED)
+        assert version.should_have_due_date
+
+        version.file.update(is_signed=False)
+        for reason in NeedsHumanReview.REASONS.values.keys() - [
+            NeedsHumanReview.REASONS.DEVELOPER_REPLY,
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            NeedsHumanReview.REASONS.CINDER_ESCALATION,
+            NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
+            NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
+        ]:
+            # Every other reason shouldn't result in a due date since the
+            # version is disabled and not signed at this point.
+            needs_human_review.update(reason=reason)
+            assert not version.should_have_due_date
 
     def test_reset_due_date(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
-        AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
         # set up the version so it should and does have a due date
+        version.needshumanreview_set.create()
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert version.should_have_due_date
         assert version.due_date
@@ -1108,32 +1226,11 @@ class TestVersion(AMOPaths, TestCase):
 
         # case when version shouldn't have a due_date but does
         version.file.update(status=amo.STATUS_DISABLED, _signal=False)
+        version.needshumanreview_set.update(is_active=False)
         assert not version.should_have_due_date
         assert version.due_date
         version.reset_due_date()
         assert not version.due_date
-
-    def test_version_reviewer_flags_signal(self):
-        addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
-        assert version.reload().due_date, version.should_have_due_date
-
-        flags = VersionReviewerFlags.objects.create(
-            version=version,
-            pending_rejection=self.days_ago(-1),
-            pending_rejection_by=user_factory(),
-            pending_content_rejection=False,
-        )
-        assert not version.reload().due_date
-
-        flags.update(
-            pending_rejection=None,
-            pending_rejection_by=None,
-            pending_content_rejection=None,
-        )
-        assert version.reload().due_date
 
     def test_needs_human_review_signal(self):
         addon = addon_factory()
@@ -1292,6 +1389,26 @@ class TestVersion(AMOPaths, TestCase):
             pending_content_rejection=False,
         )
         assert version.pending_rejection == in_the_past
+        assert not version.pending_content_rejection
+
+    def test_pending_content_rejection_property(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        # No flags: None
+        assert version.pending_content_rejection is None
+        # Flag present, value is None (default): None.
+        flags = version_review_flags_factory(version=version)
+        assert flags.pending_content_rejection is None
+        assert version.pending_content_rejection is None
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(
+            pending_rejection=in_the_past,
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=True,
+        )
+        assert version.pending_rejection == in_the_past
+        assert version.pending_content_rejection
 
     def test_pending_rejection_by_property(self):
         addon = Addon.objects.get(id=3615)
@@ -1620,7 +1737,7 @@ class TestVersionFromUpload(UploadMixin, TestCase):
     def setUpTestData(cls):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
@@ -1802,7 +1919,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.license_id is None
 
     def test_app_versions(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1812,11 +1929,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '42.0'
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == '*'
 
     def test_compatibility_just_app(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1828,11 +1945,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert [amo.FIREFOX] == list(version.compatible_apps)
         app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '42.0'
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == '*'
 
     def test_compatibility_min_max_too(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1856,7 +1973,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '67'
 
     def test_compatible_apps_is_pre_generated(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         # We mock File.from_upload() to prevent it from accessing
         # version.compatible_apps early - we want to test that the cache has
         # been generated regardless.
@@ -1881,7 +1998,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert amo.ANDROID not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
-        assert app.min.version == '42.0'
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == '*'
 
         # Clear cache and check again, it should be updated.
@@ -1889,11 +2006,50 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert amo.ANDROID in version.compatible_apps
         assert amo.FIREFOX not in version.compatible_apps
         app = version.compatible_apps[amo.ANDROID]
-        assert app.min.version == '42.0'
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == '*'
 
+    def test_compatible_apps_cloned_if_passed_existing_instances(self):
+        # If we're passed ApplicationsVersions instances that already exist in
+        # the database (with a pk) in `compatibility` then we clone them
+        # instead of re-using them.
+        existing_version = version_factory(
+            addon=self.addon,
+            application=amo.FIREFOX.id,
+            min_app_version='48.0',
+            max_app_version='*',
+        )
+
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        new_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            compatibility=existing_version.compatible_apps,
+            parsed_data=parsed_data,
+        )
+        # Make sure we're not testing with cached data
+        del existing_version._compatible_apps
+
+        assert existing_version.compatible_apps  # Still there, untouched.
+        assert amo.FIREFOX in new_version.compatible_apps
+        assert (
+            new_version.compatible_apps[amo.FIREFOX].min
+            == existing_version.compatible_apps[amo.FIREFOX].min
+        )
+        assert (
+            new_version.compatible_apps[amo.FIREFOX].max
+            == existing_version.compatible_apps[amo.FIREFOX].max
+        )
+        # Shouldn't be the same instance.
+        assert existing_version.compatible_apps != new_version.compatible_apps
+
+        # Really make sure - includes the one from the original version in
+        # fixtures too.
+        assert ApplicationsVersions.objects.count() == 3
+
     def test_version_number(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1904,7 +2060,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.version == '0.0.1'
 
     def test_filename(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1943,15 +2099,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             mock_incr.assert_called_with('devhub.version_created_from_upload.extension')
 
     def test_due_date_inherited_for_updates(self):
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
         assert self.addon.status == amo.STATUS_APPROVED
         self.addon.current_version.update(due_date=self.days_ago(2))
+        self.addon.current_version.needshumanreview_set.create()
         pending_version = version_factory(
             addon=self.addon,
             due_date=self.days_ago(1),
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version.needshumanreview_set.create()
         assert pending_version.due_date
         upload_version = Version.from_upload(
             self.upload,
@@ -1968,7 +2125,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert upload_version.due_date == pending_version.due_date
 
     def test_due_date_inherit_from_most_recent(self):
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.addon.current_version.needshumanreview_set.create()
         self.addon.current_version.update(due_date=self.days_ago(3))
         # In theory it isn't possible to get 2 listed versions awaiting review,
         # but this test ensures we inherit from the most recent version if
@@ -1979,6 +2136,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version.needshumanreview_set.create()
         assert pending_version.due_date
         pending_version2 = version_factory(
             addon=self.addon,
@@ -1986,8 +2144,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version='10.0',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        pending_version2.needshumanreview_set.create()
         assert pending_version2.due_date > pending_version.due_date
-        old_due_date = pending_version2.due_date
+        oldest_due_date = pending_version2.due_date
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1998,65 +2157,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert upload_version.due_date == old_due_date
+        assert upload_version.due_date == oldest_due_date
         upload_version.reload()
-        assert upload_version.due_date == old_due_date
-
-    def test_due_date_not_inherited_if_pending_rejection(self):
-        assert self.addon.status == amo.STATUS_APPROVED
-        self.addon.current_version.update(due_date=self.days_ago(2))
-        pending_version = version_factory(
-            addon=self.addon,
-            due_date=self.days_ago(1),
-            version='9.9',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        version_review_flags_factory(
-            version=pending_version,
-            pending_rejection=datetime.now() + timedelta(days=1),
-        )
-        assert not pending_version.reload().due_date
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
-        upload_version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        # Check twice: on the returned instance and in the database, in case
-        # a signal acting on the same version but different instance updated
-        # it.
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-        upload_version.reload()
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-
-    def test_due_date_not_inherited_with_addon_in_nominated_state_pending_rejection(
-        self,
-    ):
-        pending_version = self.addon.current_version
-        pending_version.update(due_date=self.days_ago(2))
-        pending_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_NOMINATED
-        version_review_flags_factory(
-            version=pending_version,
-            pending_rejection=datetime.now() + timedelta(days=1),
-        )
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
-        upload_version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        # Check twice: on the returned instance and in the database, in case
-        # a signal acting on the same version but different instance updated
-        # it.
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
-        upload_version.reload()
-        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
+        assert upload_version.due_date == oldest_due_date
 
     def test_do_not_inherit_needs_human_review_from_other_addon(self):
         extra_addon = addon_factory()
@@ -2098,7 +2201,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert upload_version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             upload_version.needshumanreview_set.get().reason
-            == NeedsHumanReview.REASON_INHERITANCE
+            == NeedsHumanReview.REASONS.INHERITANCE
         )
 
         activity_log = (
@@ -2140,7 +2243,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         NeedsHumanReview.objects.create(version=new_version)
         new_version.update(due_date=existing_due_date)
         self.assertCloseToNow(new_version.due_date, now=existing_due_date)
-        new_version.inherit_due_date()
+        new_version.reset_due_date()
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
@@ -2287,7 +2390,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_dont_record_install_origins_when_waffle_switch_is_off(self):
         # Switch should be off by default.
         assert waffle.switch_is_active('record-install-origins') is False
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         parsed_data['install_origins'] = ['https://foo.com', 'https://bar.com']
         version = Version.from_upload(
             self.upload,
@@ -2300,7 +2403,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         parsed_data['install_origins'] = ['https://foo.com', 'https://bar.com']
         version = Version.from_upload(
             self.upload,
@@ -2317,7 +2420,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins_base_domain(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         parsed_data['install_origins'] = [
             'https://foô.com',
             'https://foo.bar.co.uk',
@@ -2341,7 +2444,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins_error(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         parsed_data['install_origins'] = None  # Invalid
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
@@ -2357,7 +2460,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete(hard=True)
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2376,7 +2479,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete(hard=True)
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2394,7 +2497,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_dont_send_initial_submission_acknowledgement_email_second_version(
         self, send_initial_submission_acknowledgement_email_mock
     ):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2410,7 +2513,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete()
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2420,6 +2523,22 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert version.pk
         assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 0
+
+    def test_version_provenance(self):
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+            client_info='Something/42.0',
+        )
+        assert version.pk
+        assert VersionProvenance.objects.filter(version=version).exists()
+        provenance = VersionProvenance.objects.get(version=version)
+        assert provenance.client_info == 'Something/42.0'
+        assert provenance.source == self.upload.source
 
 
 class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
@@ -2603,84 +2722,6 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
         )
 
 
-class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMixin):
-    filename = 'webextension_no_id.xpi'
-
-    def setUp(self):
-        super().setUp()
-        # We can't use `setUpTestData` here because it doesn't play well with
-        # the behavior of `TransactionTestCase`
-        create_default_webext_appversion()
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @override_switch('enable-uploads-commit-to-git-storage', active=False)
-    def test_doesnt_create_git_extraction_entry_when_switch_is_off(
-        self, create_entry_mock
-    ):
-        addon = addon_factory()
-        user = user_factory(username='fancyuser')
-        upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon, user=user)
-
-        with transaction.atomic():
-            version = Version.from_upload(
-                upload,
-                addon,
-                amo.CHANNEL_LISTED,
-                selected_apps=[amo.FIREFOX.id],
-                parsed_data=parsed_data,
-            )
-        assert version.pk
-
-        assert not create_entry_mock.called
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_creates_git_extraction_entry(self, create_entry_mock):
-        addon = addon_factory()
-        user = user_factory(username='fancyuser')
-        upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon, user=user)
-
-        with transaction.atomic():
-            version = Version.from_upload(
-                upload,
-                addon,
-                amo.CHANNEL_LISTED,
-                selected_apps=[amo.FIREFOX.id],
-                parsed_data=parsed_data,
-            )
-        assert version.pk
-
-        create_entry_mock.assert_called_once_with(version=version)
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @mock.patch('olympia.versions.models.utc_millesecs_from_epoch')
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_does_not_create_git_extraction_entry_when_version_is_not_created(
-        self, utc_millisecs_mock, create_entry_mock
-    ):
-        utc_millisecs_mock.side_effect = ValueError
-        addon = addon_factory()
-        user = user_factory(username='fancyuser')
-        upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon, user=user)
-
-        # Simulating an atomic transaction similar to what
-        # create_version_for_upload does
-        with pytest.raises(ValueError):
-            with transaction.atomic():
-                Version.from_upload(
-                    upload,
-                    addon,
-                    amo.CHANNEL_LISTED,
-                    selected_apps=[amo.FIREFOX.id],
-                    parsed_data=parsed_data,
-                )
-
-        create_entry_mock.assert_not_called()
-
-
 class TestDisableOldFilesInFromUpload(TestVersionFromUpload):
     filename = 'webextension.xpi'
 
@@ -2736,7 +2777,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
         self.current = self.addon.current_version
 
     def test_permissions_includes_devtools(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2759,8 +2800,12 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
             amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:
-            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
-            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def setUp(self):
         path = 'src/olympia/devhub/tests/addons/static_theme.zip'
@@ -2776,7 +2821,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
         Version.from_upload(
             self.upload,
             self.addon,
@@ -2789,7 +2834,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_public(self, generate_static_theme_preview_mock):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
-        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
         Version.from_upload(
             self.upload,
             self.addon,
@@ -2808,7 +2853,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload(
             abspath=os.path.join(settings.ROOT, path), user=self.user
         )
-        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
         Version.from_upload(
             self.upload,
             self.addon,
@@ -3257,3 +3302,88 @@ class TestDeniedInstallOrigin(TestCase):
         assert DeniedInstallOrigin.find_denied_origins(
             ['https://example.com', 'rofl', 'https://foo.com']
         ) == {'https://example.com'}
+
+
+@mock.patch('olympia.versions.models.statsd.incr')
+class TestVersionProvenance(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+        self.version = self.addon.current_version
+
+    def test_from_version_no_client_info(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version, source=amo.UPLOAD_SOURCE_GENERATED, client_info=None
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_GENERATED
+        assert provenance.client_info is None
+        assert incr_mock.call_count == 0
+
+    def test_from_version_client_info_no_webext_version(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            client_info='Mozilla/5.0 (Whatever; rv:126.0) Gecko/20100101 Firefox/126.0',
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_DEVHUB
+        assert (
+            provenance.client_info
+            == 'Mozilla/5.0 (Whatever; rv:126.0) Gecko/20100101 Firefox/126.0'
+        )
+        assert incr_mock.call_count == 0
+
+    def test_from_version_client_info_very_long(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            client_info='abc' * 1000,
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert (
+            provenance.client_info == 'abc' * 85  # 255 max length.
+        )
+        assert incr_mock.call_count == 0
+
+    def test_from_version_with_webext_version(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_SIGNING_API,
+            client_info='web-ext/42.0',
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_SIGNING_API
+        assert provenance.client_info == 'web-ext/42.0'
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args[0][0] == 'signing.submission.webext_version.42_0'
+
+    def test_from_version_with_webext_version_old_signing_api(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            client_info='web-ext/8.0.2',
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert provenance.client_info == 'web-ext/8.0.2'
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args[0][0] == 'addons.submission.webext_version.8_0_2'
+
+    def test_from_version_with_webext_version_other(self, incr_mock):
+        provenance = VersionProvenance.from_version(
+            version=self.version,
+            source=amo.UPLOAD_SOURCE_GENERATED,
+            client_info='web-ext/1',
+        )
+        assert VersionProvenance.objects.get() == provenance
+        assert provenance.version == self.version
+        assert provenance.source == amo.UPLOAD_SOURCE_GENERATED
+        assert provenance.client_info == 'web-ext/1'
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args[0][0] == 'other.webext_version.1'

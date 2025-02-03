@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2023-11-27 12:14+0000\n"
+"POT-Creation-Date: 2025-01-31 17:28+0000\n"
+"PO-Revision-Date: 2024-12-29 03:03+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -15,6 +15,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr ""
 
 msgid "Email address"
 msgstr "ელფოსტის მისამართი"
@@ -28,26 +31,17 @@ msgstr "გასაჩივრების მიზეზი"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "გთხოვთ, ახსნათ, რატომ მიიჩნევთ ამ გადაწყვეტილებას შეცდომად და/ან შეუსაბამოდ არსებულ დებულებებთან თუ დადგენილებებთან."
 
+msgid "User profile"
+msgstr "მომხმარებლის პროფილი"
+
+msgid "\"{}\" for {}"
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "დარწმუნდით, რომ ამ ველში არაუმეტეს {max_length} სიმბოლოა."
 
 msgid "Invalid value"
 msgstr "არასწორი მნიშვნელობა"
-
-msgid "\"{}\" for {}"
-msgstr ""
-
-msgid "User profile"
-msgstr ""
-
-msgid "Collection"
-msgstr ""
-
-msgid "Rating"
-msgstr "შეფასება"
-
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
 
 msgid "Appeal reviewer decision"
 msgstr "მიმომხილველის გადაწყვეტილების გასაჩივრება"
@@ -71,6 +65,9 @@ msgstr ""
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr ""
 
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr ""
+
 msgid "This decision can't be appealed."
 msgstr "ეს გადაწყვეტილების ვერ გასაჩივრდება."
 
@@ -85,8 +82,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we "
-"have denied your appeal, and will not take any action against the account or the content.\n"
+"After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
+"%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
@@ -96,8 +93,15 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
-"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, "
-"we have removed the content, and notified the user of our action.\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -120,6 +124,14 @@ msgid ""
 "Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 
 #, python-format
@@ -183,11 +195,11 @@ msgstr[1] "ვერსია {0}"
 msgid "Review note"
 msgstr "მიმოხილვის შენიშვნა"
 
-msgid "Only latest versions of addons can have notes added."
-msgstr "შენიშვნების დართვა შესაძლებელია დამატებების, მხოლოდ, უახლეს ვერსიებზე."
-
 msgid "Request content length is too large."
 msgstr "მოთხოვნის შიგთავსი მეტად ვრცელია."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "აჭარბებს კატეგორიების დასაშვებ ოდენობას ({MAX_CATEGORIES})"
@@ -202,7 +214,7 @@ msgid "URL domain must be one of [{domains}]."
 msgstr "მისამართების ჯგუფი უნდა იყოს რომელიმე [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "GitHub-დამფინანსებლების ბმულში, უნდა იყოს /sponsors/."
+msgstr "GitHub-დამკვეთების ბმულში უნდა იყოს /sponsors/."
 
 msgid "URLs must start with https://."
 msgstr "ბმულების თავსართი უნდა იყოს https://."
@@ -238,9 +250,6 @@ msgstr "გამოქვეყნებულია"
 
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "დამატებისა და კრებულის მისამართების დაბოლოება უნდა იყოს „/“"
-
-msgid "Previews cannot be created for themes."
-msgstr "შესათვალიერებელი ვერ მომზადდება თემისთვის."
 
 msgid "Built in licenses can not be updated."
 msgstr "ჩაშენებული ლიცენზიები ვერ განახლდება."
@@ -326,6 +335,9 @@ msgstr "წყაროს შეცვლა შეუძლებელია,
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "ამ სახის დამატება არ იძლევა თავსებადობის მორგების საშუალებას."
 
+msgid "This endpoint is not valid for Themes."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "ჩემი დამატებები"
 
@@ -386,6 +398,9 @@ msgstr "CIDR"
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ზოგიერთი შესაძლებლობები დროებით შეზღუდულია, ვებსაიტზე ტექნიკური სამუშაოების მიმდინარეობის გამო. მოკლე ხანში, სრული დატვირთვით ამუშავდება."
 
+msgid "URLs are not allowed."
+msgstr ""
+
 msgid "Must contain at least one printable character."
 msgstr "აუცილებლად უნდა შეიცავდეს სულ მცირე ერთ ამოსაბეჭდ სიმბოლოს."
 
@@ -419,8 +434,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
-"ამ შეტყობინებას ხედავთ, რადგან ეს საიტი საჭიროებს CSRF ფუნთუშას შევსებული ველების გადაცემისას. ეს ფუნთუშა საჭიროა უსაფრთხოების მიზნით, იმის დასადასტურებლად, რომ თქვენს ბრაუზერს არ იყენებს სხვა "
-"მავნე პროგრამა."
+"ამ შეტყობინებას ხედავთ, რადგან ეს საიტი საჭიროებს CSRF ფუნთუშას შევსებული ველების გადაცემისას. ეს ფუნთუშა საჭიროა უსაფრთხოების მიზნით, იმის დასადასტურებლად, რომ თქვენს ბრაუზერს არ იყენებს სხვა მავნე"
+" პროგრამა."
 
 msgid "Not Found"
 msgstr "ვერ მოიძებნა"
@@ -428,10 +443,10 @@ msgstr "ვერ მოიძებნა"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>ვწუხვართ, მაგრამ ვერ მოინახა, რასაც ეძებდით.</h1> <p> მოთხოვნილი გვერდი ან ფაილი საიტზე არ მოიპოვება. შესაძლოა, ბმული ძველი და ვადაგასული იყო ან მისამართია მცდარბეჭდილი. </p> <ul> <li>თუ ხელით "
 "აკრიფეთ, კარგად გადაამოწმეთ მართლწერა.</li> <li> ხოლო, თუ ბმულზე გადახვედით, გთხოვთ %(open_bug_link)sმოგვახსენოთ ხარვეზის შესახებ%(close_bug_link)s. გვაცნობეთ, რომელი საიტიდან რომელ გვერდზე "
@@ -479,6 +494,12 @@ msgstr "ვებსაიტზე მიმდინარე ტექნი�
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს შესაძლებლობა დროებით მიუწვდომელია. გთხოვთ, სცადოთ ხელახლა ოდნავ მოგვიანებით."
 
+msgid "Add-on uploads temporarily disabled"
+msgstr ""
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr ""
+
 msgid "Add-ons for {0}"
 msgstr "დამატებები {0}-ისთვის"
 
@@ -508,7 +529,7 @@ msgid "Valid user session not found matching the provided session key."
 msgstr "მომხმარებლის მოქმედი სეანსი, რომელიც შეესაბამება მოწოდებულ გასაღებს, ვერ მოიძებნა."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr "წვდომის საცნობის განახლება ვერ მოხერხდა; მომხმარებელი ხელახლა უნდა შევიდეს FxA-ანგარიშზე."
+msgstr "წვდომის საშვი ვერ განახლდა; მომხმარებელი ხელახლა უნდა შევიდეს FxA-ანგარიშზე."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "არამართებული, ერთი ან რამდენიმე გასაღებისთვის შიგთავსში"
@@ -520,10 +541,10 @@ msgid "Error decoding signature."
 msgstr "ხელმოწერის გაშიფვრის შეცდომა."
 
 msgid "Invalid JWT Token."
-msgstr "უმართებულო JWT-საცნობი."
+msgstr "უმართებულო JWT-საშვი."
 
 msgid "Invalid token or hash."
-msgstr "უმართებულო ან დაზიანებული საცნობი ან კოდი."
+msgstr "უმართებულო ან დაზიანებული საშვი ან სადარჯამი."
 
 msgid "Email address not found."
 msgstr "ელფოსტის მისამართი ვერ მოიძებნა."
@@ -551,7 +572,7 @@ msgid "Confirmation for developer API keys"
 msgstr "დადასტურება, შემმუშავებლის API-გასაღებებისთვის"
 
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "ზედმეტად ბევრჯერ წარადგინეთ შევსებული კითხვარი ახლახანს. გთხოვთ, მოითმინოთ და კვლავ სცადოთ ცოტა მოგვიანებით."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL-ბმულის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
@@ -567,6 +588,12 @@ msgstr "ამ URL-ბმულის გამოყენება შეუ�
 
 msgid "This add-on already belongs to the collection"
 msgstr "ეს დამატება, უკვე სხვა კრებულს ეკუთვნის"
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
+msgstr ""
 
 msgid "{addon} was created."
 msgstr "{addon} შექმნილია."
@@ -589,7 +616,7 @@ msgid "{user} ({0}) removed from {addon}."
 msgstr "{user} ({0}) მოცილებულია {addon}-იდან."
 
 msgid "Contributions for {addon}."
-msgstr "შემოწირულობა {addon}-სთვის."
+msgstr "შემოწირულობით სრულყავით {addon}."
 
 msgid "{addon} disabled."
 msgstr "{addon} გათიშულია."
@@ -641,12 +668,6 @@ msgstr "{addon} {version} შეჩერებულია."
 msgid "Retained"
 msgstr "შეჩერებულია"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} ამოწეულია ზემოთ."
-
-msgid "Super review requested"
-msgstr "საჭიროებს პროფესიონალურ განხილვას."
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} საჭიროებს განხილვას."
 
@@ -659,15 +680,9 @@ msgstr "{addon} {version} საჭიროებს მეტი მონა�
 msgid "More information requested"
 msgstr "საჭიროა მეტი მონაცემების მითითება"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} საჭიროებს პროფესიონალურ განხილვას."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "თქვენი დამატება მონიშნულია ხელმძღვანელის მიმოხილვისთვის. ჯერ კიდევ განხილვის რიგშია, მაგრამ საჭიროა, ერთმა ხელმძღვანელმა მაინც შეამოწმოს. შედეგად, განხილვამ შეიძლება ჩვეულზე მეტ ხანს გასტანოს."
-
-msgid "Commented"
-msgstr "შენიშვნა დამატებულია"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} დამატებულია {addon}-ზე."
@@ -683,20 +698,6 @@ msgstr "{addon} ამოიშალა {collection}-იდან."
 
 msgid "{rating} for {addon} written."
 msgstr "{addon}-ის {rating} გაკეთებულია."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} რჩეულია {0}-ში."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} აღარაა რჩეული {0}-ში."
-
-msgid "{addon} is now featured."
-msgstr "{addon} გახდა რჩეული."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} აღარაა რჩეული."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -722,7 +723,7 @@ msgid "Review {rating} for {addon} deleted."
 msgstr "{addon}-ის {rating} მიმოხილვა წაიშალა."
 
 msgid "Application max version for {version} updated."
-msgstr "პროგრამის ვერსიის ზედა ზღვარი განახლებულია {version}-სთვის."
+msgstr "პროგრამის უმაღლესი ვერსია {version} განახლდა."
 
 msgid "Authors emailed about compatibility of {version}."
 msgstr "{version}-ის თავსებადობის შესახებ, შემქმნელებს ეცნობებათ ელფოსტით."
@@ -745,45 +746,21 @@ msgstr "ანგარიში განახლდა."
 msgid "Account {user} deleted."
 msgstr "ანგარიში {user} წაიშალა."
 
-msgid "Created: {0}."
-msgstr "შეიქმნა: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "ჩასწორებულია ველი: {2}-ს მიეთითა {0}."
-
-msgid "Deleted: {1}."
-msgstr "წაიშალა: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon}-ის {rating} განახლდა."
 
 msgid "{addon} reviewed."
 msgstr "{addon} განხილულია."
 
-msgid "User {user} banned."
-msgstr "მომხმარებელი {user} შეიზღუდა."
-
-msgid "User {user} picture deleted."
-msgstr "{user} მომხმარებლის სურათი წაიშალა."
-
-msgid "User {user} added to {group}."
-msgstr "{user} დაემატა ჯგუფში {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "{user} მოცილებულია ჯგუფიდან {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} გამოუქვეყნებელია."
-
-msgid "{file} was signed."
-msgstr "{file} დამოწმებულია."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "დამატების id {0} GUID-ით {1} წაშლილია"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} გადატანილია წინასწარი განხილვიდან."
+msgid "{file} was signed."
+msgstr "{file} დამოწმებულია."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "შემმუშავებლის პასუხი {addon} {version}-ზე."
@@ -809,53 +786,17 @@ msgstr "{addon} {version}-ის პირველწყარო კოდი 
 msgid "Source code uploaded"
 msgstr "პირველწყარო კოდი ატვირთულია"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} თვითდამოწმება დადასტურებულია."
-
-msgid "Auto-Approval confirmed"
-msgstr "თვითდამოწმება დადასტურებულია"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} ჩაირთო."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} გამორთულია."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} შიგთავსი დამოწმებულია."
-
-msgid "Content approved"
-msgstr "შიგთავსი დამოწმებულია"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} შიგთავსი უარყოფილია."
 
 msgid "Content rejected"
 msgstr "შიგთავსი უარყოფილია"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} მონაცემების მოთხოვნა შეცვლილი ან გაუქმებულია ხელმძღვანელის მიერ."
-
-msgid "Information request altered"
-msgstr "მონაცემების მოთხოვნა შეცვლილია"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "მონაცემების მოთხოვნა {addon} {version}-ზე წაშალა შემმუშავებელმა."
-
-msgid "Information request removed"
-msgstr "მონაცემების მოთხოვნა გაუქმებულია"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} საჭიროებს ხელმძღვანელის მიერ განხილვას."
-
-msgid "Admin add-on-review requested"
-msgstr "საჭიროებს ხელმძღვანელის მიერ განხილვას"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} საჭიროებს ხელმძღვანელის მიერ შიგთავსის განხილვას."
-
-msgid "Admin content-review requested"
-msgstr "საჭიროებს ხელმძღვანელის მიერ შიგთავსის განხილვას"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} თემა საჭიროებს ხელმძღვანელის მიერ განხილვას."
@@ -865,42 +806,6 @@ msgstr "თემა საჭიროებს ხელმძღვანე�
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} გადმოტანილია მსუბუქი თემიდან."
-
-msgid "User {user} api key reset."
-msgstr "{user} მომხმარებლის api-გასაღები ხელახლა შეიქმნა."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "შეზღუდვა {0}-ისთვის დამატებულია შეზღუდვის სიაში."
-
-msgid "Block added"
-msgstr "შეზღუდვა დამატებულია"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "შეზღუდვა {0}-ისთვის ჩასწორებულია შეზღუდვის სიაში."
-
-msgid "Block edited"
-msgstr "შეზღუდვა ჩასწორებულია"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "შეზღუდვა {0}-ისთვის წაშლილია შეზღუდვის სიიდან."
-
-msgid "Block deleted"
-msgstr "შეზღუდვა წაშლილია"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID დამატებისთვის {addon} ჩაემატა DeniedGuid-ში."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} დამატებისთვის {addon} ამოიშალა DeniedGuid-იდან."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "შეზღუდვის {1} მოქმედება {0} დამოწმებულისთვის."
-
-msgid "Block action signoff"
-msgstr "შეზღუდვის მოქმედების დამოწმება"
-
-msgid "User {user} session(s) reset."
-msgstr "{user} მომხმარებლის სეანს(ებ)ი ხელახლა გაიმართა."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} შიგთავსის უარყოფა დაგეგმილია."
@@ -914,8 +819,8 @@ msgstr "{addon} {version} უარყოფა დაგეგმილია."
 msgid "Rejection scheduled"
 msgstr "უარყოფა დაგეგმილია"
 
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} დამოწმებულია ახლიდან (ადრინდელი {0})."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr ""
 
 msgid "Version re-signed"
 msgstr "ვერსია დამოწმებულია ახლიდან"
@@ -941,24 +846,6 @@ msgstr "{addon} {version} მოსალოდნელი უარყოფ�
 msgid "Pending rejection cleared"
 msgstr "მოსალოდნელი უარყოფა მოცილებულია"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} დაემატა შეზღუდულთა სიას."
-
-msgid "Version Blocked"
-msgstr "ვერსია შეზღუდულია"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} მოცილებულია შეზღუდულთა სიიდან."
-
-msgid "Version Unblocked"
-msgstr "ვერსიას შეზღუდვა მოეხსნა"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} ხელმძღვანელის მიერ განხილვა მოცილებულია."
-
-msgid "Admin add-on-review cleared"
-msgstr "ხელმძღვანელის მიერ დამატების განხილვა მოცილებულია"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} შეცვალა {addon} გაფართოების დაბოლოება {0} და მიუთითა {1}."
 
@@ -974,10 +861,16 @@ msgstr "{collection} კრებული დააბრუნა ზედა
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-msgid "User {user} content restored."
+msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
-msgid "User {user} unbanned."
+msgid "Rejected automatically after delay expired"
+msgstr ""
+
+msgid "{addon} {version} content rejected automatically after delay expired."
+msgstr ""
+
+msgid "Content rejected automatically after delay expired"
 msgstr ""
 
 msgid "Firefox"
@@ -1058,8 +951,8 @@ msgstr "მოძველებული მოდული"
 msgid "Deprecated LWT"
 msgstr "მოძველებული LWT"
 
-msgid "Theme (Static)"
-msgstr "თემა (უცვლელი)"
+msgid "Theme"
+msgstr "თემა"
 
 msgid "Deprecated Site Permission"
 msgstr "საიტის მოძველებული ნებართვა"
@@ -1088,8 +981,8 @@ msgstr "მოძველებული მოდულები"
 msgid "Deprecated LWTs"
 msgstr "მოძველებული LWTs"
 
-msgid "Themes (Static)"
-msgstr "თემა (უცვლელი)"
+msgid "Themes"
+msgstr "თემები"
 
 msgid "Deprecated Site Permissions"
 msgstr "საიტის მოძველებული ნებართვები"
@@ -1295,23 +1188,32 @@ msgstr "ზოგადი"
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
-msgid "GNU General Public License v2.0"
-msgstr "GNU General Public License v2.0"
+msgid "Apache License 2.0"
+msgstr ""
 
-msgid "GNU General Public License v3.0"
-msgstr "GNU General Public License v3.0"
+msgid "GNU General Public License v2.0 only"
+msgstr ""
 
-msgid "GNU Library General Public License v2.1"
-msgstr "GNU Library General Public License v2.1"
+msgid "GNU General Public License v3.0 only"
+msgstr ""
 
-msgid "GNU Library General Public License v3.0"
-msgstr "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr ""
 
-msgid "The MIT License"
-msgstr "MIT-ლიცენზია"
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr ""
 
-msgid "The BSD License"
-msgstr "BSD-ლიცენზია"
+msgid "GNU Affero General Public License v3.0 only"
+msgstr ""
+
+msgid "MIT License"
+msgstr ""
+
+msgid "ISC License"
+msgstr ""
+
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1337,17 +1239,32 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0 (ავტორის მი�
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით – იმავე პირობებით)"
 
+msgid "Creative Commons Attribution 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr ""
+
+msgid "The Unlicense"
+msgstr ""
+
 msgid "Not Promoted"
 msgstr "არადაფინანსებული"
 
 msgid "Recommended"
 msgstr "სასურველი"
-
-msgid "Sponsored"
-msgstr "დაფინანსებული"
-
-msgid "Verified"
-msgstr "დამოწმებული"
 
 msgid "By Firefox"
 msgstr "უზრუნველყოფს Firefox"
@@ -1390,9 +1307,6 @@ msgstr "დამოწმება"
 
 msgid "All"
 msgstr "ყველა"
-
-msgid "Theme"
-msgstr "თემა"
 
 msgid "No action"
 msgstr "მოქმედების გარეშე"
@@ -1465,8 +1379,8 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
-"Firefox ამატებს მანიფესტის მე-3 ვერსიის (MV3) მხარდაჭერას გაფართოებებისთვის Firefox {version} გამოშვებაში, თუმცაღა აქამდე გამოსული ყველა Firefox თავსებადია მხოლოდ მე-2 ვერსიის მანიფესტის მქონე "
-"(MV2) გაფართოებებთან. გირჩევთ, გაფართოებები Manifest V3 ჯერჯერობით საკუთარი ძალისხმევით ატვირთოთ ცალკე თავსებადობის შესანარჩუნებლად მომხმარებლებისთვის."
+"Firefox ამატებს მანიფესტის მე-3 ვერსიის (MV3) მხარდაჭერას გაფართოებებისთვის Firefox {version} გამოშვებაში, თუმცაღა აქამდე გამოსული ყველა Firefox თავსებადია მხოლოდ მე-2 ვერსიის მანიფესტის მქონე (MV2)"
+" გაფართოებებთან. გირჩევთ, გაფართოებები Manifest V3 ჯერჯერობით საკუთარი ძალისხმევით ატვირთოთ ცალკე თავსებადობის შესანარჩუნებლად მომხმარებლებისთვის."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 msgstr "ვრცლად MV3-გაფართოებების გამოსვლისა და MV3-გაფართოებების ატვირთვის შესახებ იხილეთ https://mzl.la/3hIwQXX"
@@ -1600,6 +1514,41 @@ msgstr ""
 msgid "Display Name"
 msgstr "გამოსაჩენი სახელი"
 
+msgid "Confirm email address"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr "ახალი მონაცემების შექმნა"
+
+msgid "Revoke and regenerate credentials"
+msgstr "მონაცემების უარყოფა და ხელახლა შექმნა"
+
+msgid "Revoke"
+msgstr "უარყოფა"
+
+msgid "JWT issuer"
+msgstr "JWT შემქმნელი"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr "API-მოთხოვნებისთვის გაგზავნეთ <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> დამოწმების თავსართად. ყოველ ჯერზეა საჭირო წარმოიქმნას JWT, როგორც ახსნილია <a href=\"{docs_url}\">API-მასალებში</a>."
+
+msgid "JWT secret"
+msgstr "JWT საიდუმლო კოდი"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "დადასტურების ბმული გამოიგზავნება თქვენს ელფოსტაზე. დამოწმების შემდეგ API-გასაღებებს გამოჩნდება ამ გვერდზე."
+
+msgid "You don't have any API credentials."
+msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
+
+msgid "Something went wrong, please contact developer support."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "დამატების უმართებულო ან დაზიანებული ფაილი."
 
@@ -1630,6 +1579,9 @@ msgstr "შემქმნელი:"
 
 msgid "Downloads"
 msgstr "ჩამოტვირთვები"
+
+msgid "Rating"
+msgstr "შეფასება"
 
 msgid "All My Add-ons"
 msgstr "ჩემი ყველა დამატება"
@@ -1765,6 +1717,9 @@ msgstr "ჩანართის მონიშვნა"
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "მოქმედი ჩანართის ფერით მონიშვნა. წარმოდგენილია ჩარჩოთი ჩანართის ირგვლივ Firefox 89+ ვერსიიდან, ხოლო ადრინდელ Firefox-ებში, ჩანართის ზემოთ ზოლით. მანიფესტის ველი:  tab_line."
 
+msgid "Add-on uploads are temporarily unavailable"
+msgstr ""
+
 msgid "Review requested."
 msgstr "საჭიროებს განხილვას."
 
@@ -1773,6 +1728,9 @@ msgstr "გასაგრძელებლად, მეტი მონაც
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "თქვენი ძველი მონაცემები ძალადაკარგულია და მისი გამოყენება დაუშვებელია."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr ""
 
 msgid "New API key created"
 msgstr "ახალი API გასაღები შექმნილია"
@@ -1783,7 +1741,7 @@ msgstr "API გასაღები ძალადაკარგულია"
 msgid "Verify email"
 msgstr ""
 
-msgid "Try again"
+msgid "Send another email"
 msgstr ""
 
 msgid "Your email has been verified"
@@ -1817,9 +1775,6 @@ msgstr "მასალები"
 
 msgid "Extension Development"
 msgstr "გაფართოების შემუშავება"
-
-msgid "Themes"
-msgstr "თემები"
 
 msgid "Developer Policies"
 msgstr "შემმუშავებლის დებულებები"
@@ -1878,24 +1833,25 @@ msgstr "შემოწმების თარიღი:"
 msgid "Email Address Verification"
 msgstr ""
 
+msgid "Status:"
+msgstr "მდგომარეობა:"
+
 msgid "Your email address is verified."
 msgstr ""
 
-msgid "Please verify your email by clicking \"Verify email\" above."
+msgid "Please verify your email."
 msgstr ""
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr ""
 
-msgid "Working... Please be patient."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
 msgstr ""
 
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
 msgstr ""
 
-msgid "This is taking longer than expected. Try again."
+msgid "Success!"
 msgstr ""
 
 #, python-format
@@ -1905,7 +1861,37 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "From"
+msgstr "საწყისი"
+
+msgid "To"
+msgstr "საბოლოო"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Status"
+msgstr "მდგომარეობა"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr ""
+
+msgid "Refresh results"
+msgstr ""
+
+#, python-format
+msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -2135,8 +2121,8 @@ msgid "Email"
 msgstr "ელფოსტა"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "თუ გსურთ, ელფოსტის მითითება, შეკითხვების, თხოვნების, მხადაჭერისთვის და ა. შ. შეიყვანეთ აქ. თუ სხვადასხვა მისამართები გაქვთ, თითოეული ენისთვის, შეიძლება დაემატოს ამ ველის თარგმანიც. ეხება, მხოლოდ "
 "გამოქვეყნებულ დამატებებს."
@@ -2184,8 +2170,8 @@ msgid "Whiteboard"
 msgstr "შენიშვნების გვერდი"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
-"may help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
+" help. This whiteboard is also editable by reviewers."
 msgstr ""
 "შენიშვნების გვერდი არის ადგილი, სადაც შეიძლება განთავსდეს თქვენს დამატებასთან დაკავშირებული ინფორმაცია ვერსიის განურჩევლად. გამოიყენეთ დამატების მოსინჯვის გზებისა და სხვა საჭირო ინფორმაციის "
 "მისათითებლად. არსებული ინფორმაციის შეცვლა შეეძლებათ შემსწორებლებს."
@@ -2418,8 +2404,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
-"ყურადღება: თქვენ გაქვთ სახელის/შეჯამების მნიშვნელობები მითითებული სხვა ენებზე, რომლებიც ავტომატურად მოიჭრება დაშვებულ %(max_length)s სიმბოლომდე.  ამის შესაცვლელად, ჩაასწორეთ მთავარი გვერდი "
-"წარდგენის დასრულების შემდგომ."
+"ყურადღება: თქვენ გაქვთ სახელის/შეჯამების მნიშვნელობები მითითებული სხვა ენებზე, რომლებიც ავტომატურად მოიჭრება დაშვებულ %(max_length)s სიმბოლომდე.  ამის შესაცვლელად, ჩაასწორეთ მთავარი გვერდი წარდგენის"
+" დასრულების შემდგომ."
 
 msgid "Add-on URL:"
 msgstr "დამატების URL:"
@@ -2597,11 +2583,14 @@ msgid "Operating system and build environment requirements."
 msgstr "საოპერაციო სისტემასა და აწყობის გარსის მოთხოვნებს."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr ""
-"საჭირო ვერსია და დაყენების მითითებები ნებისმიერი პროგრამისთვის, რომელიც გამოყენებულია აწყობისას (მაგალითად <span class=\"tech-emphasis\">node</span> და <span class=\"tech-emphasis\">npm</span>)."
+msgstr "საჭირო ვერსია და დაყენების მითითებები ნებისმიერი პროგრამისთვის, რომელიც გამოყენებულია აწყობისას (მაგალითად <span class=\"tech-emphasis\">node</span> და <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "წყაროს ფაილები (გარდა ღია წყაროს მქონე, გარეშე ბიბლიოთეკებისა) არ უნდა იყოს ერთი ენიდან მეორეზე გადმოტანილი, შერწყმული, შეკუმშული ან სხვა მანქანური გზით წარმოებული."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
@@ -2627,6 +2616,10 @@ msgstr "ვერსიის ატვირთვა"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "გამოიყენეთ ქვემოთ მოცემული ველები დამატების ნაკრების ასატვირთად. ატვირთვის შემდეგ რიგი ავტომატური შემოწმებები გაეშვება ფაილზე."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr ""
 
 msgid "Which applications is this version compatible with?"
 msgstr "რომელ პროგრამებთანაა თავსებადი ეს ვერსია?"
@@ -2690,49 +2683,6 @@ msgstr "უკან"
 
 msgid "API Credentials"
 msgstr "API მონაცემები"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "დაწვრილებითი მითითებებისთვის, გაეცანით <a href=\"%(docs_url)s\">API დოკუმენტაციას</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "შეინახეთ თქვენი API გასაღებები საიდუმლოდ და <strong>არასდროს არავის არ გაუმხილოთ</strong>, მათ შორის Mozilla-ს მოხალისეებს."
-
-msgid "JWT issuer"
-msgstr "JWT შემქმნელი"
-
-msgid "JWT secret"
-msgstr "JWT საიდუმლო კოდი"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
-msgstr ""
-"API მოთხოვნის გასაკეთებლად, გაგზავნეთ <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ავტორიზაციის თავსართად. JWT-ს შექმნა დაგჭირდებათ ყოველ ჯერზე მოთხოვნის გაგზავნისას, როგორც ახსნილია <a href="
-"\"%(docs_url)s\">API დოკუმენტაციაში</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "გთხოვთ, დაწკაპოთ დადასტურების ღილაკზე ქვემოთ API-მონაცემების შესაქმნელად მომხმარებლისთვის <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "დადასტურების ბმული გამოიგზავნება თქვენს ელფოსტაზე. დამოწმების შემდეგ API-გასაღებებს გამოჩნდება ამ გვერდზე."
-
-msgid "You don't have any API credentials."
-msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
-
-msgid "Revoke"
-msgstr "უარყოფა"
-
-msgid "Revoke and regenerate credentials"
-msgstr "მონაცემების უარყოფა და ხელახლა შექმნა"
-
-msgid "Confirm and generate new credentials"
-msgstr "დადასტურება და ახალი მონაცემების შექმნა"
-
-msgid "Generate new credentials"
-msgstr "ახალი მონაცემების შექმნა"
 
 #, python-format
 msgid ""
@@ -2809,20 +2759,17 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
 "ძვირფასო შემმუშავებელო,\n"
 "\n"
-"ჩვენ შევამჩნიეთ, რომ თქვენი საიდუმლო AMO-API-მონაცემები დართული ჰქონდა addons.mozilla.org-ზე გამოგზავნილ დამატებას. თქვენი ანგარიშისა და დამატებ(ებ)ის დასაცავად, ჩვენ გავაუქმეთ გამჟღავნებული "
-"მონაცემები.\n"
+"ჩვენ შევამჩნიეთ, რომ თქვენი საიდუმლო AMO-API-მონაცემები დართული ჰქონდა addons.mozilla.org-ზე გამოგზავნილ დამატებას. თქვენი ანგარიშისა და დამატებ(ებ)ის დასაცავად, ჩვენ გავაუქმეთ გამჟღავნებული მონაცემები.\n"
 "ახალი API-მონაცემების შედგენა შეგიძლიათ ბმულზე %(api_keys_url)s\n"
 "\n"
-"გთხოვთ, არასდროს გაუზიაროთ აღნიშნული მონაცემები სხვას. არასდროს დაურთოთ საჯარო საცავში ატვირთვისას, დამატების წარდგენისას ან ნებისმიერი სხვა ღია ადგილას მუშაობისას. მოგიწოდებთ გადაავლოთ თვალი "
-"თქვენს კოდს საცავებში და თქვენს გაფართოებებს, რომ მოაცილოთ AMO-ს მონაცემებთან დაკავშირებული ინფორმაცია.\n"
+"გთხოვთ, არასდროს გაუზიაროთ აღნიშნული მონაცემები სხვას. არასდროს დაურთოთ საჯარო საცავში ატვირთვისას, დამატების წარდგენისას ან ნებისმიერი სხვა ღია ადგილას მუშაობისას. მოგიწოდებთ გადაავლოთ თვალი თქვენს კოდს საცავებში და თქვენს გაფართოებებს, რომ მოაცილოთ AMO-ს მონაცემებთან დაკავშირებული ინფორმაცია.\n"
 "\n"
 "გმადლობთ,\n"
 "Mozilla-ს დამატებების გუნდი"
@@ -2883,9 +2830,6 @@ msgstr "ბოლო განახლების თარიღი:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "საიტზე გამოქვეყნდება კოდის მიმოხილვის გავლის შემდეგ. თვითგანახლებები იმართება ამ საიტით"
 
-msgid "Status:"
-msgstr "მდგომარეობა:"
-
 msgid "Listed Version:"
 msgstr "გამოქვეყნებული ვერსია:"
 
@@ -2944,11 +2888,11 @@ msgid "Firefox for Android compatibility"
 msgstr "Firefox Android-თან თავსებადობა"
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
-"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
-"გამოცადეთ თქვენი გაფართოება და დარწმუნდით, რომ სათანადოდ მუშაობს Firefox Android-ზე? თუ არა, გთხოვთ იხილოთ <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
-"documentation/develop/developing-extensions-for-firefox-for-android/\">გაფართოებების შემუშავება Firefox Android-ზე</a> შემოწმების მითითებებისთვის წარდგენამდე."
+"გამოცადეთ თქვენი გაფართოება და დარწმუნდით, რომ სათანადოდ მუშაობს Firefox Android-ზე? თუ არა, გთხოვთ იხილოთ <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">გაფართოებების შემუშავება Firefox Android-ზე</a> შემოწმების მითითებებისთვის წარდგენამდე."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
 msgstr "დიახ, გამოვცადე ჩემი გაფართოება Firefox-ით Android-ზე"
@@ -2977,13 +2921,13 @@ msgstr "გთხოვთ მიუთითოთ პირველწყა�
 msgid "Sort by:"
 msgstr "დალაგება:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "დაშვებული HTML ელემენტები: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr ""
 
-msgid "Some HTML supported."
-msgstr "მხარდაჭერილია ზოგიერთი HTML ელემენტი."
+msgid "Some Markdown supported."
+msgstr ""
 
 msgid "Remove this application"
 msgstr "პროგრამის ამოშლა"
@@ -3088,15 +3032,6 @@ msgstr "სასურველი გაფართოებების პ�
 
 msgid "Contribute"
 msgstr "შემოწირულობა"
-
-msgid "Review Add-ons"
-msgstr "დამატებების განხილვა"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "მოხალისე მიმომხილველები გვეხმარებიან დამატებების უსაფრთხოებისა და საიმედოობის შენარჩუნებაში. რასაკვირველია, სარგებლობენ ბევრი უპირატესობითაც!"
-
-msgid "Join us!"
-msgstr "შემოგვიერთდით!"
 
 msgid "Write Some Code"
 msgstr "დაწერეთ კოდი"
@@ -3290,9 +3225,6 @@ msgstr "გამოქვეყნებული ვერსიები"
 msgid "Currently on AMO"
 msgstr "ამჟამად AMO საიტზე"
 
-msgid "Status"
-msgstr "მდგომარეობა"
-
 msgid "Validation"
 msgstr "შემოწმება"
 
@@ -3446,7 +3378,7 @@ msgstr "პაროლების გამარტივებული მ�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
+msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას შეუძლია ათასობით გვერდის გაფილტვრა მეხსიერების დაუტვირთავად."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3908,7 +3840,7 @@ msgstr "მონიშნეთ ტექსტი ნებისმიერ 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
-"მიიღეთ მეტი სარგებელი Amazon-ისგან. შესაძენი საქონლის სხვა ინტერნეტმაღაზიებში თვალიერებისას, თუ იგი Amazon-მაღაზიაშიცაა ხელმისაწვდომი, მარტივი დაწკაპებით შეგეძლებათ იხილოთ Amazon-ის ჩამონათვალში."
+"გამოიყენეთ Amazon მეტად შედეგიანად. შესაძენი საქონლის სხვა ინტერნეტმაღაზიებში თვალიერებისას, თუ იგი Amazon-მაღაზიაშიცაა ხელმისაწვდომი, მარტივი დაწკაპებით შეგეძლებათ იხილოთ Amazon-ის ჩამონათვალში."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -4074,6 +4006,10 @@ msgid "Cut through the nonsense of typical TOS agreements. This clever extension
 msgstr "მარტივად გაიარეთ უაზრო ხელშეკრულებები. ჭკვიანი გაფართოება, რომელიც დაგეხმარებათ სწრაფად გაარკვიოთ რას ეთანხმებით და რას არა."
 
 #. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "იკითხეთ გარკვევით და მარტივად. მოაცილეთ ტექსტის ირგვლივ არსებული ზედმეტობა ვებგვერდიდან."
@@ -4192,7 +4128,7 @@ msgstr "უყურეთ ეთერში გაშვებულ მას
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr "გამოტოვეთ დაფინანსებული ნაწილები YouTube-ვიდეოებში."
+msgstr "აირიდეთ შეკვეთილი მასალა YouTube-ვიდეოებში."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
@@ -4202,10 +4138,6 @@ msgstr "ხმოვანი წამკითხველი ვებგვ�
 #. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
 msgstr "ორჯერ დაწკაპებით ნებისმიერ სიტყვაზე მისი განმარტების მყისიერი ხილვა."
-
-#. editorial content for the discovery pane.
-msgid "Blues & Yellows"
-msgstr "ლურჯი და ყვითელი"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4264,6 +4196,14 @@ msgstr "დააბრუნეთ „დაწუნების“ ხილ�
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
 msgstr "მოუსმინეთ მუსიკას YouTube-ზე შეუფერხებლად და აირიდეთ „ვიდეო შეჩერებულია. განაგრძობთ ყურებას?“."
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4417,29 +4357,34 @@ msgstr "თარგმნეთ ვებსაიტები Firefox-ში �
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "შეზღუდეთ დროის გასაფლანგი ვებსაიტები. მოიცილეთ სრულად ან მხოლოდ თქვენ მიერ შერჩეული დროის შუალედებში."
 
+#. editorial content for the primary hero shelves.
+msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr "გაფართოებები ერთგვარი პროგრამებია, რომელთაც იმატებს Firefox."
+msgstr "გაფართოებები ერთგვარი პროგრამებია, რომელთაც დაიმატებს Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "მათი მეშვეობით Firefox იღებს ახალ შესაძლებლობებს გვერდების უფრო სწრაფად და უსაფრთხოდ მოსანახულებლად ანდაც გასართობად."
+msgstr "მათი მეშვეობით Firefox იღებს ახალ შესაძლებლობებს გვერდების უფრო სწრაფად და უსაფრთხოდ მოსანახულებლად, ანდაც გასართობად."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Android extensions!"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "პირადულობისა და უსაფრთხოების გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
-msgstr "სასარგებლო ხელსაწყოები"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "ჩანართის მმართველები"
+
+#. editorial content for the secondary hero shelves.
+msgid "Spotlight: Adaptive Tab Bar Color"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4508,10 +4453,6 @@ msgstr "გადაცემები სოცქსელში"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "გადაცემებისთვის სოცქსელში, თანამშრომლების შერჩეული"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "ჩანართის მმართველები"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4597,6 +4538,22 @@ msgstr "რჩეული სამართავები ჩამოტვ�
 msgid "See more download manager staff picks"
 msgstr "იხილეთ სხვა სამართავები თანამშრომლების შერჩეული"
 
+#. editorial content for the homepage shelves.
+msgid "Accessibility extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more accessibility staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr ""
+
 msgid "Unreviewed"
 msgstr "განუხილველი"
 
@@ -4610,11 +4567,8 @@ msgstr "ეს ატვირთული უკვე წარდგენი
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
 
-msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "დამატების ID აუცილებელია Firefox 47 და უფრო ძველ ვერსიებზე."
-
-msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "უმცირესი მხარდაჭერილი \"strict_min_version\" არის 42.0."
+msgid "Lowest supported \"strict_min_version\" is {min_version}."
+msgstr ""
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "დაუდგენელი „strict_min_version“ {appver} აპლიკაციისთვის {app}"
@@ -4773,6 +4727,12 @@ msgstr "{0} შეფასება 5 ვარსკვლავიდან"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "%(rating)s შეფასება 5 ვარსკვლავიდან"
 
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr ""
+
+msgid "File too large."
+msgstr ""
+
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
@@ -4917,12 +4877,6 @@ msgstr "დახურვა"
 
 msgid "Custom Date Range"
 msgstr "დროის მონაკვეთის მითითება"
-
-msgid "From"
-msgstr "საწყისი"
-
-msgid "To"
-msgstr "საბოლოო"
 
 msgid "Update"
 msgstr "განახლება"
@@ -5080,22 +5034,6 @@ msgstr "Mozilla-ს დამატებები"
 msgid "Back to Add-ons"
 msgstr "დამატებების გვერდზე დაბრუნება"
 
-msgid "Legal Notices"
-msgstr "სამართლებრივი შენიშვნები"
-
-msgid "Report Trademark Abuse"
-msgstr "მოხსენება სავაჭრო ნიშნების დარღვევის შესახებ"
-
-msgid "Report a bug"
-msgstr "მოხსენება ხარვეზის შესახებ"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"გარდა მოცემული <a href=\"https://www.mozilla.org/about/legal/\">შენიშვნებისა</a>, ამ საიტზე არსებული შიგთავსი ვრცელდება <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative "
-"Commons Attribution Share-Alike v3.0 ლიცენზიით</a> ან უფრო ახალი ვერსიით."
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} დამატების გვერდზე დაბრუნება"
 
@@ -5116,6 +5054,9 @@ msgstr "ერთობის სვეტი"
 
 msgid "Forum"
 msgstr "ფორუმი"
+
+msgid "Report a bug"
+msgstr "მოხსენება ხარვეზის შესახებ"
 
 msgid "Review Guide"
 msgstr "მიმოხილვის სახელმძღვანელო"
@@ -5232,8 +5173,8 @@ msgstr ""
 "დაბოლოების მაგივრად, სანაცვლოდ გამოიყენეთ „ელფოსტის მომხმარებლის აკრძალვები“."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ Firefox დამატებების გავრცელების შესახებ შეთანხმებას, ისევე როგორც ჩვენი მიმოხილვის დებულებებსა და წესებს. შეთანხმებას Firefox დამატებების გავრცელების "
 "შესახებ, დართული აქვს პირადი მონაცემების დაცვის დებულებაც, სადაც განმარტებულია, თუ როგორ ვიყენებთ თქვენს მონაცემებს."
@@ -5294,8 +5235,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5308,8 +5248,7 @@ msgid ""
 msgstr ""
 "გამარჯობა %(author_name)s,\n"
 "\n"
-"თქვენ მოწვეული ხართ ავტორად დამატებისთვის %(addon_name)s საიტზე %(domain)s. ამ მოწვევაზე თანხმობით წვდომა გექნებათ დამატების ჩასწორების შესაძლებლობაზე და თქვენი სახელი შეიძლება გამოჩნდეს ავტორების "
-"ჩამონათვალში ვებგვერდზე.\n"
+"თქვენ მოწვეული ხართ ავტორად დამატებისთვის %(addon_name)s საიტზე %(domain)s. ამ მოწვევაზე თანხმობით წვდომა გექნებათ დამატების ჩასწორების შესაძლებლობაზე და თქვენი სახელი შეიძლება გამოჩნდეს ავტორების ჩამონათვალში ვებგვერდზე.\n"
 "\n"
 "საპასუხოდ დაწკაპეთ ქვემოთ ბმულს, თუ გსურთ დაემატოთ ავტორად გაფართოებას %(addon_name)s.\n"
 "\n"

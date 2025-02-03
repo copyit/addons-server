@@ -1,6 +1,8 @@
+import zipfile
 from datetime import timedelta
 
 from django import forms
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models import Exists, OuterRef
 from django.forms import widgets
@@ -10,19 +12,25 @@ from django.forms.models import (
     modelformset_factory,
 )
 from django.utils.html import format_html, format_html_join
+from django.utils.translation import gettext
 
 import markupsafe
-import waffle
 
 import olympia.core.logger
 from olympia import amo, ratings
-from olympia.abuse.models import CinderJob
+from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, Whiteboard
+from olympia.reviewers.models import (
+    VIEW_QUEUE_FLAGS,
+    NeedsHumanReview,
+    ReviewActionReason,
+    Whiteboard,
+)
 from olympia.versions.models import Version
 
 
@@ -36,6 +44,8 @@ ACTION_FILTERS = (
 )
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
+
+VALID_ATTACHMENT_EXTENSIONS = ('.txt', '.zip')
 
 
 class RatingModerationLogForm(forms.Form):
@@ -118,23 +128,33 @@ class VersionsChoiceWidget(forms.SelectMultiple):
                 'block_multiple_versions',
                 'confirm_multiple_versions',
                 'reject_multiple_versions',
+                'reply',
             ],
             amo.STATUS_AWAITING_REVIEW: [
                 'approve_multiple_versions',
                 'reject_multiple_versions',
+                'reply',
             ],
-            amo.STATUS_DISABLED: ['unreject_multiple_versions'],
+            amo.STATUS_DISABLED: [
+                'unreject_multiple_versions',
+                'reply',
+            ],
         },
         amo.CHANNEL_LISTED: {
             amo.STATUS_APPROVED: [
                 'block_multiple_versions',
                 'reject_multiple_versions',
+                'reply',
             ],
             amo.STATUS_AWAITING_REVIEW: [
                 'approve_multiple_versions',
                 'reject_multiple_versions',
+                'reply',
             ],
-            amo.STATUS_DISABLED: ['unreject_multiple_versions'],
+            amo.STATUS_DISABLED: [
+                'unreject_multiple_versions',
+                'reply',
+            ],
         },
     }
 
@@ -147,13 +167,13 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             status = obj.file.status if obj.file else None
             # We annotate that needs_human_review property in review().
             needs_human_review = getattr(obj, 'needs_human_review', False)
-            if status == amo.STATUS_DISABLED and obj.is_blocked:
-                # Override status for blocked versions: we don't want them
-                # unrejected.
-                status = None
             # Add our special `data-toggle` class and the right `data-value`
             # depending on what state the version is in.
             actions = self.actions_filters[obj.channel].get(status, []).copy()
+            if status == amo.STATUS_DISABLED and obj.is_blocked:
+                # We don't want blocked versions to get unrejected. Reply is
+                # fine though.
+                actions.remove('unreject_multiple_versions')
             if obj.pending_rejection:
                 actions.append('clear_pending_rejection_multiple_versions')
             if needs_human_review:
@@ -163,6 +183,12 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             # for a version to require human review.
             if obj.file.status != amo.STATUS_DISABLED or obj.file.is_signed:
                 actions.append('set_needs_human_review_multiple_versions')
+
+            # If a version was auto-approved but deleted, we still want to
+            # allow confirmation of its auto-approval.
+            if obj.deleted and obj.was_auto_approved:
+                actions.append('confirm_multiple_versions')
+
             option['attrs']['class'] = 'data-toggle'
             option['attrs']['data-value'] = ' '.join(actions)
         # Just in case, let's now force the label to be a string (it would be
@@ -177,10 +203,10 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         return option
 
 
-class ReasonsChoiceField(ModelMultipleChoiceField):
+class WidgetRenderedModelMultipleChoiceField(ModelMultipleChoiceField):
     """
-    Widget to use together with ReasonsChoiceWidget to display checkboxes
-    with extra data for the canned responses.
+    Field to use together with a suitable Widget subclass to pass down the object to be
+    rendered.
     """
 
     def label_from_instance(self, obj):
@@ -191,14 +217,14 @@ class ReasonsChoiceField(ModelMultipleChoiceField):
 
 class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
     """
-    Widget to use together with ReasonsChoiceField to display checkboxes
-    with extra data for the canned responses.
+    Widget to use together with a WidgetRenderedModelMultipleChoiceField to display
+    checkboxes with extra data for the canned responses.
     """
 
     def create_option(self, *args, **kwargs):
         option = super().create_option(*args, **kwargs)
-        # label_from_instance() on ReasonsChoiceField returns the full object,
-        # not a label, this is what makes this work.
+        # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
+        # full object, not a label, this is what makes this work.
         obj = option['label']
         canned_response = (
             obj.cinder_policy.full_text(obj.canned_response)
@@ -210,32 +236,71 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
         return option
 
 
-class CinderJobChoiceField(ModelMultipleChoiceField):
-    def label_from_instance(self, obj):
-        is_escalation = (
-            obj.decision_action == CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON
-        )
-        reports = obj.abuse_reports
+class CinderJobsWidget(forms.CheckboxSelectMultiple):
+    """
+    Widget to use together with a WidgetRenderedModelMultipleChoiceField to display
+    select elements with additional attribute to allow toggling.
+    """
+
+    option_template_name = 'reviewers/includes/input_option_with_label_attrs.html'
+
+    def create_option(
+        self, name, value, label, selected, index, subindex=None, attrs=None
+    ):
+        # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
+        # full object, not a label, this is what makes this work.
+        obj = label
+        forwarded_notes = [
+            *obj.forwarded_from_jobs.all().values_list('decision__notes', flat=True),
+            *obj.queue_moves.values_list('notes', flat=True),
+        ]
+        is_appeal = obj.is_appeal
+        reports = obj.all_abuse_reports
         reasons_set = {
             (report.REASONS.for_value(report.reason).display,) for report in reports
         }
         messages_gen = (
             (
                 (f'v[{report.addon_version}]: ' if report.addon_version else ''),
-                report.message,
+                report.message or '<no message>',
             )
             for report in reports
         )
-        subtext = f'Reasoning: {obj.decision_notes}' if is_escalation else ''
-        return format_html(
+        forwarded = (
+            ((f'Reasoning: {"; ".join(notes for notes in forwarded_notes)}',),)
+            if forwarded_notes
+            else ()
+        )
+        appeals = (
+            (appeal_text_obj.text, appeal_text_obj.reporter_report is not None)
+            for appealed_decision in obj.appealed_decisions.all()
+            for appeal_text_obj in appealed_decision.appeals.all()
+        )
+        subtexts_gen = [
+            *forwarded,
+            *(
+                (f'{"Reporter" if is_reporter else "Developer"} Appeal: {text}',)
+                for text, is_reporter in appeals
+            ),
+        ]
+
+        label = format_html(
             '{}{}{}<details><summary>Show detail on {} reports</summary>'
             '<span>{}</span><ul>{}</ul></details>',
-            '[Appeal] ' if obj.is_appeal else '',
-            '[Escalation] ' if is_escalation else '',
+            '[Appeal] ' if is_appeal else '',
+            '[Forwarded] ' if forwarded else '',
             format_html_join(', ', '"{}"', reasons_set),
             len(reports),
-            subtext,
+            format_html_join('', '{}<br/>', subtexts_gen),
             format_html_join('', '<li>{}{}</li>', messages_gen),
+        )
+
+        attrs = attrs or {}
+        attrs['data-value'] = (
+            'resolve_appeal_job' if not is_appeal else 'resolve_reports_job'
+        )
+        return super().create_option(
+            name, value, label, selected, index, subindex, attrs
         )
 
 
@@ -254,6 +319,29 @@ class ActionChoiceWidget(forms.RadioSelect):
                 option['attrs']['data-value'] = boilerplate_text
 
         return option
+
+
+def validate_review_attachment(value):
+    if value:
+        if not value.name.endswith(VALID_ATTACHMENT_EXTENSIONS):
+            valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
+            raise forms.ValidationError(
+                gettext(
+                    'Unsupported file type, please upload a '
+                    'file {extensions}.'.format(extensions=valid_extensions_string)
+                )
+            )
+        if value.size >= settings.MAX_UPLOAD_SIZE:
+            raise forms.ValidationError(gettext('File too large.'))
+        try:
+            if value.name.endswith('.zip'):
+                # See clean_source() in WithSourceMixin
+                zip_file = SafeZip(value)
+                if zip_file.zip_file.testzip() is not None:
+                    raise zipfile.BadZipFile()
+        except (zipfile.BadZipFile, OSError, EOFError) as err:
+            raise forms.ValidationError(gettext('Invalid or broken archive.')) from err
+    return value
 
 
 class ReviewForm(forms.Form):
@@ -299,8 +387,7 @@ class ReviewForm(forms.Form):
                 ),
                 (
                     False,
-                    'Reject immediately. Only use in case of serious '
-                    'security issues.',
+                    'Reject immediately.',
                 ),
             )
         ),
@@ -313,24 +400,48 @@ class ReviewForm(forms.Form):
         min_value=1,
         max_value=99,
     )
-    reasons = ReasonsChoiceField(
+    reasons = WidgetRenderedModelMultipleChoiceField(
         label='Choose one or more reasons:',
         # queryset is set later in __init__.
         queryset=ReviewActionReason.objects.none(),
         required=True,
         widget=ReasonsChoiceWidget,
     )
+    attachment_file = forms.FileField(
+        required=False,
+        validators=[validate_review_attachment],
+        widget=forms.ClearableFileInput(
+            attrs={'data-max-upload-size': settings.MAX_UPLOAD_SIZE}
+        ),
+    )
+    attachment_input = forms.CharField(required=False, widget=forms.Textarea())
+
     version_pk = forms.IntegerField(required=False, min_value=1)
-    resolve_cinder_jobs = CinderJobChoiceField(
+    cinder_jobs_to_resolve = WidgetRenderedModelMultipleChoiceField(
         label='Outstanding DSA related reports to resolve:',
         required=False,
         queryset=CinderJob.objects.none(),
-        widget=forms.CheckboxSelectMultiple,
+        widget=CinderJobsWidget(attrs={'class': 'data-toggle-hide'}),
+    )
+
+    cinder_policies = forms.ModelMultipleChoiceField(
+        # queryset is set later in __init__
+        queryset=CinderPolicy.objects.none(),
+        required=True,
+        label='Choose one or more policies:',
+        widget=widgets.CheckboxSelectMultiple,
+    )
+    appeal_action = forms.MultipleChoiceField(
+        required=False,
+        label='Choose how to resolve appeal:',
+        choices=(('deny', 'Deny Appeal(s)'),),
+        widget=widgets.CheckboxSelectMultiple,
     )
 
     def is_valid(self):
         # Some actions do not require comments and reasons.
-        action = self.helper.actions.get(self.data.get('action'))
+        selected_action = self.data.get('action')
+        action = self.helper.actions.get(selected_action)
         if action:
             if not action.get('comments', True):
                 self.fields['comments'].required = False
@@ -338,10 +449,55 @@ class ReviewForm(forms.Form):
                 self.fields['versions'].required = True
             if not action.get('requires_reasons', False):
                 self.fields['reasons'].required = False
+            if not action.get('requires_policies'):
+                self.fields['cinder_policies'].required = False
+            if self.data.get('cinder_jobs_to_resolve'):
+                # if a cinder job is being resolved we need a review reason
+                if action.get('requires_reasons_for_cinder_jobs'):
+                    self.fields['reasons'].required = True
+            if selected_action == 'resolve_appeal_job':
+                self.fields['appeal_action'].required = True
         result = super().is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
         return result
+
+    def clean(self):
+        super().clean()
+        # If the user select a different type of job before changing actions there could
+        # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
+        # action, or appeal jobs under resolve_reports_job action. So filter them out.
+        if self.cleaned_data.get('attachment_input') and self.cleaned_data.get(
+            'attachment_file'
+        ):
+            raise ValidationError('Cannot upload both a file and input.')
+        if self.cleaned_data.get('action') == 'resolve_appeal_job':
+            self.cleaned_data['cinder_jobs_to_resolve'] = [
+                job
+                for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
+                if job.is_appeal
+            ]
+        elif self.cleaned_data.get('action') == 'resolve_reports_job':
+            self.cleaned_data['cinder_jobs_to_resolve'] = [
+                job
+                for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
+                if not job.is_appeal
+            ]
+        if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
+            'cinder_policies'
+        ):
+            actions = self.helper.handler.get_cinder_actions_from_policies(
+                self.cleaned_data.get('cinder_policies')
+            )
+            if len(actions) == 0:
+                raise ValidationError(
+                    'No policies selected with an associated cinder action.'
+                )
+            elif len(actions) > 1:
+                raise ValidationError(
+                    'Multiple policies selected with different cinder actions.'
+                )
+        return self.cleaned_data
 
     def clean_version_pk(self):
         version_pk = self.cleaned_data.get('version_pk')
@@ -419,16 +575,13 @@ class ReviewForm(forms.Form):
         self.fields['action'].widget.actions = self.helper.actions
 
         # Set the queryset for cinderjobs to resolve
-        self.fields['resolve_cinder_jobs'].queryset = (
-            CinderJob.objects.for_addon(self.helper.addon)
-            .unresolved()
-            .resolvable_in_reviewer_tools()
-            .prefetch_related('abusereport_set', 'appealed_jobs')
-            if (
-                waffle.switch_is_active('enable-cinder-reviewer-tools-integration')
-                and waffle.switch_is_active('enable-cinder-reporting')
-            )
-            else CinderJob.objects.none()
+        self.fields[
+            'cinder_jobs_to_resolve'
+        ].queryset = self.helper.unresolved_cinderjob_qs
+
+        # Set the queryset for policies to show as options
+        self.fields['cinder_policies'].queryset = CinderPolicy.objects.filter(
+            expose_in_reviewer_tools=True
         )
 
     @property
@@ -495,3 +648,45 @@ class BaseRatingFlagFormSet(BaseModelFormSet):
 RatingFlagFormSet = modelformset_factory(
     Rating, extra=0, form=ModerateRatingFlagForm, formset=BaseRatingFlagFormSet
 )
+
+
+class ReviewQueueFilter(forms.Form):
+    due_date_reasons = forms.MultipleChoiceField(
+        choices=(), widget=forms.CheckboxSelectMultiple, required=False
+    )
+
+    def __init__(self, data, *args, **kw):
+        due_date_reasons = list(Version.objects.get_due_date_reason_q_objects().keys())
+        kw['initial'] = {'due_date_reasons': due_date_reasons}
+        super().__init__(data, *args, **kw)
+        labels = {reason: label for reason, label in VIEW_QUEUE_FLAGS}
+        self.fields['due_date_reasons'].choices = [
+            (reason, labels.get(reason, reason)) for reason in due_date_reasons
+        ]
+
+
+class HeldDecisionReviewForm(forms.Form):
+    cinder_job = WidgetRenderedModelMultipleChoiceField(
+        label='Resolving Job:',
+        required=False,
+        queryset=CinderJob.objects.none(),
+        widget=CinderJobsWidget(),
+        disabled=True,
+    )
+    choice = forms.ChoiceField(
+        choices=(('yes', 'Proceed with action'), ('no', 'Approve content instead')),
+        widget=forms.RadioSelect,
+    )
+
+    def __init__(self, *args, **kw):
+        jobs_qs = kw.pop('cinder_jobs_qs')
+        super().__init__(*args, **kw)
+
+        if jobs_qs:
+            # Set the queryset for cinder_job
+            self.fields['cinder_job'].queryset = jobs_qs
+            self.fields['cinder_job'].initial = [job.id for job in jobs_qs]
+            if jobs_qs[0].target_addon:
+                self.fields['choice'].choices += (
+                    ('forward', 'Forward to Reviewer Tools'),
+                )

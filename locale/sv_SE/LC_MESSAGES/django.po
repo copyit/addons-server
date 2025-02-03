@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-13 18:45+0000\n"
-"Last-Translator: Viktor <viktor.engkvist@rivig.net>\n"
+"POT-Creation-Date: 2025-01-31 17:28+0000\n"
+"PO-Revision-Date: 2025-01-27 19:57+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Mozilla tillägg: {} [{}]"
 
 msgid "Email address"
 msgstr "E-postadress"
@@ -27,26 +30,17 @@ msgstr "Skäl till överklagande"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Förklara varför du anser att detta beslut har fattats på ett felaktigt sätt och/eller inte stämmer överens med gällande policy eller lag."
 
+msgid "User profile"
+msgstr "Användarprofil"
+
+msgid "\"{}\" for {}"
+msgstr "\"{}\" för {}"
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Se till att det här fältet inte har mer än {max_length} tecken."
 
 msgid "Invalid value"
 msgstr "Ogiltigt värde"
-
-msgid "\"{}\" for {}"
-msgstr "\"{}\" för {}"
-
-msgid "User profile"
-msgstr "Användarprofil"
-
-msgid "Collection"
-msgstr "Samling"
-
-msgid "Rating"
-msgstr "Betyg"
-
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Mozilla tillägg: {} [{}]"
 
 msgid "Appeal reviewer decision"
 msgstr "Överklaga granskarens beslut"
@@ -72,6 +66,9 @@ msgstr ""
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Eftersom det beslut du överklagar redan har upphävts kommer ditt överklagande inte att behandlas."
 
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr "Beslutet du överklagar har redan åsidosatts av ett nytt beslut, så detta beslut kan inte överklagas."
+
 msgid "This decision can't be appealed."
 msgstr "Detta beslut kan inte överklagas."
 
@@ -87,6 +84,7 @@ msgid ""
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
 "After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
+"%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
@@ -94,6 +92,7 @@ msgstr ""
 "Tack för din rapport om %(name)s på Mozilla tillägg och för att du gav mer information om dina problem.\n"
 "\n"
 "Efter att ha granskat ditt överklagande konstaterade vi att det tidigare beslutet, att detta innehåll inte bryter mot Mozillas policyer (%(policy_document_url)s), var korrekt. Baserat på den beslutsamheten har vi avslagit ditt överklagande och kommer inte att vidta några åtgärder mot kontot eller innehållet.\n"
+"%(manual_reasoning_text)s.\n"
 "\n"
 "Tack för din uppmärksamhet.\n"
 
@@ -108,6 +107,18 @@ msgstr ""
 "Tack för din rapport om %(name)s på Mozilla tillägg och för att du gav mer information om dina problem.\n"
 "\n"
 "Efter att ha granskat ditt överklagande har vi konstaterat att vårt tidigare beslut, att detta innehåll inte bryter mot Mozillas policyer (%(policy_document_url)s), var felaktigt. Baserat på den beslutsamheten har vi tagit bort innehållet och meddelat användaren om våra åtgärder.\n"
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+msgstr ""
+"\n"
+"Tack för din rapport om %(name)s på Mozilla tillägg och för att du gav mer information om dina problem.\n"
+"\n"
+"Efter att ha granskat ditt överklagande har vi konstaterat att vårt tidigare beslut, att detta innehåll inte bryter mot Mozillas policyer (%(policy_document_url)s), var felaktigt. Baserat på den beslutsamheten har vi begärt att utvecklaren ska göra ändringar. Om de inte uppdaterar sitt innehåll för att korrigera överträdelsen, kommer vi att ta bort det.\n"
 
 #, python-format
 msgid ""
@@ -140,6 +151,18 @@ msgstr ""
 "Tack för din rapport om följande tillägg på Mozilla tillägg: %(name)s.\n"
 "\n"
 "Vi granskade din rapport och innehållet i fråga och fann att den bryter mot Mozillas policyer (%(policy_document_url)s), och har därför tagit bort innehållet.\n"
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+msgstr ""
+"\n"
+"Tack för din rapport om följande tillägg på Mozilla tillägg: %(name)s.\n"
+"\n"
+"Vi granskade din rapport och innehållet i fråga och fann att den bryter mot Mozillas policyer (%(policy_document_url)s), och har därför begärt att utvecklaren gör ändringar. Om de inte uppdaterar sitt innehåll för att korrigera överträdelsen, kommer vi att ta bort det.\n"
 
 #, python-format
 msgid ""
@@ -214,11 +237,11 @@ msgstr[1] "Versioner {0}"
 msgid "Review note"
 msgstr "Granskningsanteckning"
 
-msgid "Only latest versions of addons can have notes added."
-msgstr "Endast senaste versionerna av tillägg kan ha anteckningar."
-
 msgid "Request content length is too large."
 msgstr "Längden på förfrågningstexten är för lång."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr "Uppladdning av tillägg är för tillfället otillgängligt."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Maximalt antal kategorier per applikation ({MAX_CATEGORIES}) har överskridits"
@@ -269,9 +292,6 @@ msgstr "Listad"
 
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Sökväg för tillägg och samling måste sluta med \"/\""
-
-msgid "Previews cannot be created for themes."
-msgstr "Förhandsvisningar kan inte skapas för teman."
 
 msgid "Built in licenses can not be updated."
 msgstr "Inbyggda licenser kan inte uppdateras."
@@ -357,6 +377,9 @@ msgstr "Källan kan inte ändras eftersom den här versionen har granskats av Mo
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Den här typen av tillägg tillåter inte anpassad kompatibilitet."
 
+msgid "This endpoint is not valid for Themes."
+msgstr "Denna slutpunkt är inte giltig för teman."
+
 msgid "My Add-ons"
 msgstr "Mina tillägg"
 
@@ -416,6 +439,9 @@ msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Vissa funktioner inaktiveras tillfälligt medan vi utför webbplatsunderhåll. Vi ska vara tillbaka till full kapacitet inom kort."
+
+msgid "URLs are not allowed."
+msgstr "Webbadresser är inte tillåtna."
 
 msgid "Must contain at least one printable character."
 msgstr "Måste innehålla minst ett skrivbart tecken."
@@ -510,6 +536,12 @@ msgstr "Denna funktion är tillfälligt avstängd medan vi utför underhåll på
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Vissa funktioner på denna sida är för tillfället inaktiva eftersom vi utför underhåll av webbplatsen. Försök igen lite senare."
 
+msgid "Add-on uploads temporarily disabled"
+msgstr "Uppladdning av tillägg är tillfälligt inaktiverat"
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr "Uppladdning av tillägg har tillfälligt inaktiverats. Kom tillbaka senare."
+
 msgid "Add-ons for {0}"
 msgstr "Tillägg för {0}"
 
@@ -599,6 +631,12 @@ msgstr "Denna anpassade URL kan inte användas."
 msgid "This add-on already belongs to the collection"
 msgstr "Denna tillägg hör redan till samlingen"
 
+msgid "Blocked"
+msgstr "Blockerad"
+
+msgid "Restricted"
+msgstr "Begränsad"
+
 msgid "{addon} was created."
 msgstr "{addon} skapades."
 
@@ -672,12 +710,6 @@ msgstr "{addon} {version} behölls."
 msgid "Retained"
 msgstr "Behålls"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} upptrappad."
-
-msgid "Super review requested"
-msgstr "Supergranskning begärd"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} granskning begärd."
 
@@ -690,15 +722,9 @@ msgstr "{addon} {version} mer information begärd."
 msgid "More information requested"
 msgstr "Mer information begärd"
 
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} supergranskning begärd."
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "Tillägget har flaggats för admingranskning. Det är fortfarande i vår granskningskö, men det måste kontrolleras av en av våra administratörsgranskare. Granskningen kan ta längre tid än vanligt."
-
-msgid "Commented"
-msgstr "Kommenterad"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} lades till {addon}."
@@ -714,20 +740,6 @@ msgstr "{addon} togs bort från {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} för {addon} skriven."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} utvald i {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} inte längre utvald i {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} är nu utvald."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} inte längre utvald."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -776,45 +788,21 @@ msgstr "Konto uppdaterad."
 msgid "Account {user} deleted."
 msgstr "Benutzerkonto {user} gelöscht."
 
-msgid "Created: {0}."
-msgstr "Skapad: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Redigerat fält: {2} satt till: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Borttagen: {1}"
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} för {addon} uppdaterad."
 
 msgid "{addon} reviewed."
 msgstr "{addon} granskad."
 
-msgid "User {user} banned."
-msgstr "Användare {user} bannlyst."
-
-msgid "User {user} picture deleted."
-msgstr "Användare {user} bild raderad."
-
-msgid "User {user} added to {group}."
-msgstr "Användare {user} har lagts till i {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Användare {user} togs bort från {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} olistad."
-
-msgid "{file} was signed."
-msgstr "{file} signerades."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Tilläggs-id {0} med GUID {1} har tagits bort"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} migrerade från preliminär."
+msgid "{file} was signed."
+msgstr "{file} signerades."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Svar från utvecklare på {addon} {version}."
@@ -840,53 +828,17 @@ msgstr "Källkod uppladdad för {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Källkod uppladdad"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr "{addon} {version} automatiskt godkännande bekräftat."
-
-msgid "Auto-Approval confirmed"
-msgstr "Automatisk godkännande bekräftad"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} återaktiverad."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} inaktiverad."
 
-msgid "{addon} {version} content approved."
-msgstr "{addon} {version} innehåll godkänt."
-
-msgid "Content approved"
-msgstr "Innehåll godkänt"
-
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} innehåll avvisat."
 
 msgid "Content rejected"
 msgstr "Innehåll avvisat"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} informationsbegäran ändrad eller borttagen av admin."
-
-msgid "Information request altered"
-msgstr "Informationsbegäran ändrad"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Informationsbegäran rensad av utvecklaren för {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Informationsbegäran borttagen"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} tilläggsgranskning av admin begärd."
-
-msgid "Admin add-on-review requested"
-msgstr "Tilläggsgranskning av admin begärd"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} innehållsgranskning av admin begärd."
-
-msgid "Admin content-review requested"
-msgstr "Innehållsgranskning av admin begärd"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} temagranskning av admin begärd."
@@ -896,42 +848,6 @@ msgstr "Temagranskning av admin begärd"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} migrerades från ett lätt tema."
-
-msgid "User {user} api key reset."
-msgstr "Användare {user} återställning api-nyckel."
-
-msgid "Block for {0} added to Blocklist."
-msgstr "Block för {0} läggs till i blocklista."
-
-msgid "Block added"
-msgstr "Block har lagts till"
-
-msgid "Block for {0} edited in Blocklist."
-msgstr "Block för {0} redigerat i blocklista."
-
-msgid "Block edited"
-msgstr "Block redigerat"
-
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Block för {0} raderat från blocklista."
-
-msgid "Block deleted"
-msgstr "Block raderat"
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "GUID för {addon} tillagd i DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID för {addon} tas bort från DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr "Block {1} åtgärd för {0} godkänd."
-
-msgid "Block action signoff"
-msgstr "Blockåtgärd godkänd"
-
-msgid "User {user} session(s) reset."
-msgstr "Användare {user} sessionsåterställning."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} innehåll avvisat schemalagt."
@@ -945,8 +861,8 @@ msgstr "{addon} {version} ej godkänd schemalagt."
 msgid "Rejection scheduled"
 msgstr "Avslag schemalagt"
 
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} signerad igen (tidigare {0})."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr "{addon} {version} skapades automatiskt och signerades från {0}."
 
 msgid "Version re-signed"
 msgstr "Version signerad igen"
@@ -972,24 +888,6 @@ msgstr "{addon} {version} väntande avslag rensad."
 msgid "Pending rejection cleared"
 msgstr "Väntande avslag rensad"
 
-msgid "{version} added to Blocklist."
-msgstr "{version} har lagts till i blocklistan."
-
-msgid "Version Blocked"
-msgstr "Version blockerad"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} har tagits bort från blocklistan."
-
-msgid "Version Unblocked"
-msgstr "Version avblockerad"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr "{addon} {version} admin tilläggsgranskning rensad."
-
-msgid "Admin add-on-review cleared"
-msgstr "Admin tilläggsgranskning rensad"
-
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} ändrade {addon}-slugg från {0} till {1}."
 
@@ -1005,11 +903,17 @@ msgstr "Samling {collection} har återställts av moderator"
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Recension {rating} för {addon} har inte tagits bort."
 
-msgid "User {user} content restored."
-msgstr "Användare {user} innehåll har återställts."
+msgid "{addon} {version} rejected automatically after delay expired."
+msgstr "{addon} {version} avvisades automatiskt efter att fördröjning upphört."
 
-msgid "User {user} unbanned."
-msgstr "Användare {user} har avbannats."
+msgid "Rejected automatically after delay expired"
+msgstr "Avvisades automatiskt efter att fördröjning upphört"
+
+msgid "{addon} {version} content rejected automatically after delay expired."
+msgstr "{addon} {version} innehåll avvisas automatiskt efter att fördröjning har upphört."
+
+msgid "Content rejected automatically after delay expired"
+msgstr "Innehåll avvisas automatiskt efter att fördröjning har upphört"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1089,8 +993,8 @@ msgstr "Föråldrad insticksmodul"
 msgid "Deprecated LWT"
 msgstr "Föråldrad LWT"
 
-msgid "Theme (Static)"
-msgstr "Tema (Statisk)"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "Deprecated Site Permission"
 msgstr "Föråldrad webbplatsbehörighet"
@@ -1119,8 +1023,8 @@ msgstr "Föråldrad insticksmoduler"
 msgid "Deprecated LWTs"
 msgstr "Föråldrade LWT:er"
 
-msgid "Themes (Static)"
-msgstr "Teman (Statisk)"
+msgid "Themes"
+msgstr "Teman"
 
 msgid "Deprecated Site Permissions"
 msgstr "Föråldrad webbplatsbehörighet"
@@ -1306,23 +1210,32 @@ msgstr "Allmänt"
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
-msgid "GNU General Public License v2.0"
-msgstr "GNU General Public License v2.0"
+msgid "Apache License 2.0"
+msgstr "Apache License 2.0"
 
-msgid "GNU General Public License v3.0"
-msgstr "GNU General Public License v3.0"
+msgid "GNU General Public License v2.0 only"
+msgstr "Endast GNU General Public License v2.0"
 
-msgid "GNU Library General Public License v2.1"
-msgstr "GNU Library General Public License v2.1"
+msgid "GNU General Public License v3.0 only"
+msgstr "Endast GNU General Public License v3.0"
 
-msgid "GNU Library General Public License v3.0"
-msgstr "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr "Endast GNU Lesser General Public License v2.1"
 
-msgid "The MIT License"
-msgstr "MIT-licensen"
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr "Endast GNU Lesser General Public License v3.0"
 
-msgid "The BSD License"
-msgstr "BSD-licensen"
+msgid "GNU Affero General Public License v3.0 only"
+msgstr "Endast GNU Affero General Public License v3.0"
+
+msgid "MIT License"
+msgstr "MIT-licens"
+
+msgid "ISC License"
+msgstr "ISC-licens"
+
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr "BSD 2-Klausul \"Förenklad\" Licens"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1348,23 +1261,38 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
+msgid "Creative Commons Attribution 4.0"
+msgstr "Creative Commons Attribution 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
+
+msgid "The Unlicense"
+msgstr "The Unlicense"
+
 msgid "Not Promoted"
 msgstr "Inte befordrad"
 
 msgid "Recommended"
 msgstr "Rekommenderad"
 
-msgid "Sponsored"
-msgstr "Sponsrad"
-
-msgid "Verified"
-msgstr "Verifierad"
-
 msgid "By Firefox"
 msgstr "Av Firefox"
 
 msgid "Spotlight"
-msgstr "Strålkastare"
+msgstr "Spotlight"
 
 msgid "Strategic"
 msgstr "Strategisk"
@@ -1401,9 +1329,6 @@ msgstr "Godkänn"
 
 msgid "All"
 msgstr "Alla"
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No action"
 msgstr "Ingen åtgärd"
@@ -1611,6 +1536,43 @@ msgstr ""
 msgid "Display Name"
 msgstr "Visningsnamn"
 
+msgid "Confirm email address"
+msgstr "Bekräfta e-postadress"
+
+msgid "Generate new credentials"
+msgstr "Generera nya autentiseringsuppgifter"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Återkalla och regenerera autentiseringsuppgifter"
+
+msgid "Revoke"
+msgstr "Återkalla"
+
+msgid "JWT issuer"
+msgstr "JWT-utfärdaren"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+"För att göra API-förfrågningar, skicka en <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> som auktoriseringshuvud. Du måste skapa en JWT för varje förfrågan som förklaras i <a "
+"href=\"{docs_url}\">API-dokumentationen</a>."
+
+msgid "JWT secret"
+msgstr "JWT-hemlighet"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr "Klicka på bekräfta-knappen nedan för att skapa API-referenser för användaren <strong>{name}</strong>."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "En bekräftelselänk skickas till din e-postadress. Efter bekräftelse hittar du dina API-nycklar på den här sidan."
+
+msgid "You don't have any API credentials."
+msgstr "Du har inte några API-inloggningsuppgifter."
+
+msgid "Something went wrong, please contact developer support."
+msgstr "Något gick fel, kontakta utvecklarsupporten."
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Ogiltig eller korrupt tilläggsfil."
 
@@ -1641,6 +1603,9 @@ msgstr "Skapad"
 
 msgid "Downloads"
 msgstr "Nerladdningar"
+
+msgid "Rating"
+msgstr "Betyg"
 
 msgid "All My Add-ons"
 msgstr "Alla mina tillägg"
@@ -1778,6 +1743,9 @@ msgstr "Flikmarkering"
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Markeringsfärgen på den aktiva fliken. Implementerad som en ram runt fliken på Firefox 89+ och en rad ovanför fliken på äldre Firefox. Manifest-fält:  tab_line."
 
+msgid "Add-on uploads are temporarily unavailable"
+msgstr "Tilläggsuppladdningar är tillfälligt otillgängliga"
+
 msgid "Review requested."
 msgstr "Granskning begärd."
 
@@ -1786,6 +1754,9 @@ msgstr "Du måste ange ytterligare detaljer för att gå vidare."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Dina gamla inloggningsuppgifter har återkallats och är inte längre giltiga."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr "Håll dina API-nycklar hemliga och dela dem aldrig med någon, inklusive Mozillas medarbetare."
 
 msgid "New API key created"
 msgstr "Nya API-nyckel skapad"
@@ -1796,8 +1767,8 @@ msgstr "API-nyckel återkallad"
 msgid "Verify email"
 msgstr "Verifiera e-postadress"
 
-msgid "Try again"
-msgstr "Försök igen"
+msgid "Send another email"
+msgstr "Skicka ett annat mejl"
 
 msgid "Your email has been verified"
 msgstr "Din e-postadress har verifierats"
@@ -1830,9 +1801,6 @@ msgstr "Dokumentation"
 
 msgid "Extension Development"
 msgstr "Utökningsutveckling"
-
-msgid "Themes"
-msgstr "Teman"
 
 msgid "Developer Policies"
 msgstr "Utvecklarpolicyer"
@@ -1891,27 +1859,26 @@ msgstr "Validerad på:"
 msgid "Email Address Verification"
 msgstr "Verifiering av e-postadress"
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Your email address is verified."
 msgstr "Din e-postadress är verifierad."
 
-msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "Verifiera din e-postadress genom att klicka på \"Verifiera e-postadress\" ovan."
+msgid "Please verify your email."
+msgstr "Bekräfta din e-postadress."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Det gick inte att verifiera e-postadressen. Verifieringslänken har upphört att gälla."
 
-msgid "Working... Please be patient."
-msgstr "Arbetar... Ha tålamod."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
+msgstr "Vi skickar ett mejl till dig, ha tålamod... <div class=\"loader\"></div> Sidan uppdateras automatiskt."
 
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
-msgstr ""
-"Det gick inte att skicka e-postbekräftelse. Försök igen. Om du inte längre har åtkomst till din e-postadress, vänligen uppdatera e-postadressen för ditt mozilla-konto. <a "
-"href=\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Ändra e-postadress </a>"
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
+msgstr "Det tar längre tid än väntat att bekräfta leveransen av ditt verifieringsmejl. Försök igen senare."
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Detta tar längre tid än väntat. Försök igen."
+msgid "Success!"
+msgstr "Succé!"
 
 #, python-format
 msgid ""
@@ -1920,8 +1887,40 @@ msgid ""
 msgstr "Ett mejl med en bekräftelselänk har skickats till din e-postadress: %(email)s. Klicka på länken för att bekräfta din e-postadress. Om du inte har fått mejlet, kontrollera din skräppostmapp."
 
 #, python-format
-msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
-msgstr "Den angivna koden är kopplad till en annan användares e-postadress. Använd länken i mejlet som skickades till din e-postadress %(email)s."
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+"Den angivna koden är ogiltig, obehörig, upphörd eller ofullständig. Använd länken i mejlet som skickades till din e-postadress %(email)s. Om koden fortfarande inte fungerar, vänligen begär ett nytt "
+"mejl."
+
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr "<strong>E-posthistorik:</strong> Tabellen nedan visar alla e-postmeddelanden vi har försökt skicka till dig under de senaste 2 dagarna."
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "From"
+msgstr "Från"
+
+msgid "To"
+msgstr "Till"
+
+msgid "Subject"
+msgstr "Ämne"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr "Vi har inte hittat några e-postposter för dig de senaste 2 dagarna."
+
+msgid "Refresh results"
+msgstr "Uppdatera resultat"
+
+#, python-format
+msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
+msgstr "Om du stöter på problem, se våra <a %(a_attrs)s>felsökningsförslag</a> i Firefox Extension Workshop."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Senaste aktivitet för mina tillägg"
@@ -2635,6 +2634,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Källfiler (förutom tredjepartsbibliotek med öppen källkod) kan inte transponeras, sammanfogas, minifieras eller på annat sätt maskingenereras."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr "Den maximalt tillåtna filstorleken är %(max_size)s."
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Mer information finns i <a %(a_attrs)s>Skicka in källkod</a> i Firefox Extension Workshop."
 
@@ -2658,6 +2661,10 @@ msgstr "Ladda upp version"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr "Den maximalt tillåtna filstorleken är %(max_size)s. Om ditt tillägg är större än %(max_size)s, kommer valideringen att misslyckas."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Vilka program är den här versionen kompatibel med?"
@@ -2721,49 +2728,6 @@ msgstr "Tillbaka"
 
 msgid "API Credentials"
 msgstr "API-inloggningsuppgifter"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Detaljerade instruktioner finns i <a href=\"%(docs_url)s\">API-dokumentationen</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Håll dina API nycklar hemliga och <strong>dela dem aldrig med någon</strong>, inklusive Mozillas medarbetare."
-
-msgid "JWT issuer"
-msgstr "JWT-utfärdaren"
-
-msgid "JWT secret"
-msgstr "JWT-hemlighet"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a "
-"href=\"%(docs_url)s\">API-dokumentationen</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Klicka på bekräfta-knappen nedan för att generera API-referenser för användaren <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "En bekräftelselänk skickas till din e-postadress. Efter bekräftelse hittar du dina API-nycklar på den här sidan."
-
-msgid "You don't have any API credentials."
-msgstr "Du har inte några API-inloggningsuppgifter."
-
-msgid "Revoke"
-msgstr "Återkalla"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Återkalla och regenerera autentiseringsuppgifter"
-
-msgid "Confirm and generate new credentials"
-msgstr "Bekräfta och generera nya referenser"
-
-msgid "Generate new credentials"
-msgstr "Generera nya autentiseringsuppgifter"
 
 #, python-format
 msgid ""
@@ -2932,9 +2896,6 @@ msgstr "Senast uppdaterad:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listad på denna sida efter att ha passerat kodgranskning. Automatiska uppdateringar hanteras av den här webbplatsen"
 
-msgid "Status:"
-msgstr "Status:"
-
 msgid "Listed Version:"
 msgstr "Listad version:"
 
@@ -3029,13 +2990,13 @@ msgstr ""
 msgid "Sort by:"
 msgstr "Sortera efter:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "Tillåten HTML: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr "Tillåten Markdown: %(allowed_markdown)s"
 
-msgid "Some HTML supported."
-msgstr "Viss HTML-stöd."
+msgid "Some Markdown supported."
+msgstr "Viss Markdown stöds."
 
 msgid "Remove this application"
 msgstr "Ta bort denna applikation"
@@ -3139,15 +3100,6 @@ msgstr "Rekommenderat tilläggsprogram"
 
 msgid "Contribute"
 msgstr "Bidra"
-
-msgid "Review Add-ons"
-msgstr "Granska tillägg"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Frivilliga granskare hjälper till att hålla tillägg säkra och tillförlitliga att använda. De njuter av fantastiska förmåner också!"
-
-msgid "Join us!"
-msgstr "Ställ upp!"
 
 msgid "Write Some Code"
 msgstr "Skriv lite kod"
@@ -3342,9 +3294,6 @@ msgstr "Listade versioner"
 
 msgid "Currently on AMO"
 msgstr "För närvarande på AMO"
-
-msgid "Status"
-msgstr "Status"
 
 msgid "Validation"
 msgstr "Validering"
@@ -4124,6 +4073,10 @@ msgid "Cut through the nonsense of typical TOS agreements. This clever extension
 msgstr "Hoppa över nonsens i typiska TOS-avtal. Detta smarta tillägg hjälper dig att snabbt förstå vad du blir ombedd att acceptera."
 
 #. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr "Få grammatikhjälp när du skriver på webben — sociala medier, e-post, dokument och mer."
+
+#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Läs med mer tydlighet och lätthet. Ta bort röran runt text på webbsidor."
@@ -4254,10 +4207,6 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Dubbelklicka på valfritt ord för att omedelbart se dess definition."
 
 #. editorial content for the discovery pane.
-msgid "Blues & Yellows"
-msgstr "Blå & gul"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Spara grupper av flikar som praktiska bokmärken."
@@ -4314,6 +4263,14 @@ msgstr "Få tillbaka förmågan att se tummen ner!"
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
 msgstr "Lyssna på musik på YouTube utan de där irriterande \"Video pausad. Fortsätt titta?\" avbrott."
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr "Ändra hur webben ser ut."
+
+#. editorial content for the discovery pane.
+msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
+msgstr "Anpassa YouTube efter smak. Ge YouTube ett nytt utseende, nya funktioner och filtrera endast det innehåll du vill ha."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4467,6 +4424,10 @@ msgstr "Översätt webbplatser i Firefox — privat — utan att använda molnet
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "Blockera tidsödande webbplatser. Blockera dem helt eller bara under tidsramar som du väljer."
 
+#. editorial content for the primary hero shelves.
+msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr "Sammanfatta enkelt e-postmeddelanden, dokument, artiklar och videotranskriptioner på engelska på webben — utan att offra din integritet."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Tillägg är som appar för Firefox."
@@ -4480,16 +4441,17 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Android extensions!"
-msgstr "Nya Android-tillägg!"
-
-#. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Sekretess- och säkerhetstillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
-msgstr "Produktivitetsverktyg"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Flikhanterare"
+
+#. editorial content for the secondary hero shelves.
+msgid "Spotlight: Adaptive Tab Bar Color"
+msgstr "Spotlight: Adaptiv färg på flikfältet"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4558,10 +4520,6 @@ msgstr "Social strömning"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Se fler utvalda sociala streamingtillägg som valts av anställda"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Flikhanterare"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4647,6 +4605,22 @@ msgstr "Bästa nedladdningshanterare"
 msgid "See more download manager staff picks"
 msgstr "Se fler val av nedladdningshanterare som valts av anställda"
 
+#. editorial content for the homepage shelves.
+msgid "Accessibility extensions"
+msgstr "Hjälpmedelstillägg"
+
+#. editorial content for the homepage shelves.
+msgid "See more accessibility staff picks"
+msgstr "Se fler utvalda hjälpmedelstjänster som valts av anställda"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr "Startpaket för tillägg"
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr "Se fler utvalda starttillägg som valts av anställda"
+
 msgid "Unreviewed"
 msgstr "Ej granskad"
 
@@ -4660,11 +4634,8 @@ msgstr "Denna uppladdning har redan skickats in."
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
 
-msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Tilläggs-ID krävs för Firefox 47 och senare."
-
-msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "Lägsta \"strict_min_version\" som stöds är 42.0."
+msgid "Lowest supported \"strict_min_version\" is {min_version}."
+msgstr "Lägsta \"strict_min_version\" som stöds är {min_version}."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Okänd \"strict_min_version\" {appver} för {app}"
@@ -4823,6 +4794,12 @@ msgstr "Betygsatt {0} utav 5 stjärnor"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Betygsatt %(rating)s utav 5 stjärnor"
 
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr "Filtypen stöds inte, vänligen ladda upp en fil {extensions}."
+
+msgid "File too large."
+msgstr "Filen är för stor."
+
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
@@ -4967,12 +4944,6 @@ msgstr "stäng"
 
 msgid "Custom Date Range"
 msgstr "Anpassat datumintervall"
-
-msgid "From"
-msgstr "Från"
-
-msgid "To"
-msgstr "Till"
 
 msgid "Update"
 msgstr "Uppdatera"
@@ -5130,22 +5101,6 @@ msgstr "Mozilla tillägg"
 msgid "Back to Add-ons"
 msgstr "Tillbaka till tillägg"
 
-msgid "Legal Notices"
-msgstr "Juridisk information"
-
-msgid "Report Trademark Abuse"
-msgstr "Rapportera varumärkesintrång"
-
-msgid "Report a bug"
-msgstr "Rapportera en bugg"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"Utom där annat <a href=\"https://www.mozilla.org/about/legal/\">anges</a>, innehåll på denna webbplats är licensierat under en <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> eller någon senare version."
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Återgå till hemsidan för tillägget {0}"
 
@@ -5166,6 +5121,9 @@ msgstr "Community-blogg"
 
 msgid "Forum"
 msgstr "Forum"
+
+msgid "Report a bug"
+msgstr "Rapportera en bugg"
 
 msgid "Review Guide"
 msgstr "Granskningsguide"

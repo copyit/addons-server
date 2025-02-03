@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 18:21+0000\n"
-"PO-Revision-Date: 2024-02-25 00:07+0000\n"
+"POT-Creation-Date: 2025-01-31 17:28+0000\n"
+"PO-Revision-Date: 2024-12-15 11:19+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -14,6 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "Mozilla Add-ons: {} [{}]"
+msgstr "Tiện ích Mozilla: {} [{}]"
 
 msgid "Email address"
 msgstr "Địa chỉ email"
@@ -27,26 +30,17 @@ msgstr "Lý do kháng cáo"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Vui lòng giải thích lý do bạn cho rằng quyết định này được đưa ra do nhầm lẫn và/hoặc không phù hợp với chính sách hoặc luật hiện hành."
 
+msgid "User profile"
+msgstr "Hồ sơ người dùng"
+
+msgid "\"{}\" for {}"
+msgstr "\"{}\" cho {}"
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Hãy đảm bảo rằng trường này không vượt quá {max_length} ký tự."
 
 msgid "Invalid value"
 msgstr "Giá trị không hợp lệ"
-
-msgid "\"{}\" for {}"
-msgstr "\"{}\" cho {}"
-
-msgid "User profile"
-msgstr "Hồ sơ người dùng"
-
-msgid "Collection"
-msgstr "Bộ sưu tập"
-
-msgid "Rating"
-msgstr "Xếp hạng"
-
-msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Tiện ích Mozilla: {} [{}]"
 
 msgid "Appeal reviewer decision"
 msgstr "Khiếu nại quyết định của người xét duyệt"
@@ -72,6 +66,9 @@ msgstr ""
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
 msgstr "Vì quyết định mà bạn đang kháng cáo đã bị hủy bỏ nên kháng cáo của bạn sẽ không được xử lý."
 
+msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
+msgstr "Quyết định mà bạn đang khiếu nại đã bị thay thế bởi một quyết định mới, vì vậy quyết định này không thể kháng cáo được."
+
 msgid "This decision can't be appealed."
 msgstr "Quyết định này không thể bị kháng cáo."
 
@@ -87,6 +84,7 @@ msgid ""
 "Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
 "\n"
 "After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies (%(policy_document_url)s), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.\n"
+"%(manual_reasoning_text)s.\n"
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
@@ -94,6 +92,7 @@ msgstr ""
 "Cảm ơn bạn đã báo cáo về %(name)s trên Tiện ích Mozilla và để cung cấp thêm thông tin về mối quan tâm của bạn.\n"
 "\n"
 "Sau khi xem xét kháng cáo của bạn, chúng tôi xác định rằng quyết định trước đó rằng nội dung này không vi phạm chính sách của Mozilla (%(policy_document_url)s), đã đúng. Dựa trên quyết định đó, chúng tôi đã từ chối kháng cáo của bạn và sẽ không thực hiện bất kỳ hành động nào đối với tài khoản hoặc nội dung.\n"
+"%(manual_reasoning_text)s.\n"
 "\n"
 "Cảm ơn vì sự quan tâm của bạn.\n"
 
@@ -108,6 +107,18 @@ msgstr ""
 "Cảm ơn bạn đã báo cáo về %(name)s trên Tiện ích Mozilla và để cung cấp thêm thông tin về mối quan tâm của bạn.\n"
 "\n"
 "Sau khi xem xét kháng cáo của bạn, chúng tôi đã xác định rằng quyết định trước đó của chúng tôi rằng nội dung này không vi phạm chính sách của Mozilla (%(policy_document_url)s), đã sai. Dựa trên quyết định đó, chúng tôi đã xóa nội dung và thông báo cho người dùng về hành động của chúng tôi.\n"
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s on Mozilla Add-ons, and for providing more information about your concerns.\n"
+"\n"
+"After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+msgstr ""
+"\n"
+"Cảm ơn bạn đã báo cáo về %(name)s trên Tiện ích của Mozilla và đã cung cấp thêm thông tin về những lo ngại của bạn.\n"
+"\n"
+"Sau khi xem xét khiếu nại của bạn, chúng tôi đã xác định rằng quyết định trước đó của chúng tôi rằng nội dung này không vi phạm chính sách của Mozilla (%(policy_document_url)s), đã sai. Dựa trên xác định đó, chúng tôi đã yêu cầu nhà phát triển thực hiện các thay đổi. Nếu họ không cập nhật nội dung để khắc phục vi phạm, chúng tôi sẽ xóa nội dung đó.\n"
 
 #, python-format
 msgid ""
@@ -140,6 +151,18 @@ msgstr ""
 "Cảm ơn bạn đã báo cáo về tiện ích sau trên Tiện ích Mozilla: %(name)s.\n"
 "\n"
 "Chúng tôi đã xem xét báo cáo của bạn và nội dung được đề cập và nhận thấy rằng báo cáo đó vi phạm chính sách của Mozilla (%(policy_document_url)s), và do đó đã xóa nội dung.\n"
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about the following add-on on Mozilla Add-ons: %(name)s.\n"
+"\n"
+"We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
+msgstr ""
+"\n"
+"Cảm ơn bạn đã báo cáo về tiện ích sau trên Tiện ích Mozilla: %(name)s.\n"
+"\n"
+"Chúng tôi đã xem xét báo cáo của bạn và nội dung được đề cập và nhận thấy rằng báo cáo đó vi phạm chính sách của Mozilla (%(policy_document_url)s), và do đó đã yêu cầu nhà phát triển thực hiện thay đổi. Nếu họ không cập nhật nội dung của mình để khắc phục vi phạm, chúng tôi sẽ xóa nội dung đó.\n"
 
 #, python-format
 msgid ""
@@ -213,11 +236,11 @@ msgstr[0] "Phiên bản {0}"
 msgid "Review note"
 msgstr "Ghi chú đánh giá"
 
-msgid "Only latest versions of addons can have notes added."
-msgstr "Chỉ các phiên bản mới nhất của tiện ích có thể có ghi chú được thêm vào."
-
 msgid "Request content length is too large."
 msgstr "Kích cỡ content length quá lớn."
+
+msgid "Add-on uploads are temporarily unavailable."
+msgstr "Tải lên tiện ích tạm thời không khả dụng."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Số danh mục tối đa ({MAX_CATEGORIES}) cho mỗi ứng dụng đã đạt giới hạn"
@@ -269,9 +292,6 @@ msgstr "Liệt kê"
 
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Tiện ích và đường dẫn bộ sưu tập cần phải kết thúc bằng \"/\""
-
-msgid "Previews cannot be created for themes."
-msgstr "Không thể tạo bản xem trước cho chủ đề."
 
 msgid "Built in licenses can not be updated."
 msgstr "Giấy phép tích hợp không thể được cập nhật."
@@ -358,6 +378,9 @@ msgstr "Không thể thay đổi nguồn vì phiên bản này đã được xem
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Loại tiện ích này không cho phép khả năng tương thích tùy chỉnh."
 
+msgid "This endpoint is not valid for Themes."
+msgstr "Endpoint này không hợp lệ cho Chủ đề."
+
 msgid "My Add-ons"
 msgstr "Tiện ích của tôi"
 
@@ -417,6 +440,9 @@ msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chúng tôi bảo trì trang web. Chúng tôi sẽ hoạt động đầy đủ lại nhanh thôi."
+
+msgid "URLs are not allowed."
+msgstr "Không được phép sử dụng URL."
 
 msgid "Must contain at least one printable character."
 msgstr "Phải chứa ít nhất một ký tự có thể in được."
@@ -512,6 +538,12 @@ msgstr "Tính năng này tạm thời bị vô hiệu trong khi chúng tôi đan
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Một số tính năng trên trang này đang tạm thời bị vô hiệu trong khi chúng tôi thực hiện bảo dưỡng trang web. Vui lòng thử lại sau."
 
+msgid "Add-on uploads temporarily disabled"
+msgstr "Tải lên tiện ích tạm thời bị vô hiệu hóa"
+
+msgid "Add-on uploads have been temporarily disabled. Please check back later."
+msgstr "Tải lên tiện ích tạm thời bị vô hiệu hóa. Hãy kiểm tra lại sau."
+
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 msgid "Add-ons for {0}"
@@ -603,6 +635,12 @@ msgstr "Không thể sử dụng URL tùy chỉnh này."
 msgid "This add-on already belongs to the collection"
 msgstr "Tiện ích này đã ở trong bộ sưu tập"
 
+msgid "Blocked"
+msgstr "Bị chặn"
+
+msgid "Restricted"
+msgstr "Bị hạn chế"
+
 msgid "{addon} was created."
 msgstr "{addon} đã được tạo."
 
@@ -676,12 +714,6 @@ msgstr "{addon} {version} giữ nguyên."
 msgid "Retained"
 msgstr "Đã giữ lại"
 
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} nâng cấp."
-
-msgid "Super review requested"
-msgstr "Đã yêu cầu xem xét nâng cao"
-
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} yêu cầu xét duyệt."
 
@@ -694,16 +726,10 @@ msgstr "Đã yêu cầu thêm thông tin về {addon} {version}."
 msgid "More information requested"
 msgstr "Đã yêu cầu thêm thông tin"
 
-msgid "{addon} {version} super review requested."
-msgstr ""
-
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 "Tiện ích đã được gắn cờ để quản trị viên xem xét. Nó vẫn nằm trong hàng đợi xem xét, nhưng sẽ cần được kiểm tra bởi một trong các quản trị viên của chúng tôi. Quá trình xem xét có thể mất nhiều thời"
 " gian hơn bình thường."
-
-msgid "Commented"
-msgstr "Đã nhận xét"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} được thêm vào {addon}."
@@ -719,20 +745,6 @@ msgstr "{addon} bị xóa khỏi {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} cho {addon} được viết."
-
-#. L10n: {0} is a category name.
-msgid "{addon} featured in {0}."
-msgstr "{addon} được giới thiệu trong {0}."
-
-#. L10n: {0} is a category name.
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} không còn được giới thiệu trong {0}."
-
-msgid "{addon} is now featured."
-msgstr "{addon} đang được giới thiệu."
-
-msgid "{addon} is no longer featured."
-msgstr "{addon} không còn được giới thiệu."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -781,45 +793,21 @@ msgstr "Đã cập nhật tài khoản."
 msgid "Account {user} deleted."
 msgstr "Tài khoản {user} đã bị xóa."
 
-msgid "Created: {0}."
-msgstr "Đã tạo: {0}."
-
-msgid "Edited field: {2} set to: {0}."
-msgstr "Trường đã chỉnh sửa: {2} được đặt thành: {0}."
-
-msgid "Deleted: {1}."
-msgstr "Đã xóa: {1}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} cho {addon} đã cập nhật."
 
 msgid "{addon} reviewed."
 msgstr "{addon} đã xét duyệt."
 
-msgid "User {user} banned."
-msgstr "Người dùng {user} đã bị cấm."
-
-msgid "User {user} picture deleted."
-msgstr "Đã xóa hình ảnh người dùng {user}."
-
-msgid "User {user} added to {group}."
-msgstr "Đã thêm người dùng {user} vào {group}."
-
-msgid "User {user} removed from {group}."
-msgstr "Đã xóa người dùng {user} khỏi {group}."
-
 msgid "{addon} unlisted."
 msgstr "{addon} chưa được thêm vào danh sách."
-
-msgid "{file} was signed."
-msgstr "{file} đã được ký."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Id tiện ích {0} với GUID {1} đã bị xóa"
 
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} đã di chuyển từ sơ bộ."
+msgid "{file} was signed."
+msgstr "{file} đã được ký."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Trả lời bởi nhà phát triển trên {addon} {version}."
@@ -845,53 +833,17 @@ msgstr "Mã nguồn được tải lên cho {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Đã tải lên mã nguồn"
 
-msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
-
-msgid "Auto-Approval confirmed"
-msgstr "Đã xác nhận phê duyệt tự động"
-
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} đã bật lại."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} đã vô hiệu hóa."
 
-msgid "{addon} {version} content approved."
-msgstr "Nội dung {addon} {version} đã phê duyệt."
-
-msgid "Content approved"
-msgstr "Nội dung được phê duyệt"
-
 msgid "{addon} {version} content rejected."
 msgstr "Nội dung {addon} {version} đã từ chối."
 
 msgid "Content rejected"
 msgstr "Nội dung bị từ chối"
-
-msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} yêu cầu thông tin đã thay đổi hoặc bị xóa bởi quản trị viên."
-
-msgid "Information request altered"
-msgstr "Yêu cầu thông tin đã thay đổi"
-
-msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Yêu cầu thông tin đã bị xóa bởi nhà phát triển trên {addon} {version}."
-
-msgid "Information request removed"
-msgstr "Yêu cầu thông tin đã bị xóa"
-
-msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} yêu cầu xét duyệt bởi quản trị viên."
-
-msgid "Admin add-on-review requested"
-msgstr "Yêu cầu đánh giá add-on của quản trị viên"
-
-msgid "{addon} {version} admin content-review requested."
-msgstr ""
-
-msgid "Admin content-review requested"
-msgstr "Yêu cầu xem xét nội dung của quản trị viên"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
@@ -901,44 +853,6 @@ msgstr "Yêu cầu đánh giá chủ đề của quản trị viên"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} đã được di chuyển từ một chủ đề nhẹ."
-
-msgid "User {user} api key reset."
-msgstr "Đã đặt lại khóa api của người dùng {user}."
-
-msgid "Block for {0} added to Blocklist."
-msgstr ""
-
-msgid "Block added"
-msgstr ""
-
-msgid "Block for {0} edited in Blocklist."
-msgstr ""
-
-msgid "Block edited"
-msgstr "Đã chỉnh sửa khối"
-
-#, fuzzy
-msgid "Block for {0} deleted from Blocklist."
-msgstr "Phiên bản {0} được xóa khỏi {addon}."
-
-#, fuzzy
-msgid "Block deleted"
-msgstr "Tiện ích đã được xóa."
-
-msgid "GUID for {addon} added to DeniedGuid."
-msgstr "Đã thêm GUID cho {addon} đến DeniedGuid."
-
-msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID cho {addon} đã bị xóa khỏi DeniedGuid."
-
-msgid "Block {1} action for {0} signed off."
-msgstr ""
-
-msgid "Block action signoff"
-msgstr "Chặn hành động đăng xuất"
-
-msgid "User {user} session(s) reset."
-msgstr "Đã đặt lại phiên người dùng {user}."
 
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
@@ -952,17 +866,17 @@ msgstr "{addon} {version} bị từ chối."
 msgid "Rejection scheduled"
 msgstr "Đã lên lịch từ chối"
 
-msgid "{addon} {version} re-signed (previously {0})."
-msgstr "{addon} {version} đã được ký lại (trước đây là {0})."
+msgid "{addon} {version} automatically created and signed from {0}."
+msgstr "{addon} {version} được tạo và ký tự động từ {0}."
 
 msgid "Version re-signed"
 msgstr "Phiên bản đã được ký lại"
 
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} bị buộc vô hiệu hóa"
 
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} bị buộc kích hoạt"
 
 msgid "{addon} {version} un-rejected."
 msgstr ""
@@ -977,24 +891,6 @@ msgid "{addon} {version} pending rejection cleared."
 msgstr ""
 
 msgid "Pending rejection cleared"
-msgstr ""
-
-msgid "{version} added to Blocklist."
-msgstr "{version} đã được thêm vào danh sách chặn."
-
-msgid "Version Blocked"
-msgstr "Phiên bản đã bị chặn"
-
-msgid "{version} removed from Blocklist."
-msgstr "{version} đã bị xóa khỏi danh sách chặn."
-
-msgid "Version Unblocked"
-msgstr "Phiên bản không còn bị chặn"
-
-msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
-
-msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
@@ -1012,11 +908,17 @@ msgstr "Bộ sưu tập {collection} đã được phục hồi bởi người k
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Đánh giá {rating} cho {addon} đã được phục hồi."
 
-msgid "User {user} content restored."
-msgstr "Đã phục hồi nội dung của người dùng {user}."
+msgid "{addon} {version} rejected automatically after delay expired."
+msgstr "{addon} {version} bị từ chối tự động sau khi hết thời gian trì hoãn."
 
-msgid "User {user} unbanned."
-msgstr "Đã bỏ chặn người dùng {user}."
+msgid "Rejected automatically after delay expired"
+msgstr "Bị từ chối tự động sau khi hết thời gian trì hoãn"
+
+msgid "{addon} {version} content rejected automatically after delay expired."
+msgstr "Nội dung {addon} {version} bị từ chối tự động sau khi hết thời gian trì hoãn."
+
+msgid "Content rejected automatically after delay expired"
+msgstr "Nội dung bị từ chối tự động sau khi hết thời gian trì hoãn"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1097,8 +999,8 @@ msgstr "Phần bổ trợ đã lỗi thời"
 msgid "Deprecated LWT"
 msgstr "LWT ngừng hoạt động"
 
-msgid "Theme (Static)"
-msgstr "Chủ đề (Tĩnh)"
+msgid "Theme"
+msgstr "Giao diện"
 
 msgid "Deprecated Site Permission"
 msgstr "Quyền của trang web không còn được dùng nữa"
@@ -1129,8 +1031,8 @@ msgstr "Phần bổ trợ đã lỗi thời"
 msgid "Deprecated LWTs"
 msgstr "LWTs không còn hỗ trợ"
 
-msgid "Themes (Static)"
-msgstr "Các chủ đề (Tĩnh)"
+msgid "Themes"
+msgstr "Giao diện"
 
 msgid "Deprecated Site Permissions"
 msgstr "Quyền của các trang web không còn được dùng nữa"
@@ -1318,23 +1220,32 @@ msgstr "Tổng quát"
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
-msgid "GNU General Public License v2.0"
-msgstr "GNU General Public License v2.0"
+msgid "Apache License 2.0"
+msgstr ""
 
-msgid "GNU General Public License v3.0"
-msgstr "GNU General Public License v3.0"
+msgid "GNU General Public License v2.0 only"
+msgstr ""
 
-msgid "GNU Library General Public License v2.1"
-msgstr "GNU Library General Public License v2.1"
+msgid "GNU General Public License v3.0 only"
+msgstr ""
 
-msgid "GNU Library General Public License v3.0"
-msgstr "GNU Library General Public License v3.0"
+msgid "GNU Lesser General Public License v2.1 only"
+msgstr ""
 
-msgid "The MIT License"
+msgid "GNU Lesser General Public License v3.0 only"
+msgstr ""
+
+msgid "GNU Affero General Public License v3.0 only"
+msgstr ""
+
+msgid "MIT License"
 msgstr "Giấy phép MIT"
 
-msgid "The BSD License"
-msgstr "Giấy phép BSD"
+msgid "ISC License"
+msgstr "Giấy phép ISC"
+
+msgid "BSD 2-Clause \"Simplified\" License"
+msgstr ""
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1360,17 +1271,32 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
+msgid "Creative Commons Attribution 4.0"
+msgstr "Creative Commons Attribution 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial 4.0"
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
+
+msgid "Creative Commons Attribution-NoDerivs 4.0"
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
+
+msgid "Creative Commons Attribution-ShareAlike 4.0"
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
+
+msgid "The Unlicense"
+msgstr ""
+
 msgid "Not Promoted"
 msgstr "Không được quảng cáo"
 
 msgid "Recommended"
 msgstr "Được đề xuất"
-
-msgid "Sponsored"
-msgstr "Được tài trợ"
-
-msgid "Verified"
-msgstr "Đã xác minh"
 
 msgid "By Firefox"
 msgstr "Bởi Firefox"
@@ -1413,9 +1339,6 @@ msgstr "Phê duyệt"
 
 msgid "All"
 msgstr "Tất cả"
-
-msgid "Theme"
-msgstr "Giao diện"
 
 msgid "No action"
 msgstr "Không có hành động"
@@ -1621,6 +1544,43 @@ msgstr ""
 msgid "Display Name"
 msgstr "Tên hiển thị"
 
+msgid "Confirm email address"
+msgstr "Xác nhận địa chỉ email"
+
+msgid "Generate new credentials"
+msgstr "Tạo khóa mới"
+
+msgid "Revoke and regenerate credentials"
+msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
+
+msgid "Revoke"
+msgstr "Thu hồi"
+
+msgid "JWT issuer"
+msgstr "Người cấp JWT"
+
+msgid ""
+"To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"{docs_url}\">API documentation</a>."
+msgstr ""
+"Để thực hiện các yêu cầu API, gửi một <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> dưới dạng một header authorization. Bạn sẽ cần phải tạo một JWT cho mọi yêu cầu như được giải thích trong <a "
+"href=\"{docs_url}\">tài liệu API</a>."
+
+msgid "JWT secret"
+msgstr "JWT bí mật"
+
+msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgstr "Vui lòng nhấp vào nút xác nhận bên dưới để tạo thông tin xác thực API cho người dùng <strong>{name}</strong>."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Một liên kết xác nhận sẽ được gửi đến địa chỉ email của bạn. Sau khi xác nhận, bạn sẽ tìm thấy các khóa API của mình trên trang này."
+
+msgid "You don't have any API credentials."
+msgstr "Bạn không có bất kỳ xác thực API nào."
+
+msgid "Something went wrong, please contact developer support."
+msgstr "Đã xảy ra lỗi, vui lòng liên hệ với bộ phận hỗ trợ nhà phát triển."
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Tập tin tiện ích không hợp lệ hoặc bị hỏng."
 
@@ -1651,6 +1611,9 @@ msgstr "Đã tạo"
 
 msgid "Downloads"
 msgstr "Tải xuống"
+
+msgid "Rating"
+msgstr "Xếp hạng"
 
 msgid "All My Add-ons"
 msgstr "Tất cả Tiện ích của Tôi"
@@ -1788,6 +1751,9 @@ msgstr "Đánh dấu thẻ"
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Màu đánh dấu của thẻ đang hoạt động. Được triển khai như một đường viền xung quanh thẻ trên Firefox 89+ và một đường phía trên thẻ trên các Firefox cũ hơn. Trường manifest:  tab_line."
 
+msgid "Add-on uploads are temporarily unavailable"
+msgstr "Tải lên tiện ích tạm thời không khả dụng"
+
 msgid "Review requested."
 msgstr "Yêu cầu đánh giá."
 
@@ -1796,6 +1762,9 @@ msgstr "Bạn phải cung cấp thêm chi tiết để tiếp tục."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Thông tin đăng nhập cũ của bạn đã bị thu hồi và không còn hợp lệ."
+
+msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
+msgstr "Giữ bí mật các khóa API của bạn và không bao giờ chia sẻ chúng với bất kỳ ai, kể cả cộng tác viên của Mozilla."
 
 msgid "New API key created"
 msgstr "Khóa API mới đã được tạo"
@@ -1806,8 +1775,8 @@ msgstr "Đã thu hồi khóa API"
 msgid "Verify email"
 msgstr "Xác minh email"
 
-msgid "Try again"
-msgstr "Thử lại"
+msgid "Send another email"
+msgstr "Gửi một email khác"
 
 msgid "Your email has been verified"
 msgstr "Email của bạn đã được xác minh"
@@ -1841,9 +1810,6 @@ msgstr "Tài liệu"
 
 msgid "Extension Development"
 msgstr "Phát triển tiện ích mở rộng"
-
-msgid "Themes"
-msgstr "Giao diện"
 
 msgid "Developer Policies"
 msgstr "Chính sách nhà phát triển"
@@ -1902,27 +1868,26 @@ msgstr "Xác thực tại:"
 msgid "Email Address Verification"
 msgstr "Xác minh địa chỉ email"
 
+msgid "Status:"
+msgstr "Trạng thái:"
+
 msgid "Your email address is verified."
 msgstr "Địa chỉ email của bạn đã được xác minh."
 
-msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "Vui lòng xác minh email của bạn bằng cách nhấp vào \"Xác minh email\" ở trên."
+msgid "Please verify your email."
+msgstr "Vui lòng xác minh email của bạn."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "Không thể xác minh địa chỉ email. Liên kết xác minh đã hết hạn."
 
-msgid "Working... Please be patient."
-msgstr "Đang làm việc... Xin hãy kiên nhẫn."
+msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
+msgstr "Chúng tôi đang gửi email cho bạn, hãy kiên nhẫn... <div class=\"loader\"></div> Trang sẽ tự động làm mới."
 
-msgid ""
-"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
-"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
-msgstr ""
-"Không thể gửi email xác nhận. Hãy thử lại. Nếu bạn không còn quyền truy cập vào địa chỉ email của mình nữa, vui lòng cập nhật địa chỉ email tài khoản Mozilla của bạn. <a "
-"href=\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Thay đổi địa chỉ email </a>"
+msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
+msgstr "Việc xác nhận việc gửi email xác minh cho bạn mất nhiều thời gian hơn dự kiến. Vui lòng thử lại sau."
 
-msgid "This is taking longer than expected. Try again."
-msgstr "Quá trình này mất nhiều thời gian hơn dự kiến. Hãy thử lại."
+msgid "Success!"
+msgstr "Thành công!"
 
 #, python-format
 msgid ""
@@ -1933,8 +1898,40 @@ msgstr ""
 "mục thư rác."
 
 #, python-format
-msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
-msgstr "Mã được cung cấp được liên kết với email của người dùng khác. Vui lòng sử dụng liên kết trong email được gửi đến địa chỉ email của bạn %(email)s."
+msgid ""
+"The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
+"email."
+msgstr ""
+"Mã được cung cấp không hợp lệ, trái phép, hết hạn hoặc không đầy đủ. Vui lòng sử dụng liên kết trong email được gửi đến địa chỉ email của bạn (%(email)s). Nếu mã vẫn không hoạt động, vui lòng yêu "
+"cầu email mới."
+
+msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
+msgstr "<strong>Lịch sử email:</strong> Bảng bên dưới hiển thị tất cả email chúng tôi đã cố gắng gửi cho bạn trong 2 ngày qua."
+
+msgid "Date"
+msgstr "Ngày"
+
+msgid "From"
+msgstr "Từ"
+
+msgid "To"
+msgstr "Tới"
+
+msgid "Subject"
+msgstr "Chủ đề"
+
+msgid "Status"
+msgstr "Trạng thái"
+
+msgid "We have not found any email records for you in the last 2 days."
+msgstr "Chúng tôi không tìm thấy bất kỳ bản ghi email nào cho bạn trong 2 ngày qua."
+
+msgid "Refresh results"
+msgstr "Làm mới kết quả"
+
+#, python-format
+msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
+msgstr "Nếu bạn gặp vấn đề, vui lòng xem <a %(a_attrs)s>đề xuất khắc phục sự cố</a> của chúng tôi trên Firefox Extension Workshop."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Hoạt động Gần đây cho Tiện ích của Tôi"
@@ -2631,6 +2628,10 @@ msgid "Source files (aside from open-source third party libraries) cannot be tra
 msgstr "Các tập tin nguồn (ngoài các thư viện bên thứ ba nguồn mở) không thể được chuyển, nối, rút gọn hoặc do máy tạo ra."
 
 #, python-format
+msgid "The maximum file size accepted is %(max_size)s."
+msgstr "Kích thước tập tin tối đa được chấp nhận là  %(max_size)s."
+
+#, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr "Để biết thêm thông tin, vui lòng đọc <a %(a_attrs)s>đệ trình mã nguồn</a> trên Firefox Extension Workshop."
 
@@ -2654,6 +2655,10 @@ msgstr "Phiên bản tải lên"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Sử dụng các trường bên dưới để tải lên gói tiện ích của bạn. Sau khi tải lên, một loạt các kiểm tra xác thực tự động sẽ được chạy trên tập tin của bạn."
+
+#, python-format
+msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
+msgstr "Kích thước tập tin tối đa được chấp nhận là  %(max_size)s. Nếu tiện ích của bạn lớn hơn %(max_size)s, nó sẽ không thể xác thực."
 
 msgid "Which applications is this version compatible with?"
 msgstr "Phiên bản này tương thích với những ứng dụng nào?"
@@ -2719,49 +2724,6 @@ msgstr "Quay lại"
 
 msgid "API Credentials"
 msgstr "Thông tin đăng nhập API"
-
-#, python-format
-msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Để biết hướng dẫn chi tiết, hãy tham khảo <a href=\"%(docs_url)s\">tài liệu API</a>."
-
-msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Giữ bí mật các khóa API của bạn và <strong>không bao giờ chia sẻ chúng với bất kỳ ai</strong>, kể cả những người đóng góp Mozilla."
-
-msgid "JWT issuer"
-msgstr "Người cấp JWT"
-
-msgid "JWT secret"
-msgstr "JWT bí mật"
-
-#, python-format
-msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
-"Để thực hiện các yêu cầu API, hãy gửi <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> làm tiêu đề ủy quyền. Bạn sẽ cần tạo JWT cho mọi yêu cầu như được giải thích trong <a href=\"%(docs_url)s\">tài"
-" liệu API</a>."
-
-#, python-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr "Vui lòng nhấp vào nút xác nhận bên dưới để tạo thông tin đăng nhập API cho người dùng <strong>%(name)s</strong>."
-
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Một liên kết xác nhận sẽ được gửi đến địa chỉ email của bạn. Sau khi xác nhận, bạn sẽ tìm thấy các khóa API của mình trên trang này."
-
-msgid "You don't have any API credentials."
-msgstr "Bạn không có bất kỳ xác thực API nào."
-
-msgid "Revoke"
-msgstr "Thu hồi"
-
-msgid "Revoke and regenerate credentials"
-msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
-
-msgid "Confirm and generate new credentials"
-msgstr "Xác nhận và tạo chứng chỉ đăng nhập mới"
-
-msgid "Generate new credentials"
-msgstr "Tạo khóa mới"
 
 #, python-format
 msgid ""
@@ -2931,9 +2893,6 @@ msgstr "Cập nhật lần cuối:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Được liệt kê trên trang web này sau khi vượt qua đánh giá mã. Cập nhật tự động được xử lý bởi trang web này"
 
-msgid "Status:"
-msgstr "Trạng thái:"
-
 msgid "Listed Version:"
 msgstr "Phiên bản được liệt kê:"
 
@@ -3027,19 +2986,18 @@ msgstr "Vui lòng chọn một giấy phép phù hợp với các quyền bạn 
 msgid "Sort by:"
 msgstr "Sắp xếp theo:"
 
-#. %s is a list of HTML tags.
+#. %s is a list of markdown syntax.
 #, python-format
-msgid "Allowed HTML: %(allowed_html)s"
-msgstr "Cho phép HTML: %(allowed_html)s"
+msgid "Allowed Markdown: %(allowed_markdown)s"
+msgstr ""
 
-msgid "Some HTML supported."
-msgstr "Một số HTML được hỗ trợ."
+msgid "Some Markdown supported."
+msgstr ""
 
 msgid "Remove this application"
 msgstr "Loại bỏ ứng dụng này"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Chọn một danh mục cho tiện ích mở rộng này:"
@@ -3141,15 +3099,6 @@ msgstr "Chương trình tiện ích mở rộng được đề xuất"
 msgid "Contribute"
 msgstr "Đóng góp"
 
-msgid "Review Add-ons"
-msgstr "Đánh giá tiện ích mở rộng"
-
-msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Những người tình nguyện đánh giá giúp giữ các tiện ích an toàn và đáng tin cậy để sử dụng. Họ cũng được hưởng những đặc quyền tuyệt vời!"
-
-msgid "Join us!"
-msgstr "Tham gia với chúng tôi!"
-
 msgid "Write Some Code"
 msgstr "Viết một số đoạn mã"
 
@@ -3237,8 +3186,8 @@ msgstr "Đăng ký tài khoản nhà phát triển hoặc đăng nhập vào Tru
 msgid "Manage Version {0}"
 msgstr "Quản lí Phiên bản {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Quản lí {0}"
 
@@ -3346,9 +3295,6 @@ msgstr "Phiên bản được liệt kê"
 msgid "Currently on AMO"
 msgstr "Hiện tại trên AMO"
 
-msgid "Status"
-msgstr "Trạng thái"
-
 # Header for a column in a table
 msgid "Validation"
 msgstr "Kiểm định"
@@ -3421,14 +3367,14 @@ msgstr "Hủy yêu cầu đánh giá của bạn sẽ đánh dấu tiện ích c
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Bạn có chắc chắn là bạn muốn hủy bỏ yêu cầu xét duyệt của mình không?"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} lỗi"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} cảnh báo"
@@ -4128,6 +4074,10 @@ msgid "Cut through the nonsense of typical TOS agreements. This clever extension
 msgstr "Cắt bỏ những điều vô nghĩa của các thỏa thuận TOS điển hình. Tiện ích mở rộng thông minh này giúp bạn nhanh chóng hiểu những gì bạn được yêu cầu đồng ý."
 
 #. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
+msgstr "Nhận trợ giúp về ngữ pháp bất cứ nơi nào bạn viết trên web — Truyền thông xã hội, email, tài liệu, v.v."
+
+#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Đọc rõ ràng và dễ dàng hơn. Loại bỏ sự lộn xộn xung quanh văn bản trên các trang web."
@@ -4258,10 +4208,6 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Bấm đúp vào bất kỳ từ nào để xem ngay định nghĩa của từ đó."
 
 #. editorial content for the discovery pane.
-msgid "Blues & Yellows"
-msgstr "Xanh & Vàng"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Lưu hàng loạt thẻ dưới dạng dấu trang tiện lợi."
@@ -4301,7 +4247,7 @@ msgstr "Tất cả biểu tượng cảm xúc của bạn cần—luôn chỉ c�
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Mặt nạ địa chỉ email. Firefox Relay bảo vệ danh tính của bạn & chặn thư rác."
+msgstr "Che giấu địa chỉ email của bạn. Firefox Relay bảo vệ danh tính của bạn & chặn thư rác."
 
 #. editorial content for the discovery pane.
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
@@ -4313,11 +4259,19 @@ msgstr "Làm mới trải nghiệm Twitter của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Mang lại tính năng hiển thị số lượt không thích!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
 msgstr "Nghe nhạc trên YouTube mà không bị hiện tượng \"Video đã tạm dừng. Tiếp tục xem?\" gián đoạn."
+
+#. editorial content for the discovery pane.
+msgid "Change the way the web looks."
+msgstr "Thay đổi giao diện của trang web."
+
+#. editorial content for the discovery pane.
+msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
+msgstr "Tùy chỉnh YouTube theo sở thích. Cung cấp cho nó một giao diện mới, các tính năng mới và chỉ lọc nội dung bạn muốn."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4461,7 +4415,7 @@ msgstr "Nâng cao trải nghiệm chơi trò chơi của bạn trên Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Nhấn nút thích để mang lại số lượt không thích."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
@@ -4470,6 +4424,10 @@ msgstr "Dịch các trang web trong Firefox — một cách riêng tư — mà k
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "Chặn các trang web lãng phí thời gian. Chặn chúng hoàn toàn hoặc chỉ trong khung thời gian bạn chọn."
+
+#. editorial content for the primary hero shelves.
+msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr "Tóm tắt thư từ, tài liệu, bài báo và bản phiên âm video bằng tiếng Anh trên các trang web thật dễ dàng - mà không ảnh hưởng đến quyền riêng tư của bạn."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4484,16 +4442,17 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Android extensions!"
-msgstr "Tiện ích mở rộng mới cho Android!"
-
-#. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
-msgstr "Công cụ năng suất"
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Quản lý thẻ"
+
+#. editorial content for the secondary hero shelves.
+msgid "Spotlight: Adaptive Tab Bar Color"
+msgstr "Tiêu điểm: Adaptive Tab Bar Color"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4523,8 +4482,8 @@ msgstr "Tiện ích mở rộng bảo mật nâng cao"
 msgid "See more recommended privacy extensions"
 msgstr "Xem thêm các tiện ích mở rộng quyền riêng tư được đề xuất"
 
-#. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
 msgid "Popular extensions"
 msgstr "Các tiện ích mở rộng phổ biến"
 
@@ -4563,10 +4522,6 @@ msgstr "Phát trực tuyến xã hội"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Xem thêm phát trực tuyến và xã hội được lựa chọn bởi biên tập viên"
-
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Quản lý thẻ"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4652,6 +4607,22 @@ msgstr "Trình quản lý tải xuống hàng đầu"
 msgid "See more download manager staff picks"
 msgstr "Xem thêm trình quản lý tải xuống do biên tập viên chọn"
 
+#. editorial content for the homepage shelves.
+msgid "Accessibility extensions"
+msgstr "Tiện ích hỗ trợ tiếp cận"
+
+#. editorial content for the homepage shelves.
+msgid "See more accessibility staff picks"
+msgstr "Xem thêm các tiện ích hỗ trợ tiếp cận được lựa chọn bởi biên tập viên"
+
+#. editorial content for the homepage shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more starter extension staff picks"
+msgstr "Xem thêm các tiện ích cho người mới bắt đầu được chúng tôi lựa chọn"
+
 msgid "Unreviewed"
 msgstr "Chưa được xét duyệt"
 
@@ -4665,11 +4636,8 @@ msgstr "Lần tải lên này đã được gửi trước đó."
 msgid "Could not parse the manifest file."
 msgstr "Không thể phân tích cú pháp tập tin manifest."
 
-msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "ID tiện ích được yêu cầu cho Firefox 47 trở xuống."
-
-msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "\"strict_min_version\" được hỗ trợ thấp nhất là 42.0."
+msgid "Lowest supported \"strict_min_version\" is {min_version}."
+msgstr "\"strict_min_version\" thấp nhất được hỗ trợ là {min_version}."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "\"strict_min_version\" {appver} không xác định cho {app}"
@@ -4826,6 +4794,12 @@ msgstr "Đã xếp hạng {0} trên 5 sao"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Đã xếp hạng %(rating)s trên 5 sao"
 
+msgid "Unsupported file type, please upload a file {extensions}."
+msgstr "Loại tập tin không được hỗ trợ, vui lòng tải lên tập tin {extensions}."
+
+msgid "File too large."
+msgstr "Tập tin quá lớn."
+
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
@@ -4970,12 +4944,6 @@ msgstr "đóng"
 
 msgid "Custom Date Range"
 msgstr "Khoảng Thời gian Tùy biến"
-
-msgid "From"
-msgstr "Từ"
-
-msgid "To"
-msgstr "Tới"
 
 msgid "Update"
 msgstr "Cập nhật"
@@ -5137,22 +5105,6 @@ msgstr "Tiện ích Mozilla"
 msgid "Back to Add-ons"
 msgstr "Trở lại Tiện ích"
 
-msgid "Legal Notices"
-msgstr "Lưu ý Pháp lí"
-
-msgid "Report Trademark Abuse"
-msgstr "Báo cáo lạm dụng nhãn hiệu"
-
-msgid "Report a bug"
-msgstr "Báo cáo lỗi"
-
-msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
-"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"Ngoại trừ những trường hợp khác được <a href=\"https://www.mozilla.org/about/legal/\">lưu ý</a>, nội dung trên trang web này được cấp phép theo <br /> <a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> giấy phép Creative Commons Attribution Share-Alike License v3.0 </a> hoặc bất kỳ phiên bản nào mới hơn."
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Trở lại trang chủ Tiện ích {0}"
@@ -5174,6 +5126,9 @@ msgstr "Blog cộng đồng"
 
 msgid "Forum"
 msgstr "Diễn đàn"
+
+msgid "Report a bug"
+msgstr "Báo cáo lỗi"
 
 msgid "Review Guide"
 msgstr "Hướng dẫn đánh giá"
@@ -5276,7 +5231,7 @@ msgid "Email Pattern"
 msgstr "Mẫu email"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
-msgstr ""
+msgstr "Nhập email đầy đủ cần chặn hoặc sử dụng ký tự đại diện kiểu Unix, ví dụ: \"*@example.com\". Nếu bạn cần chặn một miền bao gồm các miền phụ, hãy thêm mục nhập thứ hai, ví dụ: \"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "Địa chỉ email sử dụng cho tài khoản của bạn không được phép cho đệ trình."
@@ -5285,6 +5240,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Nhập đầy đủ miền email dùng một lần cần chặn. Ký tự đại diện không được hỗ trợ: nếu bạn cần những thứ đó hoặc cần đối sánh với toàn bộ email chứ không chỉ phần tên miền, thay vào đó hãy sử dụng "
+"\"Hạn chế người dùng bằng email\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -5297,7 +5254,7 @@ msgid "Please read and accept our Firefox Add-on Distribution Agreement as well 
 msgstr "Vui lòng đọc và chấp nhận Thỏa thuận phân phối tiện ích Firefox của chúng tôi cũng như các Chính sách và quy tắc đánh giá của chúng tôi bằng cách truy cập {url}"
 
 msgid "User Restriction History"
-msgstr ""
+msgstr "Lịch sử hạn chế người dùng"
 
 msgid "an add-on developer replies to my review"
 msgstr "một nhà phát triển tiện ích trả lời đánh giá của tôi"

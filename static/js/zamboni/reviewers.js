@@ -56,6 +56,24 @@ $(document).ready(function () {
       window.location.hash = 'id=' + $('#addon, #persona').attr('data-id');
     });
   }
+
+  if ($('#addon-queue-filter-form').length) {
+    let filter_form = $('#addon-queue-filter-form form')[0];
+
+    $('#addon-queue-filter-form button').click(function () {
+      if (filter_form.hidden) {
+        filter_form.hidden = false;
+      } else {
+        filter_form.hidden = true;
+      }
+    });
+    if (
+      $('#addon-queue-filter-form input[type="checkbox"]').length ==
+      $('#addon-queue-filter-form input[type="checkbox"]:checked').length
+    ) {
+      filter_form.hidden = true;
+    }
+  }
 });
 
 function initReviewActions() {
@@ -63,6 +81,7 @@ function initReviewActions() {
     var $element = $(element),
       value = $element.find('input').val(),
       $data_toggle = $('form.review-form').find('.data-toggle'),
+      $data_toggle_hide = $('form.review-form').find('.data-toggle-hide'),
       $comments = $('#id_comments'),
       boilerplate_text = $element.find('input').attr('data-value');
 
@@ -87,6 +106,10 @@ function initReviewActions() {
     // Hide everything, then show the ones containing the value we're interested in.
     $data_toggle.hide();
     $data_toggle.filter('[data-value~="' + value + '"]').show();
+    // For data_toggle_hide, the opposite - show everything, then hide the ones containing
+    // the value we're interested in.
+    $data_toggle_hide.show();
+    $data_toggle_hide.filter('[data-value~="' + value + '"]').hide();
   }
 
   $('#review-actions .action_nav #id_action > *:not(.disabled)').click(
@@ -219,6 +242,8 @@ function callReviewersAPI(apiUrl, method, data, successCallback) {
   });
 }
 
+$('#id_attachment_file').on('change', validateFileUploadSize);
+
 function initExtraReviewActions() {
   /* Inline actions that should trigger a XHR and modify the form element
    * accordingly.
@@ -258,9 +283,18 @@ function initExtraReviewActions() {
     }),
   );
 
-  $('#due_date_update').change(
+  $('#due_date_update').on(
+    'change',
     _pd(function () {
-      var $input = $(this).prop('disabled', true); // Prevent double-send.
+      $('#submit_due_date_update').removeClass('disabled');
+    }),
+  );
+
+  $('#submit_due_date_update').on(
+    'click',
+    _pd(function () {
+      $(this).addClass('disabled');
+      var $input = $('#due_date_update').prop('disabled', true); // Prevent double-send.
       var apiUrl = $input.data('api-url');
       var data = { due_date: $input.val(), version: $input.data('api-data') };
       callReviewersAPI(apiUrl, 'post', data, function (response) {
@@ -268,6 +302,30 @@ function initExtraReviewActions() {
       });
     }),
   );
+
+  const showToggleWrapper = () => {
+    $(
+      '#attachment_input_wrapper, #attachment_file_wrapper, #attachment_back',
+    ).addClass('hidden');
+    $('#attachment-type-toggle').removeClass('hidden');
+    $('#id_attachment_file, #id_attachment_input').val('');
+  };
+  const showFileWrapper = (e) => {
+    e?.preventDefault();
+    $('#attachment-type-toggle, #attachment_input_wrapper').addClass('hidden');
+    $('#attachment_file_wrapper, #attachment_back').removeClass('hidden');
+  };
+  const showInputWrapper = (e) => {
+    e?.preventDefault();
+    $('#attachment-type-toggle, #attachment_file_wrapper').addClass('hidden');
+    $('#attachment_input_wrapper, #attachment_back').removeClass('hidden');
+  };
+
+  $('#id_attachment_file').prop('files').length && showFileWrapper();
+  $('#id_attachment_input').val() && showInputWrapper();
+  $('#attachment_back').on('click', showToggleWrapper);
+  $('#toggle_attachment_file').on('click', showFileWrapper);
+  $('#toggle_attachment_input').on('click', showInputWrapper);
 
   // One-off-style buttons.
   $('.more-actions button.oneoff[data-api-url]').click(
